@@ -1,11 +1,13 @@
+package facade;
 import easyaccept.EasyAccept;
 
 public class Facade {
 
     public static void main(String[] args) {
-        args = new String[] {"Facade", "testes_aceitacao/use_case_1.txt"};
+        args = new String[] {"facade.Facade", "testes_aceitacao/use_case_1.txt", "testes_aceitacao/use_case_2.txt" , "testes_aceitacao/use_case_3.txt"};
         EasyAccept.main(args);
     }
+    
     public void adicionaDoador(String id, String nome, String email, String celular, String classe){
 
     }
