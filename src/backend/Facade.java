@@ -1,13 +1,12 @@
 package backend;
+import Controller.ControladorItem;
 import Controller.ControladorUsuario;
 import easyaccept.EasyAccept;
 
 public class Facade {
-	private ControladorUsuario controleUsuario;
 	
-	public Facade() {
-		controleUsuario = new ControladorUsuario();
-	}
+	private ControladorUsuario controleUsuario = new ControladorUsuario();
+	private ControladorItem controleItem = new ControladorItem(); 
 	
 	public static void main(String[] args) {
 		args = new String[] { "backend.Facade", "testes_aceitacao/use_case_1.txt"};
@@ -26,11 +25,11 @@ public class Facade {
 		return "";
 	}
 
-	// TODO METODO ATUALIZA USUARIO
-
 	public void removeUsuario(String id) {
 
 	}
+	
+	// TODO METODO ATUALIZA USUARIO
 
 	public void adicionaDescritor(String descricao) {
 
