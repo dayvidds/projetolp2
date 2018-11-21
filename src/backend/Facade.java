@@ -1,0 +1,65 @@
+package backend;
+import Controller.ControladorUsuario;
+import easyaccept.EasyAccept;
+
+public class Facade {
+	private ControladorUsuario controleUsuario;
+	
+	public Facade() {
+		controleUsuario = new ControladorUsuario();
+	}
+	
+	public static void main(String[] args) {
+		args = new String[] { "backend.Facade", "testes_aceitacao/use_case_1.txt"};
+		EasyAccept.main(args);
+	}
+
+	public String adicionaDoador(String id, String nome, String email, String celular, String classe) {
+		return controleUsuario.adicionaDoador(id, nome, email, celular, classe);
+	}
+
+	public String pesquisaUsuarioPorId(String id) {
+		return controleUsuario.pesquisaUsuarioPorId(id);
+	}
+
+	public String pesquisaUsuarioPorNome(String nome) {
+		return "";
+	}
+
+	// TODO METODO ATUALIZA USUARIO
+
+	public void removeUsuario(String id) {
+
+	}
+
+	public void adicionaDescritor(String descricao) {
+
+	}
+
+	public void adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
+
+	}
+
+	public String exibeItem(String idItem, String idDoador) {
+		return "";
+	}
+
+	// TODO METODO ATUALIZAR ITEM
+
+	public void removeItemParaDoacao(String idItem, String idDoador) {
+
+	}
+
+	public String listaDescritorDeItensParaDoacao() {
+		return "";
+	}
+
+	public String listaItensParaDoacao() {
+		return "";
+	}
+
+	public String pesquisaItemParaDoacaoPorDescricao(String desc) {
+		return "";
+	}
+
+}
