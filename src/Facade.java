@@ -1,4 +1,9 @@
 public class Facade {
+
+    public static void main(String[] args) {
+        args = new String[] {"src.Facade", "testes_aceitacao/use_case_1.txt" , "testes_aceitacao/use_case_2.txt", "testes_aceitacao/use_case_3.txt"};
+        EasyAccept.main(args);
+    }
     public void adicionaDoador(String id, String nome, String email, String celular, String classe){
 
     }
@@ -11,6 +16,8 @@ public class Facade {
         return "";
     }
 
+    //TODO METODO ATUALIZA USUARIO
+
     public void removeUsuario(String id){
 
     }
@@ -22,5 +29,31 @@ public class Facade {
     public void adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags){
 
     }
-    
+
+    public String exibeItem(String idItem, String idDoador){
+        return "";
+    }
+
+
+    //TODO METODO ATUALIZAR ITEM
+
+
+    public void removeItemParaDoacao(String idItem, String idDoador){
+
+    }
+
+    public String listaDescritorDeItensParaDoacao(){
+        return "";
+    }
+
+    public String listaItensParaDoacao(){
+        return "";
+    }
+
+    public String pesquisaItemParaDoacaoPorDescricao(String desc){
+        return "";
+    }
+
+
+
 }
