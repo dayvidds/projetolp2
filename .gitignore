@@ -1,5 +1,6 @@
 out/
 .idea/
-.project/
-.classhpath/
+*.project
+*.classpath
 *.class
+bin/
