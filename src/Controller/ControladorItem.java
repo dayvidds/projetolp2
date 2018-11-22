@@ -1,8 +1,15 @@
 package Controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+
+import Comparable.ComparadorQuantidade;
 import entidade.Item;
 
 public class ControladorItem {
@@ -11,7 +18,7 @@ public class ControladorItem {
 	private int idItem;
 	
 	public ControladorItem() {
-		itensDoados = new HashMap<>();
+		itensDoados = new TreeMap<>();
 		idItem = 0;
 		
 	}
@@ -36,6 +43,34 @@ public class ControladorItem {
 	public Item getItemId(String descricaoItem, int id) {
 		return itensDoados.get(descricaoItem).get(id);
 		
+	}
+	
+	public String listaDescritorDeItensParaDoacao() {
+		Set<String> descritores = itensDoados.keySet();
+		String listaDescritores = "";
+		int contador = 0;
+		for (String descritor : descritores) {
+			listaDescritores += this.itensDoados.get(descritor).size() + " - " + descritor;
+			contador += 1;
+			if (contador < descritores.size()) {
+				listaDescritores += " | ";
+			}
+		}
+		return listaDescritores;
+	}
+	
+	public ArrayList<Item> listaItensParaDoacao() {
+		ArrayList<Item> itens = new ArrayList<>();
+		Set<String> descritores = itensDoados.keySet();
+		for (String descritor : descritores) {
+			Set<Integer> idItens = this.itensDoados.get(descritor).keySet();
+			for (int idItem : idItens) {
+				itens.add(this.itensDoados.get(descritor).get(idItem));
+			}
+		}
+		
+		Collections.sort(itens, new ComparadorQuantidade());
+		return itens;
 	}
 	
 }

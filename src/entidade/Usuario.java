@@ -74,6 +74,10 @@ public class Usuario {
 	public void setIdentificacao(String identificacao) {
 		this.documento = identificacao;
 	}
+	
+	public String getNomeIdentificacao() {
+		return this.nome + "/" + this.documento;
+	}
 
 	@Override
 	public int hashCode() {

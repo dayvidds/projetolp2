@@ -1,5 +1,7 @@
 package Controller;
 
+import java.util.ArrayList;
+
 import entidade.Item;
 
 public class Controlador {
@@ -31,5 +33,21 @@ public class Controlador {
 		Item item = controladorItem.getItemId(descricaoItem, idItem);
 		controladorUsuario.adiconaItemParaDoacao(idDoador, idItem, item);
 		
+	}
+	
+	public String listaItensParaDoacao() {
+		ArrayList<Item> itens = this.controladorItem.listaItensParaDoacao();
+		String listaItens = "";
+		int contador = 0;
+		for (Item item : itens) {
+			String idDoador = item.getIdDoador(); 
+			String doador = this.controladorUsuario.getNomeIdentificacao(idDoador);
+			listaItens += item.toString() + ", doador: " + doador;
+			contador += 1;
+			if (contador < itens.size()) {
+				listaItens += " | ";
+			}
+		}
+		return listaItens;
 	}
 }

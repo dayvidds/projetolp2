@@ -57,4 +57,8 @@ public class ControladorUsuario {
 		usuarios.get(idDoador).adicionaItemDoado(idItem, item);
 		
 	}
+	
+	public String getNomeIdentificacao(String id) {
+		return this.usuarios.get(id).getNomeIdentificacao();
+	}
 }
