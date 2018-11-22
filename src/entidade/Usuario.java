@@ -1,5 +1,8 @@
 package entidade;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.swing.text.MaskFormatter;
 
 public class Usuario {
@@ -9,6 +12,7 @@ public class Usuario {
 	private TipoUsuario classe;
 	private String documento;
 	private Status status;
+	private Map<Integer, Item> itensDoados;
 
 	public Usuario(String documento, String nome, String email, String celular, TipoUsuario classe, Status status) {
 		this.nome = nome;
@@ -17,6 +21,7 @@ public class Usuario {
 		this.classe = classe;
 		this.documento = documento;	
 		this.status = status;
+		this.itensDoados = new HashMap<>();
 	}
 	
 	public static String formatString(String value, String pattern) {
@@ -128,6 +133,11 @@ public class Usuario {
 			this.documento = formatString(documento, "##.###.###/####-##");
 		}
 		return nome + "/" + documento + ", " + email + ", " + celular + ", status: " +  status.getStatus();
+	}
+
+	public void adicionaItemDoado(int idItem, Item item) {
+		itensDoados.put(idItem, item);
+		
 	}
 
 }

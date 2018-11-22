@@ -1,12 +1,10 @@
 package backend;
-import Controller.ControladorItem;
-import Controller.ControladorUsuario;
+import Controller.Controlador;
 import easyaccept.EasyAccept;
 
 public class Facade {
 	
-	private ControladorUsuario controleUsuario = new ControladorUsuario();
-	private ControladorItem controleItem = new ControladorItem(); 
+	private Controlador controlador = new Controlador(); 
 	
 	public static void main(String[] args) {
 		args = new String[] { "backend.Facade", "testes_aceitacao/use_case_1.txt"};
@@ -14,11 +12,11 @@ public class Facade {
 	}
 
 	public String adicionaDoador(String id, String nome, String email, String celular, String classe) {
-		return controleUsuario.adicionaDoador(id, nome, email, celular, classe);
+		return controlador.adicionaDoador(id, nome, email, celular, classe);
 	}
 
 	public String pesquisaUsuarioPorId(String id) {
-		return controleUsuario.pesquisaUsuarioPorId(id);
+		return controlador.pesquisaUsuarioPorId(id);
 	}
 
 	public String pesquisaUsuarioPorNome(String nome) {
@@ -32,12 +30,12 @@ public class Facade {
 	// TODO METODO ATUALIZA USUARIO
 
 	public void adicionaDescritor(String descricao) {
-		controleItem.adicionaDescritor(descricao);
+		controlador.adicionaDescritor(descricao);
 		
 	}
 
 	public void adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
-		controleItem.adicionaItemParaDoacao(idDoador, descricaoItem, quantidade, tags);
+		controlador.adicionaItemParaDoacao(idDoador, descricaoItem, quantidade, tags);
 		
 	}
 

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import backend.Exceptions;
+import entidade.Item;
 import entidade.Status;
 import entidade.TipoUsuario;
 import entidade.Usuario;
@@ -50,5 +51,10 @@ public class ControladorUsuario {
 		}
 		Usuario usuario = usuarios.get(id);
 		return usuario.toString();
+	}
+
+	public void adiconaItemParaDoacao(String idDoador, int idItem, Item item) {
+		usuarios.get(idDoador).adicionaItemDoado(idItem, item);
+		
 	}
 }
