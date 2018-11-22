@@ -32,11 +32,13 @@ public class Facade {
 	// TODO METODO ATUALIZA USUARIO
 
 	public void adicionaDescritor(String descricao) {
-
+		controleItem.adicionaDescritor(descricao);
+		
 	}
 
 	public void adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
-
+		controleItem.adicionaItemParaDoacao(idDoador, descricaoItem, quantidade, tags);
+		
 	}
 
 	public String exibeItem(String idItem, String idDoador) {

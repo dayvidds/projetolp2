@@ -18,6 +18,7 @@ public class Usuario {
 		this.documento = documento;	
 		this.status = status;
 	}
+	
 	public static String formatString(String value, String pattern) {
         MaskFormatter mf;
         try {
