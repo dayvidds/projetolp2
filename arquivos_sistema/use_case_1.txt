@@ -40,7 +40,7 @@ expect "Vaas Montenegro/50270271338, vaas@rook.com, (83) 99348-2481, status: doa
 expect "Lucas Fernandes/13507190272, lucas.fernandes@gmail.com, (83) 99982-9231, status: doador" pesquisaUsuarioPorId id=${id6}
 expect "Paroquia de Nossa Senhora da Conceicao/08704413000240, paroquia.da.conceicao@gmail.com, (83) 3321-3140, status: doador" pesquisaUsuarioPorId id=${id11}
 expect "Mirella Vera da Paz/98624406000140, mirellaveradapaz-90@marcossousa.com, (67) 99164-0977, status: receptor" pesquisaUsuarioPorId id=98624406000140
-expect "Sônia Daniela/31862316040, soniadanielanogueira@danielvasconcelos.com.br, (31) 98874-9311, status: receptor" pesquisaUsuarioPorId id=31862316040
+expect "Sonia Daniela/31862316040, soniadanielanogueira@danielvasconcelos.com.br, (31) 98874-9311, status: receptor" pesquisaUsuarioPorId id=31862316040
 
 
 expect "Carlos Eduardo/12094912484, cadoca@gmail.com, (83) 98413-3289, status: doador" pesquisaUsuarioPorNome nome="Carlos Eduardo"
