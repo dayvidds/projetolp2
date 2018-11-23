@@ -39,14 +39,19 @@ public class Facade {
 		
 	}
 
-	public String exibeItem(String idItem, String idDoador) {
-		return "";
+	public String exibeItem(int idItem, String idDoador) {
+		return controlador.exibeItem(idDoador, idItem);
+		
+	}
+	
+	public String atualizaItemParaDoacao(int idItem, String idDoador) {
+		return controlador.atualizaItemParaDoacao(idItem, idDoador);
+		
 	}
 
-	// TODO METODO ATUALIZAR ITEM
-
-	public void removeItemParaDoacao(String idItem, String idDoador) {
-
+	public void removeItemParaDoacao(int idItem, String idDoador) {
+		controlador.removeItemParaDoacao(idItem, idDoador);
+		
 	}
 
 	public String listaDescritorDeItensParaDoacao() {

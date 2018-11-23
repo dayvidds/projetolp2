@@ -78,6 +78,25 @@ public class Usuario {
 	public String getNomeIdentificacao() {
 		return this.nome + "/" + this.documento;
 	}
+	
+	public void adicionaItemDoado(int idItem, Item item) {
+		itensDoados.put(idItem, item);
+		
+	}
+
+	public String exibeItem(int idItem) {
+		return itensDoados.get(idItem).toString();
+	}
+
+	public String atualizaItemParaDoacao(int idItem) {
+		return itensDoados.get(idItem).toString();
+		
+	}
+
+	public void removeItemParaDoacao(int idItem) {
+		itensDoados.remove(idItem);
+		
+	}
 
 	@Override
 	public int hashCode() {
@@ -137,11 +156,6 @@ public class Usuario {
 			this.documento = formatString(documento, "##.###.###/####-##");
 		}
 		return nome + "/" + documento + ", " + email + ", " + celular + ", status: " +  status.getStatus();
-	}
-
-	public void adicionaItemDoado(int idItem, Item item) {
-		itensDoados.put(idItem, item);
-		
 	}
 
 }

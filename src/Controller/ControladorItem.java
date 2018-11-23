@@ -7,8 +7,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
-
 import Comparable.ComparadorQuantidade;
 import entidade.Item;
 
@@ -30,10 +28,25 @@ public class ControladorItem {
 	}
 
 	public int adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
-		Item item = new Item(idDoador, descricaoItem, quantidade, tags);
-		Map<Integer, Item> itens = new HashMap<>();
-		itens.put(idItem, item);
-		itensDoados.put(descricaoItem.trim().toLowerCase(), itens);
+		if (itensDoados.containsKey(descricaoItem.trim().toLowerCase())) {
+			Item item = new Item(idDoador, idItem, descricaoItem, quantidade, tags);
+			if (itensDoados.get(descricaoItem.trim().toLowerCase()).containsValue(item)) {
+				for (Item itens: itensDoados.get(descricaoItem.trim().toLowerCase()).values()) {
+					if (itens.equals(item)) {
+						itens.setQuantidade(quantidade);
+						break;
+					}	
+				}
+			} else {
+				itensDoados.get(descricaoItem.trim().toLowerCase()).put(idItem, item);
+				
+			}
+			
+		} else {
+			this.adicionaDescritor(descricaoItem.trim().toLowerCase());
+			Item item = new Item(idDoador, idItem, descricaoItem, quantidade, tags);
+			itensDoados.get(descricaoItem.trim().toLowerCase()).put(idItem, item);
+		}
 		int retorno = idItem;
 		idItem += 1;
 		return retorno;

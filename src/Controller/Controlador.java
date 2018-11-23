@@ -28,10 +28,26 @@ public class Controlador {
 		
 	}
 
-	public void adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
+	public int adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
 		int idItem = controladorItem.adicionaItemParaDoacao(idDoador, descricaoItem, quantidade, tags);
 		Item item = controladorItem.getItemId(descricaoItem, idItem);
 		controladorUsuario.adiconaItemParaDoacao(idDoador, idItem, item);
+		return idItem;
+		
+	}
+	
+	public String exibeItem(String idDoador, int idItem) {
+		return controladorUsuario.exibeItem(idDoador, idItem);
+		
+	}
+
+	public String atualizaItemParaDoacao(int idItem, String idDoador) {
+		return controladorUsuario.atualizaItemParaDoacao(idItem, idDoador);
+		
+	}
+
+	public void removeItemParaDoacao(int idItem, String idDoador) {
+		controladorUsuario.removeItemParaDoacao(idItem, idDoador);
 		
 	}
 	
