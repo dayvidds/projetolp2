@@ -22,17 +22,7 @@ public class Usuario {
 		this.documento = documento;	
 		this.status = status;
 		this.itensDoados = new HashMap<>();
-	}
 	
-	public static String formatString(String value, String pattern) {
-        MaskFormatter mf;
-        try {
-            mf = new MaskFormatter(pattern);
-            mf.setValueContainsLiteralCharacters(false);
-            return mf.valueToString(value);
-        } catch (Exception ex) {
-            return value;
-        }
     }
 	
 	public String getNome() {
@@ -77,25 +67,6 @@ public class Usuario {
 	
 	public String getNomeIdentificacao() {
 		return this.nome + "/" + this.documento;
-	}
-	
-	public void adicionaItemDoado(int idItem, Item item) {
-		itensDoados.put(idItem, item);
-		
-	}
-
-	public String exibeItem(int idItem) {
-		return itensDoados.get(idItem).toString();
-	}
-
-	public String atualizaItemParaDoacao(int idItem) {
-		return itensDoados.get(idItem).toString();
-		
-	}
-
-	public void removeItemParaDoacao(int idItem) {
-		itensDoados.remove(idItem);
-		
 	}
 
 	@Override
@@ -149,16 +120,12 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-
-		if (this.classe.getClasse().equals("PESSOA_FISICA")) {
-			this.documento = formatString(documento, "###.###.###-##");
-		}else {
-			this.documento = formatString(documento, "##.###.###/####-##");
-		}
 		return nome + "/" + documento + ", " + email + ", " + celular + ", status: " +  status.getStatus();
 	}
 
+	public void adicionaItemDoado(int idItem, Item item) {
+		itensDoados.put(idItem, item);
+		
+	}
+
 }
-
-
-

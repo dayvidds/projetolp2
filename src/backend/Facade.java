@@ -1,16 +1,23 @@
 package backend;
+
+
+import java.io.FileNotFoundException;
+
 import Controller.Controlador;
 import easyaccept.EasyAccept;
 
 public class Facade {
-	
 	private Controlador controlador = new Controlador(); 
 	
-	public static void main(String[] args) {
-		args = new String[] { "backend.Facade", "testes_aceitacao/use_case_1.txt"};
+	public static void main(String[] args) throws FileNotFoundException {
+		args = new String[] { "backend.Facade", "arquivos_sistema/use_case_1.txt"};
 		EasyAccept.main(args);
 	}
-
+	
+	public void lerReceptores(String caminho) throws FileNotFoundException {
+		controlador.lerrecptor(caminho);
+		
+	}
 	public String adicionaDoador(String id, String nome, String email, String celular, String classe) {
 		return controlador.adicionaDoador(id, nome, email, celular, classe);
 	}
@@ -20,38 +27,34 @@ public class Facade {
 	}
 
 	public String pesquisaUsuarioPorNome(String nome) {
-		return "";
+		return controlador.pesquisaUsuarioPorNome(nome);
 	}
 
-	public void removeUsuario(String id) {
-
-	}
-	
 	// TODO METODO ATUALIZA USUARIO
 
+	public void removeUsuario(String id) {
+		controlador.removeUsuario(id);
+	}
+	
+	public String atualizaUsuario(String id, String nome, String email, String celular) {
+		return controlador.atualizaUsuario(id, nome, email, celular);
+	}
 	public void adicionaDescritor(String descricao) {
-		controlador.adicionaDescritor(descricao);
-		
+
 	}
 
 	public void adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
-		controlador.adicionaItemParaDoacao(idDoador, descricaoItem, quantidade, tags);
-		
+
 	}
 
-	public String exibeItem(int idItem, String idDoador) {
-		return controlador.exibeItem(idDoador, idItem);
-		
-	}
-	
-	public String atualizaItemParaDoacao(int idItem, String idDoador) {
-		return controlador.atualizaItemParaDoacao(idItem, idDoador);
-		
+	public String exibeItem(String idItem, String idDoador) {
+		return "";
 	}
 
-	public void removeItemParaDoacao(int idItem, String idDoador) {
-		controlador.removeItemParaDoacao(idItem, idDoador);
-		
+	// TODO METODO ATUALIZAR ITEM
+
+	public void removeItemParaDoacao(String idItem, String idDoador) {
+
 	}
 
 	public String listaDescritorDeItensParaDoacao() {
