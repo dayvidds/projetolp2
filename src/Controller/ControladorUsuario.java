@@ -137,9 +137,23 @@ public class ControladorUsuario {
 		usuarios.get(idDoador).adicionaItemDoado(idItem, item);
 		
 	}
-
+	
 	public String getNomeIdentificacao(String id) {
 		return this.usuarios.get(id).getNomeIdentificacao();
 	}
+
+	public String exibeItem(String idDoador, int idItem) {
+		return usuarios.get(idDoador).exibeItem(idItem);
+		
+	}
+
+	public String atualizaItemParaDoacao(int idItem, String idDoador) {
+		return usuarios.get(idDoador).atualizaItemParaDoacao(idItem);
+	}
+
+	public void removeItemParaDoacao(int idItem, String idDoador) {
+		usuarios.get(idDoador).removeItemParaDoacao(idItem);
+		
+}
 	}
 

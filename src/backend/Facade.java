@@ -30,8 +30,6 @@ public class Facade {
 		return controlador.pesquisaUsuarioPorNome(nome);
 	}
 
-	// TODO METODO ATUALIZA USUARIO
-
 	public void removeUsuario(String id) {
 		controlador.removeUsuario(id);
 	}
@@ -39,22 +37,30 @@ public class Facade {
 	public String atualizaUsuario(String id, String nome, String email, String celular) {
 		return controlador.atualizaUsuario(id, nome, email, celular);
 	}
+	
 	public void adicionaDescritor(String descricao) {
-
+		controlador.adicionaDescritor(descricao);
+		
 	}
 
 	public void adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
-
+		controlador.adicionaItemParaDoacao(idDoador, descricaoItem, quantidade, tags);
+		
 	}
 
-	public String exibeItem(String idItem, String idDoador) {
-		return "";
+	public String exibeItem(int idItem, String idDoador) {
+		return controlador.exibeItem(idDoador, idItem);
+		
 	}
 
-	// TODO METODO ATUALIZAR ITEM
+	public String atualizaItemParaDoacao(int idItem, String idDoador) {
+		return controlador.atualizaItemParaDoacao(idItem, idDoador);
+		
+	}
 
-	public void removeItemParaDoacao(String idItem, String idDoador) {
-
+	public void removeItemParaDoacao(int idItem, String idDoador) {
+		controlador.removeItemParaDoacao(idItem, idDoador);
+		
 	}
 
 	public String listaDescritorDeItensParaDoacao() {

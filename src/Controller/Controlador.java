@@ -33,21 +33,38 @@ public class Controlador {
 		return controladorUsuario.atualizaInformacaoDeUsuario(id, nome, email, celular);
 		
 	}
-	public void adicionaDescritor(String descricao) {
-		controladorItem.adicionaDescritor(descricao);
-		
-	}
-
 
 	public void removeUsuario(String id) {
 		controladorUsuario.removeUsuario(id);
 		
 	}
 
-	public void adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
+	public void adicionaDescritor(String descricao) {
+		controladorItem.adicionaDescritor(descricao);
+		
+	}
+
+	public int adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
 		int idItem = controladorItem.adicionaItemParaDoacao(idDoador, descricaoItem, quantidade, tags);
 		Item item = controladorItem.getItemId(descricaoItem, idItem);
-		controladorItem.adicionaItemParaDoacao(idDoador, descricaoItem, quantidade, tags);		
+		controladorUsuario.adiconaItemParaDoacao(idDoador, idItem, item);
+		return idItem;
+		
+	}
+	
+	public String exibeItem(String idDoador, int idItem) {
+		return controladorUsuario.exibeItem(idDoador, idItem);
+		
+	}
+
+	public String atualizaItemParaDoacao(int idItem, String idDoador) {
+		return controladorUsuario.atualizaItemParaDoacao(idItem, idDoador);
+		
+	}
+
+	public void removeItemParaDoacao(int idItem, String idDoador) {
+		controladorUsuario.removeItemParaDoacao(idItem, idDoador);
+		
 	}
 	
 	public String listaItensParaDoacao() {
