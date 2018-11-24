@@ -45,8 +45,8 @@ public class Controlador {
 	}
 
 	public int adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
-		int idItem = controladorItem.adicionaItemParaDoacao(idDoador, descricaoItem, quantidade, tags);
-		controladorUsuario.adiconaItemParaDoacao(idDoador, idItem, controladorItem.getItemId(descricaoItem, idItem));
+		int idItem = controladorItem.adicionaItem(idDoador, descricaoItem, quantidade, tags, "itemDoado");
+		controladorUsuario.adicionaItem(idDoador, idItem, controladorItem.getItemId(descricaoItem, idItem), "itemDoado");
 		return idItem;
 		
 	}
@@ -57,17 +57,18 @@ public class Controlador {
 	}
 
 	public String atualizaItemParaDoacao(int idItem, String idDoador) {
-		return controladorUsuario.atualizaItemParaDoacao(idItem, idDoador);
+		return controladorUsuario.atualizaItem(idItem, idDoador);
 		
 	}
 
 	public void removeItemParaDoacao(int idItem, String idDoador) {
 		controladorItem.removeItemParaDoacao(idItem);
-		controladorUsuario.removeItemParaDoacao(idItem, idDoador);
+		controladorUsuario.removeItem(idItem, idDoador);
 		
 	}
 	
 	public String listaItensParaDoacao() {
+
 		ArrayList<Item> itens = this.controladorItem.listaItensParaDoacao();
 		String listaItens = "";
 		int contador = 0;
@@ -82,5 +83,11 @@ public class Controlador {
 
 		}
 		return listaItens;
+	}
+	
+	public int adicionaItemNecessario(String idDoador, String descricaoItem, int quantidade, String tags) {
+		int idItem = controladorItem.adicionaItem(idDoador, descricaoItem, quantidade, tags, "itemNecessario");
+		controladorUsuario.adicionaItem(idDoador, idItem, controladorItem.getItemId(descricaoItem, idItem), "itemNecessario");
+		return idItem;
 	}
 }

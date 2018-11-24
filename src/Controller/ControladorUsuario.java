@@ -135,13 +135,25 @@ public class ControladorUsuario {
 		
 	}
 	
-	public void adiconaItemParaDoacao(String idDoador, int idItem, Item item) {
-		usuarios.get(idDoador).adicionaItemDoado(idItem, item);
-		
-	}
-	
 	public String getNomeIdentificacao(String id) {
 		return this.usuarios.get(id).getNomeIdentificacao();
+	}
+	
+	public void adicionaItem(String idUsuario, int idItem, Item item, String tipoItem) {
+		if (tipoItem.equals("itemDoado")) {
+			if (usuarios.get(idUsuario).getStatus().equals(Status.valueOf("DOADOR"))) {
+				usuarios.get(idUsuario).adicionaItem(idItem, item);
+			} else {
+				//TODO EXCEPTION
+			}
+			
+		} else if (tipoItem.equals("itemNecessario")) {
+			if (usuarios.get(idUsuario).getStatus().equals(Status.valueOf("RECEPTOR"))) {
+				usuarios.get(idUsuario).adicionaItem(idItem, item);
+			} else {
+				//TODO EXCEPTION
+			}
+		}
 	}
 
 	public String exibeItem(String idDoador, int idItem) {
@@ -149,12 +161,12 @@ public class ControladorUsuario {
 		
 	}
 
-	public String atualizaItemParaDoacao(int idItem, String idDoador) {
-		return usuarios.get(idDoador).atualizaItemParaDoacao(idItem);
+	public String atualizaItem(int idItem, String idUsuario) {
+		return usuarios.get(idUsuario).atualizaItem(idItem);
 	}
 
-	public void removeItemParaDoacao(int idItem, String idDoador) {
-		usuarios.get(idDoador).removeItemParaDoacao(idItem);
+	public void removeItem(int idItem, String idUsuario) {
+		usuarios.get(idUsuario).removeItem(idItem);
 		
 }
 	}

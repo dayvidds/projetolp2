@@ -10,7 +10,7 @@ public class Usuario {
 	private TipoUsuario classe;
 	private String documento;
 	private Status status;
-	private Map<Integer, Item> itensDoados;
+	private Map<Integer, Item> itens;
 
 	public Usuario(String documento, String nome, String email, String celular, TipoUsuario classe, Status status) {
 		this.nome = nome;
@@ -19,7 +19,7 @@ public class Usuario {
 		this.classe = classe;
 		this.documento = documento;	
 		this.status = status;
-		this.itensDoados = new HashMap<>();
+		this.itens = new HashMap<>();
 	
     }
 	
@@ -58,6 +58,10 @@ public class Usuario {
 	public String getIdentificacao() {
 		return documento;
 	}
+	
+	public Status getStatus() {
+		return status;
+	}
 
 	public void setIdentificacao(String identificacao) {
 		this.documento = identificacao;
@@ -67,22 +71,22 @@ public class Usuario {
 		return this.nome + "/" + this.documento;
 	}
 	
-	public void adicionaItemDoado(int idItem, Item item) {
-		itensDoados.put(idItem, item);
+	public void adicionaItem(int idItem, Item item) {
+		itens.put(idItem, item);
 		
 	}
 
 	public String exibeItem(int idItem) {
-		return itensDoados.get(idItem).toString();
+		return itens.get(idItem).toString();
 	}
 
-	public String atualizaItemParaDoacao(int idItem) {
-		return itensDoados.get(idItem).toString();
+	public String atualizaItem(int idItem) {
+		return itens.get(idItem).toString();
 		
 	}
 
-	public void removeItemParaDoacao(int idItem) {
-		itensDoados.remove(idItem);
+	public void removeItem(int idItem) {
+		itens.remove(idItem);
 		
 	}
 

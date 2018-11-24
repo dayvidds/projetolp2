@@ -74,5 +74,9 @@ public class Facade {
 	public String pesquisaItemParaDoacaoPorDescricao(String desc) {
 		return "";
 	}
+	
+	public int adicionaItemNecessario(String idDoador, String descricaoItem, int quantidade, String tags) {
+		return controlador.adicionaItemNecessario(idDoador, descricaoItem, quantidade, tags);
+	}
 
 }

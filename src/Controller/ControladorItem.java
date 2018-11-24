@@ -12,6 +12,7 @@ import entidade.Item;
 public class ControladorItem {
 
 	private Map<String, Map<Integer, Item>> itensDoados;
+	private Map<String, Map<Integer, Item>> itensNecessarios;
 	private int idItem;
 	
 	public ControladorItem() {
@@ -26,9 +27,15 @@ public class ControladorItem {
 		
 	}
 	
-	private void avaliaDescritor(String descricaoItem) {
-		if (!itensDoados.containsKey(descricaoItem.trim().toLowerCase())) {
-			this.adicionaDescritor(descricaoItem.trim().toLowerCase());
+	private void adicionaDescritor(String descricao, Map<String, Map<Integer, Item>> mapaDoItem) {
+		Map<Integer,Item> mapa = new HashMap<>();
+		mapaDoItem.put(descricao, mapa);
+		
+	}
+	
+	private void avaliaDescritor(String descricaoItem, Map<String, Map<Integer, Item>> mapaDoItem) {
+		if (!mapaDoItem.containsKey(descricaoItem.trim().toLowerCase())) {
+			this.adicionaDescritor(descricaoItem.trim().toLowerCase(), mapaDoItem);
 		}
 		
 	}
@@ -48,18 +55,6 @@ public class ControladorItem {
 		}	
 	}
 
-	public int adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
-		this.avaliaDescritor(descricaoItem);
-		Item item = new Item(idDoador, idItem, descricaoItem, quantidade, tags);
-		
-		if (!this.avaliaItem(descricaoItem, item, quantidade)) {
-			itensDoados.get(descricaoItem.trim().toLowerCase()).put(idItem, item);
-		}					
-		idItem += 1;
-		return idItem - 1;
-		
-	}
-	
 	public void removeItemParaDoacao(int idItem) {
 		for (Map<Integer, Item> mapa : itensDoados.values()) {
 			for (Item item : mapa.values()) {
@@ -104,6 +99,27 @@ public class ControladorItem {
 		Collections.sort(itens, new ComparadorQuantidade());
 
 		return itens;
+	}
+	
+	public int adicionaItem(String idDoador, String descricaoItem, int quantidade, String tags, String tipoItem) {
+		Map<String, Map<Integer, Item>> mapa;
+		Item item = new Item(idDoador, idItem, descricaoItem, quantidade, tags);
+		
+		if (tipoItem.equals("itemDoado")) {
+			mapa = this.itensDoados;
+		} else {
+			mapa = this.itensNecessarios;
+		}
+		
+		this.avaliaDescritor(descricaoItem, mapa);
+		
+		if (!this.avaliaItem(descricaoItem, item, quantidade)) {
+			mapa.get(descricaoItem.trim().toLowerCase()).put(idItem, item);
+		}
+		
+		idItem += 1;
+		return idItem - 1;
+		
 	}
 	
 }
