@@ -132,7 +132,9 @@ public class ControladorUsuario {
 		Exceptions.checaNullOuVazio(id, "id do usuario nao pode ser vazio ou nulo.");
 		erroUsuarioNaoExiste(id);
 		usuarios.remove(id);
+		
 	}
+	
 	public void adiconaItemParaDoacao(String idDoador, int idItem, Item item) {
 		usuarios.get(idDoador).adicionaItemDoado(idItem, item);
 		

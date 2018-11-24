@@ -3,8 +3,6 @@ package entidade;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.text.MaskFormatter;
-
 public class Usuario {
 	private String nome;
 	private String email;

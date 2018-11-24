@@ -46,8 +46,7 @@ public class Controlador {
 
 	public int adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
 		int idItem = controladorItem.adicionaItemParaDoacao(idDoador, descricaoItem, quantidade, tags);
-		Item item = controladorItem.getItemId(descricaoItem, idItem);
-		controladorUsuario.adiconaItemParaDoacao(idDoador, idItem, item);
+		controladorUsuario.adiconaItemParaDoacao(idDoador, idItem, controladorItem.getItemId(descricaoItem, idItem));
 		return idItem;
 		
 	}
@@ -63,6 +62,7 @@ public class Controlador {
 	}
 
 	public void removeItemParaDoacao(int idItem, String idDoador) {
+		controladorItem.removeItemParaDoacao(idItem);
 		controladorUsuario.removeItemParaDoacao(idItem, idDoador);
 		
 	}

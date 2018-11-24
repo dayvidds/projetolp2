@@ -25,30 +25,50 @@ public class ControladorItem {
 		itensDoados.put(descricao, mapa);
 		
 	}
+	
+	private void avaliaDescritor(String descricaoItem) {
+		if (!itensDoados.containsKey(descricaoItem.trim().toLowerCase())) {
+			this.adicionaDescritor(descricaoItem.trim().toLowerCase());
+		}
+		
+	}
+	
+	private boolean avaliaItem(String descricaoItem, Item item, int quantidade) {
+		if (itensDoados.get(descricaoItem.trim().toLowerCase()).containsValue(item)) {
+			for (Item itens: itensDoados.get(descricaoItem.trim().toLowerCase()).values()) {
+				if (itens.equals(item)) {
+					itens.setQuantidade(quantidade);
+					break;
+				}
+			}
+			return true;
+		} else {
+			return false;
+			
+		}	
+	}
 
 	public int adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
-		if (itensDoados.containsKey(descricaoItem.trim().toLowerCase())) {
-			Item item = new Item(idDoador, idItem, descricaoItem, quantidade, tags);
-			if (itensDoados.get(descricaoItem.trim().toLowerCase()).containsValue(item)) {
-				for (Item itens: itensDoados.get(descricaoItem.trim().toLowerCase()).values()) {
-					if (itens.equals(item)) {
-						itens.setQuantidade(quantidade);
-						break;
-					}	
-				}
-			} else {
-				itensDoados.get(descricaoItem.trim().toLowerCase()).put(idItem, item);
-				
-			}
-			
-		} else {
-			this.adicionaDescritor(descricaoItem.trim().toLowerCase());
-			Item item = new Item(idDoador, idItem, descricaoItem, quantidade, tags);
+		this.avaliaDescritor(descricaoItem);
+		Item item = new Item(idDoador, idItem, descricaoItem, quantidade, tags);
+		
+		if (!this.avaliaItem(descricaoItem, item, quantidade)) {
 			itensDoados.get(descricaoItem.trim().toLowerCase()).put(idItem, item);
-		}
-		int retorno = idItem;
+		}					
 		idItem += 1;
-		return retorno;
+		return idItem - 1;
+		
+	}
+	
+	public void removeItemParaDoacao(int idItem) {
+		for (Map<Integer, Item> mapa : itensDoados.values()) {
+			for (Item item : mapa.values()) {
+				if (item.getId() == idItem) {
+					mapa.remove(idItem);
+					break;		
+				}
+			}	
+		}
 		
 	}
 
@@ -85,4 +105,5 @@ public class ControladorItem {
 
 		return itens;
 	}
+	
 }

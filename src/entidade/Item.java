@@ -27,6 +27,10 @@ public class Item implements Comparable<Item>{
 		
 	}
 	
+	public int getId() {
+		return this.idItem;
+	}
+	
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 		
