@@ -86,7 +86,7 @@ public class ControladorItem {
 		return listaDescritores;
 	}
 	
-	public ArrayList<Item> listaItensParaDoacao() {
+	public ArrayList<Item> ordenaItensPorQuantidade() {
 		ArrayList<Item> itens = new ArrayList<>();
 		Set<String> descritores = itensDoados.keySet();
 		for (String descritor : descritores) {
@@ -99,6 +99,19 @@ public class ControladorItem {
 		Collections.sort(itens, new ComparadorQuantidade());
 
 		return itens;
+	}
+	
+	public String pesquisaItemParaDoacaoPorDescricao(String descricao) {
+		if ("".equals(descricao) || descricao == null) {
+			throw new IllegalArgumentException("Entrada invalida: texto da pesquisa nao pode ser vazio ou nulo.");
+		}
+		ArrayList<String> itensToString = new ArrayList<>();
+		Set<String> descritores = itensDoados.keySet();
+		for (String descritor : descritores) {
+			if (descritor.contains(descricao.toLowerCase())) {
+				
+			}
+		}
 	}
 	
 	public int adicionaItem(String idDoador, String descricaoItem, int quantidade, String tags, String tipoItem) {

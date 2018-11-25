@@ -69,7 +69,7 @@ public class Controlador {
 	
 	public String listaItensParaDoacao() {
 
-		ArrayList<Item> itens = this.controladorItem.listaItensParaDoacao();
+		ArrayList<Item> itens = this.controladorItem.ordenaItensPorQuantidade();
 		String listaItens = "";
 		int contador = 0;
 		for (Item item : itens) {

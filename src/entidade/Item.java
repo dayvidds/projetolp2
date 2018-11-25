@@ -31,6 +31,10 @@ public class Item implements Comparable<Item>{
 		return this.idItem;
 	}
 	
+	public String getDescricaoItem() {
+		return this.descricaoItem;
+	}
+	
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 		
