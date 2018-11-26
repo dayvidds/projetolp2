@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import Comparable.ComparadorQuantidade;
+import backend.Exceptions;
 import entidade.Item;
 
 public class ControladorItem {
@@ -102,9 +103,7 @@ public class ControladorItem {
 	}
 	
 	public String pesquisaItemParaDoacaoPorDescricao(String descricao) {
-		if ("".equals(descricao) || descricao == null) {
-			throw new IllegalArgumentException("Entrada invalida: texto da pesquisa nao pode ser vazio ou nulo.");
-		}
+		Exceptions.checaNullOuVazio(descricao, "texto da pesquisa nao pode ser vazio ou nulo.");
 		ArrayList<String> itensToString = new ArrayList<>();
 		Set<String> descritores = itensDoados.keySet();
 		for (String descritor : descritores) {
@@ -112,6 +111,7 @@ public class ControladorItem {
 				
 			}
 		}
+		return  "";
 	}
 	
 	public int adicionaItem(String idDoador, String descricaoItem, int quantidade, String tags, String tipoItem) {
@@ -134,5 +134,4 @@ public class ControladorItem {
 		return idItem - 1;
 		
 	}
-	
 }

@@ -12,6 +12,12 @@ import entidade.Status;
 import entidade.TipoUsuario;
 import entidade.Usuario;
 
+/**
+ * Classe que representa um controlador de Usuarios.
+ * 
+ * @author Matheus Augusto
+ *
+ */
 public class ControladorUsuario {
 
 	private Map<String, Usuario> usuarios;
@@ -19,8 +25,35 @@ public class ControladorUsuario {
 	public ControladorUsuario() {
 		usuarios = new LinkedHashMap<String, Usuario>();
 	}
-	
-	public void novosReceptores(String caminho) throws FileNotFoundException  {
+
+	/**
+	 * Metodo que ler os arquivos e identifica o funçao do arquivo e o manda para o
+	 * metodo certo
+	 * 
+	 * @param caminho Caminho do arquivo
+	 * 
+	 *                caso o caminho leve para u arquivo aceitavel ira mandalo para
+	 *                seu respctivo metodo.
+	 */
+	public void lerrecptor(String caminho) throws FileNotFoundException {
+
+		if (caminho.equals("arquivos_sistema/novosReceptores.csv")) {
+			novosReceptores(caminho);
+		} else if (caminho.equals("arquivos_sistema/atualizaReceptores.csv")) {
+			atualizaReceptores(caminho);
+		}
+	}
+
+	/**
+	 * Metodo que ler o arquivo de novos receptores.
+	 * 
+	 * @param caminho Caminho do arquivo
+	 * @throws FileNotFoundException
+	 * 
+	 *                               caso os paramentros passado nesse arquivo sejam
+	 *                               aceitaveis, ira cadastralo no LinkedHashMap
+	 */
+	public void novosReceptores(String caminho) throws FileNotFoundException {
 		Scanner sc = new Scanner(new File(caminho));
 		String linha = null;
 		linha = sc.nextLine();
@@ -31,6 +64,17 @@ public class ControladorUsuario {
 		}
 		sc.close();
 	}
+
+	/**
+	 * Metodo que ler o arquivo que vai atualizar as informaçoes dos receptores.
+	 * 
+	 * @param caminho Caminho do arquivo
+	 * @throws FileNotFoundException
+	 * 
+	 *                               caso os paramentros passado nesse arquivo seja
+	 *                               aceitavel ira atualizar suas informaçoes no
+	 *                               metodo atualizaInformacaoDeUsuario.
+	 */
 	public void atualizaReceptores(String caminho) throws FileNotFoundException {
 		Scanner sc = new Scanner(new File(caminho));
 		String linha = null;
@@ -42,29 +86,58 @@ public class ControladorUsuario {
 		}
 		sc.close();
 
-		
 	}
-	public void lerrecptor(String caminho) throws FileNotFoundException{
-		
-		if (caminho.equals("arquivos_sistema/novosReceptores.csv")) {
-			novosReceptores(caminho);
-		}else if (caminho.equals("arquivos_sistema/atualizaReceptores.csv")){
-			atualizaReceptores(caminho);
-		}
-			
-		}
 
+	/**
+	 * Metodo que verifica se o Usuario existe, passando uma String que pode ser o
+	 * Id de usuario ou nome.
+	 * 
+	 * @param String String que representa o Id ou nome de Usuario
+	 * 
+	 *               Caso o Id ou nome passado nao sejam validos, retorna um erro,
+	 *               informando que o Usuario já está cadastrado, e assim impedinto
+	 *               o cadastro de um mesmo usuario diversas vezes.
+	 * 
+	 */
 	public void erroUsuarioJaExiste(String string) {
 		if (usuarios.containsKey(string)) {
 			throw new IllegalArgumentException("Usuario ja existente: " + string + ".");
 		}
 	}
 
+	/**
+	 * Metodo que verifica se o Usuario nao existe, passando uma String que pode ser
+	 * o Id de usuario ou nome.
+	 * 
+	 * @param String String que representa o Id ou nome de Usuario
+	 * 
+	 *               Caso o Id ou nome passaddo nao sejam validos, retorno um erro.
+	 * 
+	 */
 	public void erroUsuarioNaoExiste(String string) {
 		if (!usuarios.containsKey(string)) {
 			throw new IllegalArgumentException("Usuario nao encontrado: " + string + ".");
 		}
 	}
+
+	// <CRUID USUARIOS>
+
+	/**
+	 * Metodo que adiciona um Usuarios doadores ao LinkedHashMap
+	 * 
+	 * @param id      Id do Usuario, representado por cfp e cnpj, representado como
+	 *                String
+	 * @param nome    Nome do Usuario representado como String
+	 * @param email   Email do Usuario representado como String
+	 * @param celular Celular do Usuario representado como String
+	 * @param classe  Classe do Usuario, que representa sua classe de acordo com o a
+	 *                "Classe Enum"
+	 * @return id do Usuario.
+	 * 
+	 *         Metodo antes de cadastrar o Usuario doador, manda todas as suas
+	 *         informaçoes para a classe exceptions para testar e ver se tem algum
+	 *         paramentro nao aceitavel. Ex: nome null ou vazio.
+	 */
 
 	public String adicionaDoador(String id, String nome, String email, String celular, String classe) {
 		Exceptions.verificaEntradaControladorUsuario(id, nome, email, celular, classe);
@@ -73,7 +146,25 @@ public class ControladorUsuario {
 		usuarios.put(id, new Usuario(id, nome, email, celular, TipoUsuario.valueOf(classe), Status.valueOf("DOADOR")));
 		return id;
 	}
+	// <CRUID USUARIOS>
 
+	/**
+	 * Metodo que adiciona um Usuarios RECEPTOR passado pelo arquivo de configuração
+	 * do sistema ao LinkedHashMap
+	 * 
+	 * @param id      Id do Usuario, representado por cfp e cnpj, representado como
+	 *                String
+	 * @param nome    Nome do Usuario representado como String
+	 * @param email   Email do Usuario representado como String
+	 * @param celular Celular do Usuario representado como String
+	 * @param classe  Classe do Usuario, que representa sua classe de acordo com o a
+	 *                "Classe Enum"
+	 * @return id do Usuario.
+	 * 
+	 *         Metodo antes de cadastrar o Usuario RECEPTOR, manda todas as suas
+	 *         informaçoes para a classe exceptions para testar e ver se tem algum
+	 *         paramentro nao aceitavel. Ex: nome null ou vazio.
+	 */
 	public String adicionaReceptor(String id, String nome, String email, String celular, String classe) {
 		Exceptions.verificaEntradaControladorUsuario(id, nome, email, celular, classe);
 		erroUsuarioJaExiste(id);
@@ -82,6 +173,14 @@ public class ControladorUsuario {
 		return id;
 	}
 
+	/**
+	 * Metodo que pesquisa usuario pelo seu ID, caso nao ache ira lança uma mensagem
+	 * de erro. Caso ache ira retornar seu String de Usuario.
+	 * 
+	 * @param Id de Usuario representado como String
+	 * 
+	 * @return toString do Usuario
+	 */
 	public String pesquisaUsuarioPorId(String id) {
 		Exceptions.checaNullOuVazio(id, "id do usuario nao pode ser vazio ou nulo.");
 		erroUsuarioNaoExiste(id);
@@ -89,9 +188,17 @@ public class ControladorUsuario {
 		return usuario.toString();
 	}
 
+	/**
+	 * Metodo que pesquisa Usuario pelo seu Nome, caso nao ache ira lança uma
+	 * mensagem de erro. Caso ache ira retornar seu String de Usuario.
+	 * 
+	 * @param Nome de Usuario representado como String
+	 * 
+	 * @return toString do Usuario
+	 */
 	public String pesquisaUsuarioPorNome(String nome) {
 		Exceptions.checaNullOuVazio(nome, "nome nao pode ser vazio ou nulo.");
-	
+
 		String saida = "";
 		int contador = 0;
 		for (Usuario usuario : usuarios.values()) {
@@ -99,23 +206,35 @@ public class ControladorUsuario {
 				saida += usuario.toString();
 				contador += 1;
 				if (contador < usuarios.size()) {
-						saida += " | ";
+					saida += " | ";
 				}
 			}
 		}
 		if (saida.isEmpty()) {
 			throw new IllegalArgumentException("Usuario nao encontrado: " + nome + ".");
 		}
-		saida = saida.substring(0, saida.length()-3);
-		
+		saida = saida.substring(0, saida.length() - 3);
+
 		return saida;
 	}
 
+	/**
+	 * Metodo para editar Usuario
+	 * 
+	 * @param nome      Nome do Usuario representado como String
+	 * @param atributos Atributos que vao ser editados entre eles: nome, email e
+	 *                  celular.
+	 * @return Novo toString do Usuario, caso conclua com sucesso.
+	 *
+	 *         Caso tente passar um atributo que nao seja nem nome, email ou celular
+	 *         ira lancar um mensargem de erro. Caso tente mudar um usuario que nao
+	 *         exista no cadastrado ele ira lancar outra mensargem de erro.
+	 */
 	public String atualizaInformacaoDeUsuario(String id, String nome, String email, String celular) {
 		Exceptions.checaNullOuVazio(id, "id do usuario nao pode ser vazio ou nulo.");
 		erroUsuarioNaoExiste(id);
 		Usuario usuario = usuarios.get(id);
-	
+
 		if (nome != null && !nome.isEmpty()) {
 			usuario.setNome(nome);
 		}
@@ -128,37 +247,45 @@ public class ControladorUsuario {
 		return usuario.toString();
 	}
 
+	/**
+	 * Metodo para remover Usuario do LinkedHashMap
+	 * 
+	 * @param id Id do Usuario representado como String
+	 * 
+	 *           Caso tente passar um Id que nao esteja cadastrado ira retorno um
+	 *           mensargem de erro. Caso passe com sucesso, ira remover o Usuario.
+	 */
 	public void removeUsuario(String id) {
 		Exceptions.checaNullOuVazio(id, "id do usuario nao pode ser vazio ou nulo.");
 		erroUsuarioNaoExiste(id);
 		usuarios.remove(id);
-		
+
 	}
-	
+
 	public String getNomeIdentificacao(String id) {
 		return this.usuarios.get(id).getNomeIdentificacao();
 	}
-	
+
 	public void adicionaItem(String idUsuario, int idItem, Item item, String tipoItem) {
 		if (tipoItem.equals("itemDoado")) {
 			if (usuarios.get(idUsuario).getStatus().equals(Status.valueOf("DOADOR"))) {
 				usuarios.get(idUsuario).adicionaItem(idItem, item);
 			} else {
-				//TODO EXCEPTION
+				// TODO EXCEPTION
 			}
-			
+
 		} else if (tipoItem.equals("itemNecessario")) {
 			if (usuarios.get(idUsuario).getStatus().equals(Status.valueOf("RECEPTOR"))) {
 				usuarios.get(idUsuario).adicionaItem(idItem, item);
 			} else {
-				//TODO EXCEPTION
+				// TODO EXCEPTION
 			}
 		}
 	}
 
 	public String exibeItem(String idDoador, int idItem) {
 		return usuarios.get(idDoador).exibeItem(idItem);
-		
+
 	}
 
 	public String atualizaItem(int idItem, String idUsuario) {
@@ -167,7 +294,6 @@ public class ControladorUsuario {
 
 	public void removeItem(int idItem, String idUsuario) {
 		usuarios.get(idUsuario).removeItem(idItem);
-		
-}
-	}
 
+	}
+}
