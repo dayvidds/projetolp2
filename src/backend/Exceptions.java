@@ -12,6 +12,14 @@ public class Exceptions {
 		}
 
 	}
+	
+	public static void verificaQuantidadeItem(int quantidade, String mensagem) {
+		if (quantidade < 1) {
+			throw new IllegalArgumentException("Entrada invalida: " + mensagem);
+		}
+		
+	}
+	
 	public static void verificaEntradaControladorUsuario(String id, String nome, String email, String celular,String classe) {
 		checaNullOuVazio(id,"id do usuario nao pode ser vazio ou nulo.");
 		checaNullOuVazio(nome,"nome nao pode ser vazio ou nulo." );

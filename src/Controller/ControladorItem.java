@@ -23,14 +23,18 @@ public class ControladorItem {
 	}
 
 	public void adicionaDescritor(String descricao) {
+		Exceptions.checaNullOuVazio(descricao, "descricao nao pode ser vazia ou nula.");
+		if (itensDoados.containsKey(descricao.trim().toLowerCase())) {
+			throw new IllegalArgumentException("Descritor de Item ja existente: " + descricao.trim().toLowerCase() + ".");
+		}
 		Map<Integer,Item> mapa = new HashMap<>();
-		itensDoados.put(descricao, mapa);
+		itensDoados.put(descricao.trim().toLowerCase(), mapa);
 		
 	}
 	
 	private void adicionaDescritor(String descricao, Map<String, Map<Integer, Item>> mapaDoItem) {
 		Map<Integer,Item> mapa = new HashMap<>();
-		mapaDoItem.put(descricao, mapa);
+		mapaDoItem.put(descricao.trim().toLowerCase(), mapa);
 		
 	}
 	
@@ -54,6 +58,29 @@ public class ControladorItem {
 			return false;
 			
 		}	
+	}
+	
+	public int adicionaItem(String idDoador, String descricaoItem, int quantidade, String tags, String tipoItem) {
+		Exceptions.checaNullOuVazio(descricaoItem, "descricao nao pode ser vazia ou nula.");
+		Exceptions.verificaQuantidadeItem(quantidade, "quantidade deve ser maior que zero.");
+		Map<String, Map<Integer, Item>> mapa;
+		Item item = new Item(idDoador, idItem, descricaoItem, quantidade, tags);
+		
+		if (tipoItem.equals("itemDoado")) {
+			mapa = this.itensDoados;
+		} else {
+			mapa = this.itensNecessarios;
+		}
+		
+		this.avaliaDescritor(descricaoItem, mapa);
+		
+		if (!this.avaliaItem(descricaoItem, item, quantidade)) {
+			mapa.get(descricaoItem.trim().toLowerCase()).put(idItem, item);
+		}
+		
+		idItem += 1;
+		return idItem - 1;
+		
 	}
 
 	public void removeItemParaDoacao(int idItem) {
@@ -114,24 +141,5 @@ public class ControladorItem {
 		return  "";
 	}
 	
-	public int adicionaItem(String idDoador, String descricaoItem, int quantidade, String tags, String tipoItem) {
-		Map<String, Map<Integer, Item>> mapa;
-		Item item = new Item(idDoador, idItem, descricaoItem, quantidade, tags);
-		
-		if (tipoItem.equals("itemDoado")) {
-			mapa = this.itensDoados;
-		} else {
-			mapa = this.itensNecessarios;
-		}
-		
-		this.avaliaDescritor(descricaoItem, mapa);
-		
-		if (!this.avaliaItem(descricaoItem, item, quantidade)) {
-			mapa.get(descricaoItem.trim().toLowerCase()).put(idItem, item);
-		}
-		
-		idItem += 1;
-		return idItem - 1;
-		
-	}
+	
 }
