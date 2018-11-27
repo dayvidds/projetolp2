@@ -262,6 +262,12 @@ public class ControladorUsuario {
 
 	}
 
+	/**
+	 * Metodo responsavel por resgatar a concatenacao do nome e id de um usuario.
+	 * 
+	 * @param id id do usuario que queremos resgatar a concatenacao
+	 * @return uma string nome/id
+	 */
 	public String getNomeIdentificacao(String id) {
 		return this.usuarios.get(id).getNomeIdentificacao();
 	}

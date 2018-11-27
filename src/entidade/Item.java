@@ -19,12 +19,10 @@ public class Item implements Comparable<Item>{
 	
 	public int getQuantidade() {
 		return this.quantidade;
-		
 	}
 	
 	public String getIdDoador() {
 		return this.idDoador;
-		
 	}
 	
 	public int getId() {

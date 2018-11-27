@@ -64,15 +64,15 @@ public class Facade {
 	}
 
 	public String listaDescritorDeItensParaDoacao() {
-		return "";
+		return controlador.listaDescritorDeItensParaDoacao();
 	}
 
 	public String listaItensParaDoacao() {
-		return "";
+		return controlador.listaItensParaDoacao();
 	}
 
-	public String pesquisaItemParaDoacaoPorDescricao(String desc) {
-		return "";
+	public String pesquisaItemParaDoacaoPorDescricao(String descricao) {
+		return controlador.pesquisaItemParaDoacaoPorDescricao(descricao);
 	}
 	
 	public int adicionaItemNecessario(String idDoador, String descricaoItem, int quantidade, String tags) {

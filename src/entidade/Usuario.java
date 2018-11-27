@@ -67,6 +67,11 @@ public class Usuario {
 		this.documento = identificacao;
 	}
 	
+	/**
+	 * Metodo responsavel por concatenar nome e id do usuario.
+	 * 
+	 * @return uma string de concatenacao nome/usuario
+	 */
 	public String getNomeIdentificacao() {
 		return this.nome + "/" + this.documento;
 	}

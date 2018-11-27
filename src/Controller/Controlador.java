@@ -66,14 +66,19 @@ public class Controlador {
 		controladorUsuario.removeItem(idItem, idDoador);
 		
 	}
-	
+	/**
+	 * Metodo responsavel por listar todos os itens disponiveis para doacao, juntando o toString do item e a concatenacao do nome/id do 
+	 * usuario doador.
+	 * 
+	 * @return uma string contendo todos os itens disponiveis para doacao e os seus respectivos doadores
+	 */
 	public String listaItensParaDoacao() {
 
 		ArrayList<Item> itens = this.controladorItem.ordenaItensPorQuantidade();
 		String listaItens = "";
 		int contador = 0;
 		for (Item item : itens) {
-			String idDoador = item.getIdDoador(); 
+			String idDoador = item.getIdDoador();
 			String doador = this.controladorUsuario.getNomeIdentificacao(idDoador);
 			listaItens += item.toString() + ", doador: " + doador;
 			contador += 1;
@@ -83,6 +88,14 @@ public class Controlador {
 
 		}
 		return listaItens;
+	}
+	
+	public String listaDescritorDeItensParaDoacao() {
+		return controladorItem.listaDescritorDeItensParaDoacao();
+	}
+	
+	public String pesquisaItemParaDoacaoPorDescricao(String descricao) {
+		return controladorItem.pesquisaItemParaDoacaoPorDescricao(descricao);
 	}
 	
 	public int adicionaItemNecessario(String idDoador, String descricaoItem, int quantidade, String tags) {
