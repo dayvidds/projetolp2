@@ -18,6 +18,7 @@ public class ControladorItem {
 	
 	public ControladorItem() {
 		itensDoados = new TreeMap<>();
+		itensNecessarios = new TreeMap<>();
 		idItem = 0;
 		
 	}
@@ -27,27 +28,22 @@ public class ControladorItem {
 		if (itensDoados.containsKey(descricao.trim().toLowerCase())) {
 			throw new IllegalArgumentException("Descritor de Item ja existente: " + descricao.trim().toLowerCase() + ".");
 		}
+		
 		Map<Integer,Item> mapa = new HashMap<>();
 		itensDoados.put(descricao.trim().toLowerCase(), mapa);
-		
-	}
-	
-	private void adicionaDescritor(String descricao, Map<String, Map<Integer, Item>> mapaDoItem) {
-		Map<Integer,Item> mapa = new HashMap<>();
-		mapaDoItem.put(descricao.trim().toLowerCase(), mapa);
-		
+		itensNecessarios.put(descricao.trim().toLowerCase(), mapa);
 	}
 	
 	private void avaliaDescritor(String descricaoItem, Map<String, Map<Integer, Item>> mapaDoItem) {
 		if (!mapaDoItem.containsKey(descricaoItem.trim().toLowerCase())) {
-			this.adicionaDescritor(descricaoItem.trim().toLowerCase(), mapaDoItem);
+			this.adicionaDescritor(descricaoItem.trim().toLowerCase());
 		}
 		
 	}
 	
-	private boolean avaliaItem(String descricaoItem, Item item, int quantidade) {
-		if (itensDoados.get(descricaoItem.trim().toLowerCase()).containsValue(item)) {
-			for (Item itens: itensDoados.get(descricaoItem.trim().toLowerCase()).values()) {
+	private boolean avaliaItem(String descricaoItem, Item item, int quantidade, Map<String, Map<Integer, Item>> mapaDoItem) {
+		if (mapaDoItem.get(descricaoItem.trim().toLowerCase()).containsValue(item)) {
+			for (Item itens: mapaDoItem.get(descricaoItem.trim().toLowerCase()).values()) {
 				if (itens.equals(item)) {
 					itens.setQuantidade(quantidade);
 					break;
@@ -60,11 +56,12 @@ public class ControladorItem {
 		}	
 	}
 	
-	public int adicionaItem(String idDoador, String descricaoItem, int quantidade, String tags, String tipoItem) {
+	public int adicionaItem(String idUsuario, String descricaoItem, int quantidade, String tags, String tipoItem) {
 		Exceptions.checaNullOuVazio(descricaoItem, "descricao nao pode ser vazia ou nula.");
 		Exceptions.verificaQuantidadeItem(quantidade, "quantidade deve ser maior que zero.");
+		
 		Map<String, Map<Integer, Item>> mapa;
-		Item item = new Item(idDoador, idItem, descricaoItem, quantidade, tags);
+		Item item = new Item(idUsuario, idItem, descricaoItem, quantidade, tags);
 		
 		if (tipoItem.equals("itemDoado")) {
 			mapa = this.itensDoados;
@@ -74,7 +71,7 @@ public class ControladorItem {
 		
 		this.avaliaDescritor(descricaoItem, mapa);
 		
-		if (!this.avaliaItem(descricaoItem, item, quantidade)) {
+		if (!this.avaliaItem(descricaoItem, item, quantidade, mapa)) {
 			mapa.get(descricaoItem.trim().toLowerCase()).put(idItem, item);
 		}
 		

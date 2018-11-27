@@ -98,9 +98,13 @@ public class Controlador {
 		return controladorItem.pesquisaItemParaDoacaoPorDescricao(descricao);
 	}
 	
-	public int adicionaItemNecessario(String idDoador, String descricaoItem, int quantidade, String tags) {
-		int idItem = controladorItem.adicionaItem(idDoador, descricaoItem, quantidade, tags, "itemNecessario");
-		controladorUsuario.adicionaItem(idDoador, idItem, controladorItem.getItemId(descricaoItem, idItem), "itemNecessario");
+	public int adicionaItemNecessario(String idReceptor, String descricaoItem, int quantidade, String tags) {
+		int idItem = controladorItem.adicionaItem(idReceptor, descricaoItem, quantidade, tags, "itemNecessario");
+		controladorUsuario.adicionaItem(idReceptor, idItem, controladorItem.getItemId(descricaoItem, idItem), "itemNecessario");
 		return idItem;
+	}
+	
+	public String atualizaItemNecessario(int idItem, String idReceptor, int quantidade, String novasTags) {
+		return controladorUsuario.atualizaItem(idItem, idReceptor, quantidade, novasTags);
 	}
 }

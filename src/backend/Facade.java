@@ -10,7 +10,7 @@ public class Facade {
 	private Controlador controlador = new Controlador(); 
 	
 	public static void main(String[] args) throws FileNotFoundException {
-		args = new String[] {"backend.Facade", "arquivos_sistema/use_case_1.txt", "arquivos_sistema/use_case_2.txt", "arquivos_sistema/use_case_3.txt"};
+		args = new String[] {"backend.Facade", "arquivos_sistema/use_case_1.txt", "arquivos_sistema/use_case_2.txt", "arquivos_sistema/use_case_3.txt", "arquivos_sistema/use_case_4.txt"};
 		EasyAccept.main(args);
 	}
 	
@@ -75,8 +75,13 @@ public class Facade {
 		return controlador.pesquisaItemParaDoacaoPorDescricao(descricao);
 	}
 	
-	public int adicionaItemNecessario(String idDoador, String descricaoItem, int quantidade, String tags) {
-		return controlador.adicionaItemNecessario(idDoador, descricaoItem, quantidade, tags);
+	public int adicionaItemNecessario(String idReceptor, String descricaoItem, int quantidade, String tags) {
+		return controlador.adicionaItemNecessario(idReceptor, descricaoItem, quantidade, tags);
 	}
+	
+	public String atualizaItemNecessario(String idReceptor, int idItem, int quantidade, String novasTags) {
+		return controlador.atualizaItemNecessario(idItem, idReceptor, quantidade, novasTags);
+	}
+	
 
 }
