@@ -75,12 +75,21 @@ public class Usuario {
 		itens.put(idItem, item);
 		
 	}
+	
+	public boolean verificaItem(int idItem) {
+		return itens.containsKey(idItem);
+		
+	}
 
 	public String exibeItem(int idItem) {
 		return itens.get(idItem).toString();
 	}
 
-	public String atualizaItem(int idItem) {
+	public String atualizaItem(int idItem, int quantidade, String tags) {
+		if (!itens.containsKey(idItem)) {
+			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
+		}
+		itens.get(idItem).atualizaItem(quantidade, tags);
 		return itens.get(idItem).toString();
 		
 	}

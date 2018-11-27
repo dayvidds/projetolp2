@@ -267,6 +267,9 @@ public class ControladorUsuario {
 	}
 
 	public void adicionaItem(String idUsuario, int idItem, Item item, String tipoItem) {
+		Exceptions.checaNullOuVazio(idUsuario, "id do usuario nao pode ser vazio ou nulo.");
+		erroUsuarioNaoExiste(idUsuario);
+		
 		if (tipoItem.equals("itemDoado")) {
 			if (usuarios.get(idUsuario).getStatus().equals(Status.valueOf("DOADOR"))) {
 				usuarios.get(idUsuario).adicionaItem(idItem, item);
@@ -283,13 +286,20 @@ public class ControladorUsuario {
 		}
 	}
 
-	public String exibeItem(String idDoador, int idItem) {
-		return usuarios.get(idDoador).exibeItem(idItem);
+	public String exibeItem(String idUsuario, int idItem) {
+		erroUsuarioNaoExiste(idUsuario);
+		if (!usuarios.get(idUsuario).verificaItem(idItem)) {
+			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
+		}
+		return usuarios.get(idUsuario).exibeItem(idItem);
 
 	}
 
-	public String atualizaItem(int idItem, String idUsuario) {
-		return usuarios.get(idUsuario).atualizaItem(idItem);
+	public String atualizaItem(int idItem, String idUsuario, int quantidade, String tags) {
+		Exceptions.verificaValorIdItem(idItem);
+		Exceptions.checaNullOuVazio(idUsuario, "id do usuario nao pode ser vazio ou nulo.");
+		erroUsuarioNaoExiste(idUsuario);
+		return usuarios.get(idUsuario).atualizaItem(idItem, quantidade, tags);
 	}
 
 	public void removeItem(int idItem, String idUsuario) {

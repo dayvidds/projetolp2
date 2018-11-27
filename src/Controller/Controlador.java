@@ -56,8 +56,8 @@ public class Controlador {
 		
 	}
 
-	public String atualizaItemParaDoacao(int idItem, String idDoador) {
-		return controladorUsuario.atualizaItem(idItem, idDoador);
+	public String atualizaItemParaDoacao(int idItem, String idDoador, int quantidade, String tags) {
+		return controladorUsuario.atualizaItem(idItem, idDoador, quantidade, tags);
 		
 	}
 

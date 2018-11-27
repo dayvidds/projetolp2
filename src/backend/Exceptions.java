@@ -20,6 +20,12 @@ public class Exceptions {
 		
 	}
 	
+	public static void verificaValorIdItem(int valor) {
+		if (valor < 0) {
+			throw new IllegalArgumentException("Entrada invalida: id do item nao pode ser negativo.");
+		}
+	}
+	
 	public static void verificaEntradaControladorUsuario(String id, String nome, String email, String celular,String classe) {
 		checaNullOuVazio(id,"id do usuario nao pode ser vazio ou nulo.");
 		checaNullOuVazio(nome,"nome nao pode ser vazio ou nulo." );

@@ -43,8 +43,8 @@ public class Facade {
 		
 	}
 
-	public void adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
-		controlador.adicionaItemParaDoacao(idDoador, descricaoItem, quantidade, tags);
+	public int adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
+		return controlador.adicionaItemParaDoacao(idDoador, descricaoItem, quantidade, tags);
 		
 	}
 
@@ -53,8 +53,8 @@ public class Facade {
 		
 	}
 
-	public String atualizaItemParaDoacao(int idItem, String idDoador) {
-		return controlador.atualizaItemParaDoacao(idItem, idDoador);
+	public String atualizaItemParaDoacao(int idItem, String idDoador, int quantidade, String tags) {
+		return controlador.atualizaItemParaDoacao(idItem, idDoador, quantidade, tags);
 		
 	}
 
