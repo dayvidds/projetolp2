@@ -262,10 +262,11 @@ public class ControladorUsuario {
 	 *           Caso tente passar um Id que nao esteja cadastrado ira retorno um
 	 *           mensargem de erro. Caso passe com sucesso, ira remover o Usuario.
 	 */
-	public void removeUsuario(String id) {
+	public boolean removeUsuario(String id) {
 		Exceptions.checaNullOuVazio(id, "id do usuario nao pode ser vazio ou nulo.");
 		erroUsuarioNaoExiste(id);
 		usuarios.remove(id);
+		return true;
 	}
 
 	/**
