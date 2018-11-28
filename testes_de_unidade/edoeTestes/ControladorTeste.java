@@ -1,93 +1,53 @@
-package projetolp2;
+package edoeTestes;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class UsuarioTeste {
+class ControladorTeste {
 
 	@Test
-	void testHashCode() {
+	void testControlador() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testUsuario() {
+	void testLerrecptor() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testGetNome() {
+	void testAdicionaDoador() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testSetNome() {
+	void testPesquisaUsuarioPorId() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testGetEmail() {
+	void testPesquisaUsuarioPorNome() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testSetEmail() {
+	void testAtualizaUsuario() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testGetCelular() {
+	void testRemoveUsuario() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testSetCelular() {
+	void testAdicionaDescritor() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testGetClasse() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testSetClasse() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetIdentificacao() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetStatus() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testSetIdentificacao() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetItens() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetNomeIdentificacao() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testAdicionaItem() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testVerificaItem() {
+	void testAdicionaItemParaDoacao() {
 		fail("Not yet implemented");
 	}
 
@@ -97,22 +57,47 @@ class UsuarioTeste {
 	}
 
 	@Test
-	void testAtualizaItem() {
+	void testAtualizaItemParaDoacao() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testRemoveItem() {
+	void testRemoveItemParaDoacao() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testEqualsObject() {
+	void testListaItensParaDoacao() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testToString() {
+	void testListaDescritorDeItensParaDoacao() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testPesquisaItemParaDoacaoPorDescricao() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testAdicionaItemNecessario() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testAtualizaItemNecessario() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testListaItensNecessarios() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testRemoveItemNecessario() {
 		fail("Not yet implemented");
 	}
 

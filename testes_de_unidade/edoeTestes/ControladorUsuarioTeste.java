@@ -1,13 +1,13 @@
-package projetolp2;
+package edoeTestes;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class ControladorTeste {
+class ControladorUsuarioTeste {
 
 	@Test
-	void testControlador() {
+	void testControladorUsuario() {
 		fail("Not yet implemented");
 	}
 
@@ -17,7 +17,32 @@ class ControladorTeste {
 	}
 
 	@Test
+	void testNovosReceptores() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testAtualizaReceptores() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testErroUsuarioJaExiste() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testErroUsuarioNaoExiste() {
+		fail("Not yet implemented");
+	}
+
+	@Test
 	void testAdicionaDoador() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testAdicionaReceptor() {
 		fail("Not yet implemented");
 	}
 
@@ -32,7 +57,7 @@ class ControladorTeste {
 	}
 
 	@Test
-	void testAtualizaUsuario() {
+	void testAtualizaInformacaoDeUsuario() {
 		fail("Not yet implemented");
 	}
 
@@ -42,12 +67,12 @@ class ControladorTeste {
 	}
 
 	@Test
-	void testAdicionaDescritor() {
+	void testGetNomeIdentificacao() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testAdicionaItemParaDoacao() {
+	void testAdicionaItem() {
 		fail("Not yet implemented");
 	}
 
@@ -57,47 +82,17 @@ class ControladorTeste {
 	}
 
 	@Test
-	void testAtualizaItemParaDoacao() {
+	void testAtualizaItem() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testRemoveItemParaDoacao() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testListaItensParaDoacao() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testListaDescritorDeItensParaDoacao() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testPesquisaItemParaDoacaoPorDescricao() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testAdicionaItemNecessario() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testAtualizaItemNecessario() {
+	void testRemoveItem() {
 		fail("Not yet implemented");
 	}
 
 	@Test
 	void testListaItensNecessarios() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testRemoveItemNecessario() {
 		fail("Not yet implemented");
 	}
 

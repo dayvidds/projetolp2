@@ -1,63 +1,54 @@
-package projetolp2;
+package edoeTestes;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class ItemTeste {
+class ControladorItemTeste {
 
 	@Test
-	void testHashCode() {
+	void testControladorItem() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testItem() {
+	void testAdicionaDescritor() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testGetQuantidade() {
+	void testAdicionaItem() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testRemoveItemParaDoacao() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetItemId() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testListaDescritorDeItensParaDoacao() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testOrdenaItensPorQuantidade() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testPesquisaItemParaDoacaoPorDescricao() {
 		fail("Not yet implemented");
 	}
 
 	@Test
 	void testGetIdDoador() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetId() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetDescricaoItem() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testSetQuantidade() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testAtualizaItem() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testCompareTo() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testEqualsObject() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testToString() {
 		fail("Not yet implemented");
 	}
 

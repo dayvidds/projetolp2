@@ -1,68 +1,78 @@
-package projetolp2;
+package edoeTestes;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class ControladorUsuarioTeste {
+class UsuarioTeste {
 
 	@Test
-	void testControladorUsuario() {
+	void testHashCode() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testLerrecptor() {
+	void testUsuario() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testNovosReceptores() {
+	void testGetNome() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testAtualizaReceptores() {
+	void testSetNome() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testErroUsuarioJaExiste() {
+	void testGetEmail() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testErroUsuarioNaoExiste() {
+	void testSetEmail() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testAdicionaDoador() {
+	void testGetCelular() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testAdicionaReceptor() {
+	void testSetCelular() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testPesquisaUsuarioPorId() {
+	void testGetClasse() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testPesquisaUsuarioPorNome() {
+	void testSetClasse() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testAtualizaInformacaoDeUsuario() {
+	void testGetIdentificacao() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	void testRemoveUsuario() {
+	void testGetStatus() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testSetIdentificacao() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testGetItens() {
 		fail("Not yet implemented");
 	}
 
@@ -73,6 +83,11 @@ class ControladorUsuarioTeste {
 
 	@Test
 	void testAdicionaItem() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testVerificaItem() {
 		fail("Not yet implemented");
 	}
 
@@ -92,7 +107,12 @@ class ControladorUsuarioTeste {
 	}
 
 	@Test
-	void testListaItensNecessarios() {
+	void testEqualsObject() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testToString() {
 		fail("Not yet implemented");
 	}
 
