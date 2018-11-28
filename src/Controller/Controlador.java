@@ -46,7 +46,7 @@ public class Controlador {
 
 	public int adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
 		int idItem = controladorItem.adicionaItem(idDoador, descricaoItem, quantidade, tags, "itemDoado");
-		controladorUsuario.adicionaItem(idDoador, idItem, controladorItem.getItemId(descricaoItem, idItem), "itemDoado");
+		controladorUsuario.adicionaItem(idDoador, idItem, controladorItem.getItemId(descricaoItem, idItem, "itemDoado"), "itemDoado");
 		return idItem;
 		
 	}
@@ -100,11 +100,21 @@ public class Controlador {
 	
 	public int adicionaItemNecessario(String idReceptor, String descricaoItem, int quantidade, String tags) {
 		int idItem = controladorItem.adicionaItem(idReceptor, descricaoItem, quantidade, tags, "itemNecessario");
-		controladorUsuario.adicionaItem(idReceptor, idItem, controladorItem.getItemId(descricaoItem, idItem), "itemNecessario");
+		controladorUsuario.adicionaItem(idReceptor, idItem, controladorItem.getItemId(descricaoItem, idItem, "itemNecessario"), "itemNecessario");
 		return idItem;
 	}
 	
 	public String atualizaItemNecessario(int idItem, String idReceptor, int quantidade, String novasTags) {
 		return controladorUsuario.atualizaItem(idItem, idReceptor, quantidade, novasTags);
+		
+	}
+	
+	public String listaItensNecessarios() {
+		return controladorUsuario.listaItensNecessarios();
+		
+	}
+	
+	public void removeItemNecessario(String idReceptor, int idItem) {
+		controladorUsuario.removeItem(idItem, idReceptor);
 	}
 }

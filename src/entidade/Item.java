@@ -11,7 +11,7 @@ public class Item implements Comparable<Item>{
 	public Item(String idDoador, int idItem, String descricaoItem, int quantidade, String tags){
 		this.idDoador = idDoador;
 		this.idItem = idItem;
-		this.descricaoItem = descricaoItem;
+		this.descricaoItem = descricaoItem.trim().toLowerCase();
 		this.quantidade = quantidade;
 		this.tags = tags;
 		
@@ -39,9 +39,11 @@ public class Item implements Comparable<Item>{
 	}
 	
 	public void atualizaItem(int quantidade, String tags) {
-		if (tags != null) {
+		if (tags != null && !tags.equals("")) {
 			this.tags = tags;
-		} if (quantidade > 0 ) {
+		} 
+		
+		if (quantidade > 0 ) {
 			this.quantidade = quantidade;
 		}
 		

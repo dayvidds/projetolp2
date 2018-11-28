@@ -67,6 +67,10 @@ public class Usuario {
 		this.documento = identificacao;
 	}
 	
+	public Map<Integer, Item> getItens() {
+		return this.itens;
+	}
+	
 	/**
 	 * Metodo responsavel por concatenar nome e id do usuario.
 	 * 
@@ -100,6 +104,18 @@ public class Usuario {
 	}
 
 	public void removeItem(int idItem) {
+		if(this.itens.size() == 0) {
+			throw new IllegalArgumentException("O Usuario nao possui itens cadastrados.");
+		}
+		
+		if (!verificaItem(idItem)) {
+			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
+		}
+		
+		if(!this.itens.containsKey(idItem)) {
+			String idItemString = "" + this.itens.get(idItem).getId();
+			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
+		}
 		itens.remove(idItem);
 		
 	}

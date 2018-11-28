@@ -83,5 +83,12 @@ public class Facade {
 		return controlador.atualizaItemNecessario(idItem, idReceptor, quantidade, novasTags);
 	}
 	
+	public String listaItensNecessarios() {
+		return controlador.listaItensNecessarios();
+	}
+	
+	public void removeItemNecessario(String idReceptor, int idItem) {
+		controlador.removeItemNecessario(idReceptor, idItem);
+	}
 
 }

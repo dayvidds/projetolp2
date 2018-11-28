@@ -3,9 +3,12 @@ package Controller;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+
+import Comparable.ComparadorId;
 import Comparable.ComparadorQuantidade;
 import backend.Exceptions;
 import entidade.Item;
@@ -73,6 +76,14 @@ public class ControladorItem {
 		
 		if (!this.avaliaItem(descricaoItem, item, quantidade, mapa)) {
 			mapa.get(descricaoItem.trim().toLowerCase()).put(idItem, item);
+		} else {
+			if (mapa.get(descricaoItem.trim().toLowerCase()).containsValue(item)) {
+				for (Item itens: mapa.get(descricaoItem.trim().toLowerCase()).values()) {
+					if (itens.equals(item)) {
+						return itens.getId();
+					}
+				}
+			}
 		}
 		
 		idItem += 1;
@@ -92,8 +103,13 @@ public class ControladorItem {
 		
 	}
 
-	public Item getItemId(String descricaoItem, int id) {
-		return itensDoados.get(descricaoItem).get(id);
+	public Item getItemId(String descricaoItem, int id, String tipoItem) {
+		if (tipoItem.equals("itemDoado")) {
+			return itensDoados.get(descricaoItem.trim().toLowerCase()).get(id);
+		} else {
+			return itensNecessarios.get(descricaoItem.trim().toLowerCase()).get(id);
+		}
+		
 		
 	}
 	
@@ -176,6 +192,4 @@ public class ControladorItem {
 	public String getIdDoador(String descritor, int idItem) {
 		return this.itensDoados.get(descritor).get(idItem).getIdDoador();
 	}
-
-	
 }

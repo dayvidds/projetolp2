@@ -2,10 +2,16 @@ package Controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
+import Comparable.ComparadorId;
 import backend.Exceptions;
 import entidade.Item;
 import entidade.Status;
@@ -309,7 +315,48 @@ public class ControladorUsuario {
 	}
 
 	public void removeItem(int idItem, String idUsuario) {
+		Exceptions.verificaValorIdItem(idItem);
+		Exceptions.checaNullOuVazio(idUsuario, "id do usuario nao pode ser vazio ou nulo.");
+		
+		if (!this.usuarios.containsKey(idUsuario)) {
+			throw new IllegalArgumentException("Usuario nao encontrado: " + idUsuario + ".");
+		}
 		usuarios.get(idUsuario).removeItem(idItem);
 
+	}
+
+	public String listaItensNecessarios() {
+		String retorno = "";
+		List<Item> itensRetorno = new ArrayList<Item>();
+		
+		for(Usuario usuario: this.usuarios.values()) {
+			if (usuario.getStatus().equals(Status.valueOf("RECEPTOR"))) {
+				Map<Integer, Item> itemUsuario = usuario.getItens();
+				for (Item item : itemUsuario.values()) {
+					if(item != null) {
+						itensRetorno.add(item);
+					}	
+				}
+			}
+		}
+		
+		Collections.sort(itensRetorno, new ComparadorId());
+		
+		String info = "";
+		
+		for (int i = 0; i < itensRetorno.size(); i++) {
+			for (Usuario user : this.usuarios.values()) {
+				if (user.getItens().containsValue(itensRetorno.get(i))) {
+					info = user.getNome() + "/" + user.getIdentificacao();
+					if (i < itensRetorno.size() - 1) {
+						retorno += itensRetorno.get(i).toString() + ", Receptor: " + info + " | ";
+					} else {
+						retorno += itensRetorno.get(i).toString() + ", Receptor: " + info;
+					}	
+ 				}
+			}
+		}
+		return retorno;
+	
 	}
 }
