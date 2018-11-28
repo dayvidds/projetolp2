@@ -14,7 +14,6 @@ public class Item implements Comparable<Item>{
 		this.descricaoItem = descricaoItem.trim().toLowerCase();
 		this.quantidade = quantidade;
 		this.tags = tags;
-		
 	}
 	
 	public int getQuantidade() {
@@ -35,23 +34,21 @@ public class Item implements Comparable<Item>{
 	
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
-		
 	}
 	
 	public void atualizaItem(int quantidade, String tags) {
 		if (tags != null && !tags.equals("")) {
 			this.tags = tags;
-		} 
-		
+		}
 		if (quantidade > 0 ) {
 			this.quantidade = quantidade;
 		}
-		
 	}
 	
 	private String separaTag() {
 		String[] tagsLista = tags.split(",");
 		String retorno = "";
+		
 		for (int i = 0; i < tagsLista.length; i ++) {
 			if (i == tagsLista.length - 1) {
 				retorno += tagsLista[i];
@@ -60,7 +57,6 @@ public class Item implements Comparable<Item>{
 			}
 		}
 		return retorno;
-		
 	}
 
 	@Override
@@ -103,6 +99,5 @@ public class Item implements Comparable<Item>{
 	@Override
 	public String toString() {
 		return idItem + " - " + descricaoItem + ", tags: [" + separaTag() + "], quantidade: " + quantidade;
-		
 	}
 }

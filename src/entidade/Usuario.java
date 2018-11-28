@@ -20,7 +20,6 @@ public class Usuario {
 		this.documento = documento;	
 		this.status = status;
 		this.itens = new HashMap<>();
-	
     }
 	
 	public String getNome() {
@@ -82,12 +81,10 @@ public class Usuario {
 	
 	public void adicionaItem(int idItem, Item item) {
 		itens.put(idItem, item);
-		
 	}
 	
 	public boolean verificaItem(int idItem) {
 		return itens.containsKey(idItem);
-		
 	}
 
 	public String exibeItem(int idItem) {
@@ -100,24 +97,20 @@ public class Usuario {
 		}
 		itens.get(idItem).atualizaItem(quantidade, tags);
 		return itens.get(idItem).toString();
-		
 	}
 
 	public void removeItem(int idItem) {
 		if(this.itens.size() == 0) {
 			throw new IllegalArgumentException("O Usuario nao possui itens cadastrados.");
 		}
-		
 		if (!verificaItem(idItem)) {
 			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
 		}
-		
 		if(!this.itens.containsKey(idItem)) {
 			String idItemString = "" + this.itens.get(idItem).getId();
 			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
 		}
 		itens.remove(idItem);
-		
 	}
 
 	@Override
@@ -173,5 +166,4 @@ public class Usuario {
 	public String toString() {
 		return nome + "/" + documento + ", " + email + ", " + celular + ", status: " +  status.getStatus();
 	}
-
 }

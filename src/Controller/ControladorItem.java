@@ -23,7 +23,6 @@ public class ControladorItem {
 		itensDoados = new TreeMap<>();
 		itensNecessarios = new TreeMap<>();
 		idItem = 0;
-		
 	}
 
 	public void adicionaDescritor(String descricao) {
@@ -41,7 +40,6 @@ public class ControladorItem {
 		if (!mapaDoItem.containsKey(descricaoItem.trim().toLowerCase())) {
 			this.adicionaDescritor(descricaoItem.trim().toLowerCase());
 		}
-		
 	}
 	
 	private boolean avaliaItem(String descricaoItem, Item item, int quantidade, Map<String, Map<Integer, Item>> mapaDoItem) {
@@ -55,7 +53,6 @@ public class ControladorItem {
 			return true;
 		} else {
 			return false;
-			
 		}	
 	}
 	
@@ -98,9 +95,8 @@ public class ControladorItem {
 					mapa.remove(idItem);
 					break;		
 				}
-			}	
+			}
 		}
-		
 	}
 
 	public Item getItemId(String descricaoItem, int id, String tipoItem) {
@@ -109,8 +105,6 @@ public class ControladorItem {
 		} else {
 			return itensNecessarios.get(descricaoItem.trim().toLowerCase()).get(id);
 		}
-		
-		
 	}
 	
 	/**
@@ -122,6 +116,7 @@ public class ControladorItem {
 		Set<String> descritores = itensDoados.keySet();
 		String listaDescritores = "";
 		int contador = 0;
+		
 		for (String descritor : descritores) {
 			Set<Integer> idItens = this.itensDoados.get(descritor).keySet();
 			int quantItens = 0;
@@ -153,7 +148,6 @@ public class ControladorItem {
 		}
 		
 		Collections.sort(itens, new ComparadorQuantidade());
-
 		return itens;
 	}
 	

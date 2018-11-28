@@ -16,8 +16,8 @@ public class Facade {
 	
 	public void lerReceptores(String caminho) throws FileNotFoundException {
 		controlador.lerrecptor(caminho);
-		
 	}
+	
 	public String adicionaDoador(String id, String nome, String email, String celular, String classe) {
 		return controlador.adicionaDoador(id, nome, email, celular, classe);
 	}
@@ -40,27 +40,22 @@ public class Facade {
 	
 	public void adicionaDescritor(String descricao) {
 		controlador.adicionaDescritor(descricao);
-		
 	}
 
 	public int adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
 		return controlador.adicionaItemParaDoacao(idDoador, descricaoItem, quantidade, tags);
-		
 	}
 
 	public String exibeItem(int idItem, String idDoador) {
 		return controlador.exibeItem(idDoador, idItem);
-		
 	}
 
 	public String atualizaItemParaDoacao(int idItem, String idDoador, int quantidade, String tags) {
 		return controlador.atualizaItemParaDoacao(idItem, idDoador, quantidade, tags);
-		
 	}
 
 	public void removeItemParaDoacao(int idItem, String idDoador) {
 		controlador.removeItemParaDoacao(idItem, idDoador);
-		
 	}
 
 	public String listaDescritorDeItensParaDoacao() {

@@ -2,6 +2,8 @@ package Controller;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+
+import backend.Exceptions;
 import entidade.Item;
 
 public class Controlador {
@@ -12,8 +14,8 @@ public class Controlador {
 	public Controlador() {
 		controladorUsuario = new ControladorUsuario();
 		controladorItem = new ControladorItem();
-		
 	}
+	
 	public void lerrecptor(String caminho) throws FileNotFoundException {
 		controladorUsuario.lerrecptor(caminho);	
 	}
@@ -25,45 +27,42 @@ public class Controlador {
 	public String pesquisaUsuarioPorId(String id) {
 		return controladorUsuario.pesquisaUsuarioPorId(id);
 	}
+	
 	public String pesquisaUsuarioPorNome(String nome) {
 		return controladorUsuario.pesquisaUsuarioPorNome(nome);
 	}
 
 	public String atualizaUsuario(String id, String nome, String email, String celular) {
 		return controladorUsuario.atualizaInformacaoDeUsuario(id, nome, email, celular);
-		
 	}
 
 	public void removeUsuario(String id) {
 		controladorUsuario.removeUsuario(id);
-		
 	}
 
 	public void adicionaDescritor(String descricao) {
 		controladorItem.adicionaDescritor(descricao);
-		
 	}
 
 	public int adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
+		Exceptions.checaNullOuVazio(idDoador, "id do usuario nao pode ser vazio ou nulo.");
+		controladorUsuario.erroUsuarioNaoExiste(idDoador);
 		int idItem = controladorItem.adicionaItem(idDoador, descricaoItem, quantidade, tags, "itemDoado");
 		controladorUsuario.adicionaItem(idDoador, idItem, controladorItem.getItemId(descricaoItem, idItem, "itemDoado"), "itemDoado");
 		return idItem;
-		
 	}
 	
 	public String exibeItem(String idDoador, int idItem) {
 		return controladorUsuario.exibeItem(idDoador, idItem);
-		
 	}
 
 	public String atualizaItemParaDoacao(int idItem, String idDoador, int quantidade, String tags) {
 		return controladorUsuario.atualizaItem(idItem, idDoador, quantidade, tags);
-		
 	}
 
 	public void removeItemParaDoacao(int idItem, String idDoador) {
-		controladorItem.removeItemParaDoacao(idItem);
 		controladorUsuario.removeItem(idItem, idDoador);
+		controladorItem.removeItemParaDoacao(idItem);
 		
 	}
 	/**
@@ -85,7 +84,6 @@ public class Controlador {
 			if (contador < itens.size()) {
 				listaItens += " | ";
 			}
-
 		}
 		return listaItens;
 	}
@@ -106,15 +104,14 @@ public class Controlador {
 	
 	public String atualizaItemNecessario(int idItem, String idReceptor, int quantidade, String novasTags) {
 		return controladorUsuario.atualizaItem(idItem, idReceptor, quantidade, novasTags);
-		
 	}
 	
 	public String listaItensNecessarios() {
 		return controladorUsuario.listaItensNecessarios();
-		
 	}
 	
 	public void removeItemNecessario(String idReceptor, int idItem) {
 		controladorUsuario.removeItem(idItem, idReceptor);
+		
 	}
 }

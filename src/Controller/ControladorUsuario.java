@@ -91,7 +91,6 @@ public class ControladorUsuario {
 			atualizaInformacaoDeUsuario(novosUsuarios[0], novosUsuarios[1], novosUsuarios[2], novosUsuarios[3]);
 		}
 		sc.close();
-
 	}
 
 	/**
@@ -126,7 +125,7 @@ public class ControladorUsuario {
 		}
 	}
 
-	// <CRUID USUARIOS>
+	// <CRUD USUARIOS>
 
 	/**
 	 * Metodo que adiciona um Usuarios doadores ao LinkedHashMap
@@ -152,7 +151,7 @@ public class ControladorUsuario {
 		usuarios.put(id, new Usuario(id, nome, email, celular, TipoUsuario.valueOf(classe), Status.valueOf("DOADOR")));
 		return id;
 	}
-	// <CRUID USUARIOS>
+	// <CRUD USUARIOS>
 
 	/**
 	 * Metodo que adiciona um Usuarios RECEPTOR passado pelo arquivo de configuração
@@ -207,6 +206,7 @@ public class ControladorUsuario {
 
 		String saida = "";
 		int contador = 0;
+		
 		for (Usuario usuario : usuarios.values()) {
 			if (usuario.getNome().equals(nome)) {
 				saida += usuario.toString();
@@ -216,6 +216,7 @@ public class ControladorUsuario {
 				}
 			}
 		}
+		
 		if (saida.isEmpty()) {
 			throw new IllegalArgumentException("Usuario nao encontrado: " + nome + ".");
 		}
@@ -265,7 +266,6 @@ public class ControladorUsuario {
 		Exceptions.checaNullOuVazio(id, "id do usuario nao pode ser vazio ou nulo.");
 		erroUsuarioNaoExiste(id);
 		usuarios.remove(id);
-
 	}
 
 	/**
@@ -304,7 +304,6 @@ public class ControladorUsuario {
 			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
 		}
 		return usuarios.get(idUsuario).exibeItem(idItem);
-
 	}
 
 	public String atualizaItem(int idItem, String idUsuario, int quantidade, String tags) {
@@ -322,7 +321,6 @@ public class ControladorUsuario {
 			throw new IllegalArgumentException("Usuario nao encontrado: " + idUsuario + ".");
 		}
 		usuarios.get(idUsuario).removeItem(idItem);
-
 	}
 
 	public String listaItensNecessarios() {
