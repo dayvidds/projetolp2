@@ -1,4 +1,4 @@
-package edoeTestes;
+package edoeTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
