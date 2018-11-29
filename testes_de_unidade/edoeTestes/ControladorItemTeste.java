@@ -3,23 +3,30 @@ package edoeTestes;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import Controller.ControladorItem;
 
 class ControladorItemTeste {
 
-	@Test
-	void testControladorItem() {
-		fail("Not yet implemented");
+	private ControladorItem ci;
+	
+	@BeforeEach
+	void setUp() {
+		ci = new ControladorItem();
+		ci.adicionaDescritor(" CadeirA");
+		ci.adicionaDescritor("Cama, Mesa, Banho ");
+		ci.adicionaItem("10046019482", "cadeira", 2, "confortavel,seminova" , "itemDoado");
+		ci.adicionaItem("10046019480123", "Cama, Mesa, Banho ", 1, "lar doce lar" , "itemNecessario");
+		ci.adicionaItem("11846019480123", "Cama, Mesa, Banho ", 2, "confortavel" , "itemNecessario");
+
 	}
 
 	@Test
 	void testAdicionaDescritor() {
 		fail("Not yet implemented");
-	}
-
-	@Test
-	void testAdicionaItem() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test

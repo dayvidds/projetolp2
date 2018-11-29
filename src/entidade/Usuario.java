@@ -107,7 +107,7 @@ public class Usuario {
 			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
 		}
 		if(!this.itens.containsKey(idItem)) {
-			String idItemString = "" + this.itens.get(idItem).getId();
+			String idItemString = "" + this.itens.get(idItem).getIdItem();
 			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
 		}
 		itens.remove(idItem);

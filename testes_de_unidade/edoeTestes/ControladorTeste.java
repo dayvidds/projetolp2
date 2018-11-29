@@ -45,6 +45,15 @@ class ControladorTeste {
 			
 		}	
 	}
+	
+	@Test
+	void testRemoveItemParaDoacaoSemUsuario() {	
+		try {
+			cu.removeItem(1, "4");
+		} catch (IllegalArgumentException ie){
+			
+		}	
+	}
 
 	@Test
 	void testListaItensParaDoacao() {
@@ -74,7 +83,12 @@ class ControladorTeste {
 
 	@Test
 	void testRemoveItemNecessario() {
-		fail("Not yet implemented");
+		cu.removeItem(1, "10046019480123");
+		try {
+			cu.exibeItem("10046019480123", 1);
+		} catch (IllegalArgumentException ie){
+			
+		}	
 	}
 
 }

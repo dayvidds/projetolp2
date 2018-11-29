@@ -108,7 +108,7 @@ public class Controlador {
 		String listaItens = "";
 		int contador = 0;
 		for (Item item : itens) {
-			String idDoador = item.getIdDoador();
+			String idDoador = item.getIdUsuario();
 			String doador = this.controladorUsuario.getNomeIdentificacao(idDoador);
 			listaItens += item.toString() + ", doador: " + doador;
 			contador += 1;

@@ -106,7 +106,7 @@ public class ControladorItem {
 			if (mapa.get(descricaoItem.trim().toLowerCase()).containsValue(item)) {
 				for (Item itens: mapa.get(descricaoItem.trim().toLowerCase()).values()) {
 					if (itens.equals(item)) {
-						return itens.getId();
+						return itens.getIdItem();
 					}
 				}
 			}
@@ -132,7 +132,7 @@ public class ControladorItem {
 		
 		for (Map<Integer, Item> mapa2 : mapa.values()) {
 			for (Item item : mapa2.values()) {
-				if (item.getId() == idItem) {
+				if (item.getIdItem() == idItem) {
 					mapa2.remove(idItem);
 					break;		
 				}
