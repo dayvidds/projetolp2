@@ -6,36 +6,87 @@ import java.util.ArrayList;
 import backend.Exceptions;
 import entidade.Item;
 
+/**
+ * Classe que epresenta um controlador principal do sistema. O controlador principal do sistema gerencia o controlador de usuario e o controlador de item.
+ * @author 
+ *
+ */
 public class Controlador {
 
+	/**
+	 * Controlador de usuario.
+	 */
 	private ControladorUsuario controladorUsuario;
+	
+	/**
+	 * Controlador de item.
+	 */
 	private ControladorItem controladorItem;
 	
+	/**
+	 * Inicializa o controlador principal do sistema e invoca os construtores do controlador usuario e controlador item.
+	 */
 	public Controlador() {
 		controladorUsuario = new ControladorUsuario();
 		controladorItem = new ControladorItem();
 	}
 	
+	/**
+	 * Metodo responsavel invocar o controlador de usuario e...
+	 * @param caminho
+	 * @throws FileNotFoundException
+	 */
 	public void lerrecptor(String caminho) throws FileNotFoundException {
 		controladorUsuario.lerrecptor(caminho);	
 	}
 
+	/**
+	 * Metodo responsavel invocar o controlador de usuario e...
+	 * @param id
+	 * @param nome
+	 * @param email
+	 * @param celular
+	 * @param classe
+	 * @return
+	 */
 	public String adicionaDoador(String id, String nome, String email, String celular, String classe) {
 		return controladorUsuario.adicionaDoador(id, nome, email, celular, classe);
 	}
 
+	/**
+	 * Metodo responsavel invocar o controlador de usuario e...
+	 * @param id
+	 * @return
+	 */
 	public String pesquisaUsuarioPorId(String id) {
 		return controladorUsuario.pesquisaUsuarioPorId(id);
 	}
 	
+	/**
+	 * Metodo responsavel invocar o controlador de usuario e...
+	 * @param nome
+	 * @return
+	 */
 	public String pesquisaUsuarioPorNome(String nome) {
 		return controladorUsuario.pesquisaUsuarioPorNome(nome);
 	}
 
+	/**
+	 * Metodo responsavel invocar o controlador de usuario e...
+	 * @param id
+	 * @param nome
+	 * @param email
+	 * @param celular
+	 * @return
+	 */
 	public String atualizaUsuario(String id, String nome, String email, String celular) {
 		return controladorUsuario.atualizaInformacaoDeUsuario(id, nome, email, celular);
 	}
 
+	/**
+	 * Metodo responsavel invocar o controlador de usuario e...
+	 * @param id
+	 */
 	public void removeUsuario(String id) {
 		controladorUsuario.removeUsuario(id);
 	}
@@ -119,10 +170,19 @@ public class Controlador {
 		return listaItens;
 	}
 	
+	/**
+	 * Metodo responsavel invocar o controlador de item e...
+	 * @return
+	 */
 	public String listaDescritorDeItensParaDoacao() {
 		return controladorItem.listaDescritorDeItensParaDoacao();
 	}
 	
+	/**
+	 * Metodo responsavel invocar o controlador de usuario e...
+	 * @param descricao
+	 * @return
+	 */
 	public String pesquisaItemParaDoacaoPorDescricao(String descricao) {
 		return controladorItem.pesquisaItemParaDoacaoPorDescricao(descricao);
 	}

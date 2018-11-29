@@ -2,10 +2,15 @@ package entidade;
 
 import java.time.LocalDate;
 
+/**
+ * Classe que representa um item. Um item possui id do usuario, id do item, descritor, quantidade, tags e data.
+ * @author 
+ *
+ */
 public class Item implements Comparable<Item>{
 
 	/**
-	 * Identificacao do doador.
+	 * Identificacao do Usuario.
 	 */
 	private String idUsuario;
 	
@@ -92,6 +97,13 @@ public class Item implements Comparable<Item>{
 		this.quantidade = quantidade;
 	}
 	
+	/**
+	 * Atualiza as informacoes do item. Apenas a quantidade e as tags podem ser alteradas.
+	 * Caso o parametro quantidade seja 0, a quantidade do item nao sera alterada.
+	 * Caso o parametro tags seja null ou vazio, as tags do item nao serao alteradas.
+	 * @param quantidade nova quantidade do item.
+	 * @param tags novas tags do item.
+	 */
 	public void atualizaItem(int quantidade, String tags) {
 		if (tags != null && !tags.equals("")) {
 			this.tags = tags;
@@ -101,26 +113,26 @@ public class Item implements Comparable<Item>{
 		}
 	}
 	
+	/**
+	 * Separa as tags para usar na representacao textual.
+	 * @return retorna uma string com as tags separadas.
+	 */
 	private String separaTag() {
-		String[] tagsLista = tags.split(",");
-		String retorno = "";
-		
-		for (int i = 0; i < tagsLista.length; i ++) {
-			if (i == tagsLista.length - 1) {
-				retorno += tagsLista[i];
-			} else {
-				retorno += tagsLista[i] + ", ";
-			}
-		}
-		return retorno;
+		return this.tags.replace(",", ", ");
 	}
 
+	/**
+	 * Metodo responsavel em comparar os itens atraves da quantidade.
+	 */
 	@Override
 	public int compareTo(Item o) {
 		int retorno = o.getQuantidade() - this.getQuantidade();
 		return retorno;
 	}
 
+	/**
+	 * Cria uma representação, em inteiro, para Item atraves do descritor e tags.
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -130,6 +142,10 @@ public class Item implements Comparable<Item>{
 		return result;
 	}
 
+	/**
+	 * Metodo responsavel em comparar se objeto vindo como parametro e igual ao item atual.
+	 * Itens serao iguais caso tenham o mesmo descritor e as mesmas tags.
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -152,6 +168,11 @@ public class Item implements Comparable<Item>{
 		return true;
 	}
 	
+	/**
+	 * Retorna uma representacao textual com as informacoes do item.
+	 * A representacao possui o formato: "nome - descricaoItem, + tags: [], quantidade: " 
+	 * @return A representacao textual do item.
+	 */
 	@Override
 	public String toString() {
 		return idItem + " - " + descricaoItem + ", tags: [" + separaTag() + "], quantidade: " + quantidade;
