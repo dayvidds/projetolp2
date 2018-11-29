@@ -1,42 +1,93 @@
 package entidade;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Item implements Comparable<Item>{
 
-	private String idDoador;
-	private int idItem;
-	private String descricaoItem;
-	private int quantidade;
-	private String tags;
-	private Date data;
+	/**
+	 * Identificacao do doador.
+	 */
+	private String idUsuario;
 	
-	public Item(String idDoador, int idItem, String descricaoItem, int quantidade, String tags){
-		this.idDoador = idDoador;
+	/**
+	 * Identificacao do item.
+	 */
+	private int idItem;
+	
+	/**
+	 * Descricao do item.
+	 */
+	private String descricaoItem;
+	
+	/**
+	 * Quantidade do item.
+	 */
+	private int quantidade;
+	
+	/**
+	 * Tags para identificacao do item.
+	 */
+	private String tags;
+	
+	/**
+	 * Data que o item foi inserido no sistema.
+	 */
+	private LocalDate data;
+	
+	/**
+	 * Constroi um item. Todo item possue um idUsuario, idItem, descricao, quantidade e tags.
+	 * @param idUsuario identificacao do Usuario.
+	 * @param idItem identificacao do item.
+	 * @param descricaoItem descricao do item.
+	 * @param quantidade quantidade do item.
+	 * @param tags tags para identificacao do item.
+	 */
+	public Item(String idUsuario, int idItem, String descricaoItem, int quantidade, String tags){
+		this.idUsuario = idUsuario;
 		this.idItem = idItem;
 		this.descricaoItem = descricaoItem.trim().toLowerCase();
 		this.quantidade = quantidade;
 		this.tags = tags;
-		this.data = new Date();  
+		this.data = LocalDate.now();
 		
 	}
 	
+	/**
+	 * Retorna a quantidade do item.
+	 * @return retorna a quantidade do item.
+	 */
 	public int getQuantidade() {
 		return this.quantidade;
 	}
 	
-	public String getIdDoador() {
-		return this.idDoador;
+	/**
+	 * Retorna o idUsuario.
+	 * @return retorna o idUsuario.
+	 */
+	public String getIdUsuario() {
+		return this.idUsuario;
 	}
 	
-	public int getId() {
+	/**
+	 * Retorna o idItem.
+	 * @return retorna o idItem.
+	 */
+	public int getIdItem() {
 		return this.idItem;
 	}
 	
+	/**
+	 * Retorna a descricao do item.
+	 * @return retorna a descricao do item.
+	 */
 	public String getDescricaoItem() {
 		return this.descricaoItem;
 	}
 	
+	/**
+	 * Altera o atributo quantidade.
+	 * @param quantidade nova quantidade do item.
+	 */
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
