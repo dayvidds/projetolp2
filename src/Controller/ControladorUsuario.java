@@ -279,6 +279,13 @@ public class ControladorUsuario {
 		return this.usuarios.get(id).getNomeIdentificacao(); 
 	}
 
+	/**
+	 * Metodo responsavel em adicionar um item a um determinado usuario.
+	 * @param idUsuario identificacao do usuario.
+	 * @param idItem identificacao do item.
+	 * @param item item.
+	 * @param tipoItem tipo do item (doado ou necessario).
+	 */
 	public void adicionaItem(String idUsuario, int idItem, Item item, String tipoItem) {
 		Exceptions.checaNullOuVazio(idUsuario, "id do usuario nao pode ser vazio ou nulo.");
 		erroUsuarioNaoExiste(idUsuario);
@@ -299,6 +306,12 @@ public class ControladorUsuario {
 		}
 	}
 
+	/**
+	 * Metodo responsavel em exibir informacoes de um item de determinado usuario.
+	 * @param idUsuario identificacao do usuario.
+	 * @param idItem identificacao do item.
+	 * @return retorna uma string com as informacoes do item.
+	 */
 	public String exibeItem(String idUsuario, int idItem) {
 		erroUsuarioNaoExiste(idUsuario);
 		if (!usuarios.get(idUsuario).verificaItem(idItem)) {
@@ -307,6 +320,14 @@ public class ControladorUsuario {
 		return usuarios.get(idUsuario).exibeItem(idItem);
 	}
 
+	/**
+	 * Metodo responsavel em atualizar informacoes de um item de determinado usuario.
+	 * @param idItem identificacao do item.
+	 * @param idUsuario identificacao do usuario.
+	 * @param quantidade nova quantidade do item.
+	 * @param tags novas tags para o item.
+	 * @return retorna a representacao atualizada do item.
+	 */
 	public String atualizaItem(int idItem, String idUsuario, int quantidade, String tags) {
 		Exceptions.verificaValorIdItem(idItem);
 		Exceptions.checaNullOuVazio(idUsuario, "id do usuario nao pode ser vazio ou nulo.");
@@ -314,6 +335,11 @@ public class ControladorUsuario {
 		return usuarios.get(idUsuario).atualizaItem(idItem, quantidade, tags);
 	}
 
+	/**
+	 * Metodo responsavel em remover um item de determinado usuario.
+	 * @param idItem identificador do item.
+	 * @param idUsuario identificador do usuario.
+	 */
 	public void removeItem(int idItem, String idUsuario) {
 		Exceptions.verificaValorIdItem(idItem);
 		Exceptions.checaNullOuVazio(idUsuario, "id do usuario nao pode ser vazio ou nulo.");
@@ -324,6 +350,10 @@ public class ControladorUsuario {
 		usuarios.get(idUsuario).removeItem(idItem);
 	}
 
+	/**
+	 * Metodo responsavel em listar todos os itens necessarios do sistema.
+	 * @return retorna todos os itens necessarios cadastrados no sistema de forma ordenada atraves do seu id.
+	 */
 	public String listaItensNecessarios() {
 		String retorno = "";
 		List<Item> itensRetorno = new ArrayList<Item>();

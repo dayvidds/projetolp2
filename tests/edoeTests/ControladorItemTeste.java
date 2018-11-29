@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import Controller.ControladorItem;
+import entidade.Item;
 
 class ControladorItemTeste {
 
@@ -30,13 +31,46 @@ class ControladorItemTeste {
 
 	@Test
 	void testAdicionaDescritor() {
-		fail("Not yet implemented");
+		try {
+			ci.adicionaDescritor("cadeira");
+		} catch (IllegalArgumentException ia){
+			
+		}
 		
+	}
+	
+
+	@Test
+	void testAdicionaItemSemDescritor() {
+		ci.adicionaItem("10046019482", "cadeira", 3, "praia" , "itemDoado");
+		Item item = new Item("10046019482", 7, "cadeira", 3, "praia");
+		assertEquals(true, item.equals(ci.getItemId("cadeira", 6, "itemDoado")));
+		
+	}
+	
+	@Test
+	void testAdicionaMesmoItem() {
+		ci.adicionaItem("10046019482", " REMEDIOS", 3, "analgésico", "itemNecessario");
+		ci.adicionaItem("10046019482", " REMEDIOS", 2, "analgésico", "itemNecessario");
+		assertEquals("6 - remedios, tags: [analgésico], quantidade: 2", ci.getItemId("remedios", 6, "itemNecessario").toString());
+
 	}
 
 	@Test
-	void testRemoveItemParaDoacao() {
-		fail("Not yet implemented");
+	void testRemoveItemParaNecessarioDoacao() {
+		ci.removeItem(1, "itemNecessario");
+		assertEquals(null, ci.getItemId("Cama, Mesa, Banho ", 1, "itemNecessario"));
+		
+	}
+	
+	@Test
+	void testRemoveItemFalsoParaDoacao() {
+		try {
+			ci.removeItem(0, "teste");
+		} catch (IllegalArgumentException ia){
+			
+		}
+		
 	}
 
 	@Test

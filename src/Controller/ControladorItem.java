@@ -127,8 +127,10 @@ public class ControladorItem {
 		
 		if (tipoItem.equals("itemDoado")) {
 			mapa = this.itensDoados;
-		} else {
+		} else if (tipoItem.equals("itemNecessario")){
 			mapa = this.itensNecessarios;
+		} else {
+			throw new IllegalArgumentException("Nao compativel com tipo de Item");
 		}
 		
 		for (Map<Integer, Item> mapa2 : mapa.values()) {

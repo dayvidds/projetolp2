@@ -2,48 +2,53 @@ package edoeTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import entidade.Item;
 import entidade.Status;
 import entidade.TipoUsuario;
 import entidade.Usuario;
 
 class UsuarioTeste {
 
-	@Test
-	void testUsuario() {
-		fail("Not yet implemented");
+	private Usuario usuario;
+	private Item item;
+	
+	@BeforeEach
+	void setUp() {
+		usuario = new Usuario("70328507407", "lucao", "aaaa", "98878", TipoUsuario.PESSOA_FISICA, Status.DOADOR);
+		item = new Item("70328507407", 0, "mochila", 2, "sport");
+		usuario.adicionaItem(0, item);
+		
 	}
- 
-	@Test
-	void testGetItens() {
-		fail("Not yet implemented");
-	}
-
-
+	
 	@Test
 	void testAdicionaItem() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testVerificaItem() {
-		fail("Not yet implemented");
+		assertEquals(true, usuario.verificaItem(0));
+		
 	}
 
 	@Test
 	void testExibeItem() {
-		fail("Not yet implemented");
+		assertEquals("0 - mochila, tags: [sport], quantidade: 2", usuario.exibeItem(0));
 	}
 
 	@Test
 	void testAtualizaItem() {
-		fail("Not yet implemented");
+		assertEquals("0 - mochila, tags: [sport], quantidade: 2", usuario.exibeItem(0));
+		usuario.atualizaItem(0, 4, "");
+		assertEquals("0 - mochila, tags: [sport], quantidade: 4", usuario.exibeItem(0));
+		usuario.atualizaItem(0, 3, "Tendencia");
+		assertEquals("0 - mochila, tags: [Tendencia], quantidade: 3", usuario.exibeItem(0));
+
 	}
 
 	@Test
 	void testRemoveItem() {
-		fail("Not yet implemented");
+		usuario.removeItem(0);
+		assertEquals(false, usuario.verificaItem(0));
+		
 	}
 
 	@Test

@@ -69,7 +69,7 @@ class ControladorTeste {
 	@Test
 	void testAtualizaItem() {
 		cu.atualizaItem(1, "10046019480123", 5, "lar doce lar, aconchegante");
-		assertEquals("", cu.exibeItem("10046019480123", 1));
+		assertEquals("1 - cama, mesa, banho, tags: [lar doce lar,  aconchegante], quantidade: 5", cu.exibeItem("10046019480123", 1));
 		
 	}
 
