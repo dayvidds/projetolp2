@@ -1,5 +1,7 @@
 package entidade;
 
+import java.util.Date;
+
 public class Item implements Comparable<Item>{
 
 	private String idDoador;
@@ -7,6 +9,7 @@ public class Item implements Comparable<Item>{
 	private String descricaoItem;
 	private int quantidade;
 	private String tags;
+	private Date data;
 	
 	public Item(String idDoador, int idItem, String descricaoItem, int quantidade, String tags){
 		this.idDoador = idDoador;
@@ -14,6 +17,8 @@ public class Item implements Comparable<Item>{
 		this.descricaoItem = descricaoItem.trim().toLowerCase();
 		this.quantidade = quantidade;
 		this.tags = tags;
+		this.data = new Date();
+		
 	}
 	
 	public int getQuantidade() {
