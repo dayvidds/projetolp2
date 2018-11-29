@@ -204,25 +204,25 @@ public class ControladorUsuario {
 	public String pesquisaUsuarioPorNome(String nome) {
 		Exceptions.checaNullOuVazio(nome, "nome nao pode ser vazio ou nulo.");
 
-		String saida = "";
+		String retorno = "";
 		int contador = 0;
 		
 		for (Usuario usuario : usuarios.values()) {
 			if (usuario.getNome().equals(nome)) {
-				saida += usuario.toString();
+				retorno += usuario.toString();
 				contador += 1;
 				if (contador < usuarios.size()) {
-					saida += " | ";
+					retorno += " | ";
 				}
 			}
 		}
 		
-		if (saida.isEmpty()) {
+		if (retorno.isEmpty()) {
 			throw new IllegalArgumentException("Usuario nao encontrado: " + nome + ".");
 		}
-		saida = saida.substring(0, saida.length() - 3);
+		retorno = retorno.substring(0, retorno.length() - 3);
 
-		return saida;
+		return retorno;
 	}
 
 	/**

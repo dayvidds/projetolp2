@@ -115,16 +115,18 @@ class ControladorUsuarioTeste {
 				usuario.adicionaDoador("70513372922", "nome", "email", "000000000", "PESSOA_FISICA"));
 		assertThrows(IllegalArgumentException.class, () -> usuario.pesquisaUsuarioPorId(" "));
 		assertThrows(NullPointerException.class, () -> usuario.pesquisaUsuarioPorId(null));
-		//assertEquals("nome/70513372922, email, 000000000, status: PESSOA_FISICA", usuario.pesquisaUsuarioPorId("70513372922"));	
+		assertEquals("nome/70513372922, email, 000000000, status: doador", usuario.pesquisaUsuarioPorId("70513372922"));	
 	}
 	
 	@Test
 	void testPesquisaUsuarioPorNome() {
 		assertEquals("70513372922",
-				usuario.adicionaDoador("70513372922", "nome", "email", "000000000", "PESSOA_FISICA"));
+				usuario.adicionaDoador("70513372922", "matheus", "email", "000000000", "PESSOA_FISICA"));
+		assertEquals("89013372732",
+				usuario.adicionaDoador("89013372732", "matheus", "email", "000000000", "PESSOA_FISICA"));
 		assertThrows(IllegalArgumentException.class, () -> usuario.pesquisaUsuarioPorNome(" "));
 		assertThrows(NullPointerException.class, () -> usuario.pesquisaUsuarioPorNome(null));
-		//assertEquals("nome/70513372922, email, 000000000, status: PESSOA_FISICA", usuario.pesquisaUsuarioPorNome("nome"));	
+		assertEquals("matheus/70513372922, email, 000000000, status: doador | matheus/89013372732, email, 000000000, status: doador", usuario.pesquisaUsuarioPorNome("matheus"));	
 	}
 	//usuario.adicionaDoador("70513372911", "nome", "email", "000000000", "PESSOA_FISICA");
 	@Test
@@ -136,10 +138,11 @@ class ControladorUsuarioTeste {
 
 	@Test
 	void testRemoveUsuario() {
-		assertEquals(usuario.removeUsuario("70513372911"), true);
-		assertEquals(usuario.removeUsuario("08704413000240"), true);
 		assertThrows(IllegalArgumentException.class, () -> usuario.removeUsuario(" "));
 		assertThrows(NullPointerException.class, () -> usuario.removeUsuario(null));
+		assertEquals(usuario.removeUsuario("70513372911"), true);
+		assertEquals(usuario.removeUsuario("08704413000240"), true);
+
 	}
 ///////////////////////////////////////////////////
 	/*
