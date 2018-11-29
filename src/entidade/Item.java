@@ -17,7 +17,7 @@ public class Item implements Comparable<Item>{
 		this.descricaoItem = descricaoItem.trim().toLowerCase();
 		this.quantidade = quantidade;
 		this.tags = tags;
-		this.data = new Date();
+		this.data = new Date();  
 		
 	}
 	

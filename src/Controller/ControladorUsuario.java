@@ -90,7 +90,7 @@ public class ControladorUsuario {
 			String[] novosUsuarios = linha.split(",");
 			atualizaInformacaoDeUsuario(novosUsuarios[0], novosUsuarios[1], novosUsuarios[2], novosUsuarios[3]);
 		}
-		sc.close();
+		sc.close(); 
 	}
 
 	/**
@@ -276,7 +276,7 @@ public class ControladorUsuario {
 	 * @return uma string nome/id
 	 */
 	public String getNomeIdentificacao(String id) {
-		return this.usuarios.get(id).getNomeIdentificacao();
+		return this.usuarios.get(id).getNomeIdentificacao(); 
 	}
 
 	public void adicionaItem(String idUsuario, int idItem, Item item, String tipoItem) {

@@ -39,7 +39,6 @@ class ControladorUsuarioTeste {
 		usuario.adicionaReceptor("0000000000060", "nome", "email", "000000000", "SOCIEDADE");
 
 	}
-
 	@Test
 	void testAdicionaDoador() {
 		// Testando se o usuario etá sendo adcionado.
@@ -108,7 +107,6 @@ class ControladorUsuarioTeste {
 		assertThrows(NullPointerException.class,
 				() -> usuario.adicionaReceptor(null, "nome", "email", null, "PESSOA_FISICA"));
 	}
-	//nome + "/" + documento + ", " + email + ", " + celular + ", status: " +  status.getStatus();
 	@Test
 	void testPesquisaUsuarioPorId() {
 		assertEquals("70513372922",
@@ -128,13 +126,13 @@ class ControladorUsuarioTeste {
 		assertThrows(NullPointerException.class, () -> usuario.pesquisaUsuarioPorNome(null));
 		assertEquals("matheus/70513372922, email, 000000000, status: doador | matheus/89013372732, email, 000000000, status: doador", usuario.pesquisaUsuarioPorNome("matheus"));	
 	}
-	//usuario.adicionaDoador("70513372911", "nome", "email", "000000000", "PESSOA_FISICA");
+	
 	@Test
 	void testAtualizaInformacaoDeUsuario() {
 		assertThrows(IllegalArgumentException.class, () -> usuario.atualizaInformacaoDeUsuario(" ", "nome", "email", "celular"));
 		assertThrows(NullPointerException.class, () -> usuario.atualizaInformacaoDeUsuario(null, "nome", "email", "celular"));
-		//assertEquals("matheus/70513372911, email, 98743-7455, status: PESSOA_FISICA", usuario.atualizaInformacaoDeUsuario("70513372911", "matheus", "email", "98743-7455"));
-	}
+		assertEquals("matheus/70513372911, email, 98743-7455, status: doador", usuario.atualizaInformacaoDeUsuario("70513372911", "matheus", "email", "98743-7455"));
+	} 
 
 	@Test
 	void testRemoveUsuario() {
