@@ -13,10 +13,26 @@ import Comparable.ComparadorQuantidade;
 import backend.Exceptions;
 import entidade.Item;
 
+/**
+ * Classe que representa o controlador de item. Gerencia todas as extensões diretas do item.
+ * @author Thiago Nascimento, Dayvid Daniel e Caroliny Regina.
+ *
+ */
 public class ControladorItem {
 
+	/**
+	 * Mapa de todos os itens do doados, mapea para um mapeamento de itens a partir de um descritor.
+	 */
 	private Map<String, Map<Integer, Item>> itensDoados;
+	
+	/**
+	 * Mapa de todos os itens do necessarios, mapea para um mapeamento de itens a partir de um descritor.
+	 */
 	private Map<String, Map<Integer, Item>> itensNecessarios;
+	
+	/**
+	 * Representacao unica do item, seu id.
+	 */
 	private int idItem;
 	
 	public ControladorItem() {

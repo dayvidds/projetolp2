@@ -7,7 +7,7 @@ import backend.Exceptions;
 import entidade.Item;
 
 /**
- * Classe que epresenta um controlador principal do sistema. O controlador principal do sistema gerencia o controlador de usuario e o controlador de item.
+ * Classe que representa um controlador principal do sistema. O controlador principal do sistema gerencia o controlador de usuario e o controlador de item.
  * @author 
  *
  */

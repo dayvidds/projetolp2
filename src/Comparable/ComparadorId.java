@@ -6,7 +6,7 @@ import entidade.Item;
 
 /**
  * Classe responsavel em comparar itens atraves do seu identificador.
- * @author 
+ * @author Dayvid Daniel.
  *
  */
 public class ComparadorId implements Comparator<Item> {

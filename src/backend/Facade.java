@@ -7,7 +7,7 @@ import easyaccept.EasyAccept;
 
 /**
  * Representa a fachada com todos os metodos existentes no controlador pricipal do sistema.
- * @author 
+ * @author Dayvid Daniel, Thiago Nascimento, Matheus Augusto e Caroliny Regina.
  *
  */
 public class Facade {

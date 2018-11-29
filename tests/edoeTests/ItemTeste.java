@@ -2,63 +2,105 @@ package edoeTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import entidade.Item;
+
 class ItemTeste {
-
-	@Test
-	void testHashCode() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testItem() {
-		fail("Not yet implemented");
+	
+	private Item item;
+	
+	@BeforeEach
+	void setUp() {
+		item = new Item("70328507407", 0, "Camiseta ", 2, "Colorida");
 	}
 
 	@Test
 	void testGetQuantidade() {
-		fail("Not yet implemented");
+		assertEquals(2, item.getQuantidade());
+		item.atualizaItem(3, "");
+		assertEquals(3, item.getQuantidade());
+
 	}
 
 	@Test
-	void testGetIdDoador() {
-		fail("Not yet implemented");
+	void testGetIdUsuario() {
+		assertEquals("70328507407", item.getIdUsuario());
 	}
 
 	@Test
-	void testGetId() {
-		fail("Not yet implemented");
+	void testGetIdItem() {
+		assertEquals(0, item.getIdItem());
 	}
 
 	@Test
 	void testGetDescricaoItem() {
-		fail("Not yet implemented");
+		assertEquals("camiseta", item.getDescricaoItem());
 	}
 
 	@Test
 	void testSetQuantidade() {
-		fail("Not yet implemented");
+		assertEquals(2, item.getQuantidade());
+		item.setQuantidade(4);
+		assertEquals(4, item.getQuantidade());
+
 	}
 
 	@Test
 	void testAtualizaItem() {
-		fail("Not yet implemented");
+		assertEquals(2, item.getQuantidade());
+		item.atualizaItem(3, "Chique,Moderno");
+		assertEquals("0 - camiseta, tags: [Chique, Moderno], quantidade: 3", item.toString());
+
 	}
 
 	@Test
 	void testCompareTo() {
-		fail("Not yet implemented");
+		Item item2 = new Item("12328507456", 1, "Camiseta", 4, "Colorida");
+		assertEquals(2, item.compareTo(item2));
+	}
+	
+	@Test
+	void testHashCode() {
+		Item item2 = new Item("12328507456", 1, "Camiseta", 4, "Colorida");
+		assertEquals(item.hashCode(), item2.hashCode());
 	}
 
 	@Test
 	void testEqualsObject() {
-		fail("Not yet implemented");
+		Item item2 = new Item("12328507456", 1, "Camiseta", 4, "Colorida");
+		assertEquals(true, item.equals(item2));
 	}
-
+	
 	@Test
-	void testToString() {
-		fail("Not yet implemented");
+	void testEqualsEleMesmo() {
+		assertEquals(true, item.equals(item));
+	}
+	
+	@Test
+	void testEqualsNull() {
+		assertEquals(false, item.equals(null));
+	}
+	
+	@Test
+	void testEqualsObjetosDiferentes() {
+		String teste = "";
+		assertEquals(false, item.equals(teste));
+	}
+	
+	@Test
+	void testEqualsTagsNull() {
+		Item item1 = new Item("12328507456", 1, "Camiseta", 4, null);
+		Item item2 = new Item("12328507456", 1, "Camiseta", 4, "Colorida");
+		assertEquals(false, item1.equals(item2));
+	}
+	
+	@Test
+	void testEqualsTagsNullOther() {
+		Item item1 = new Item("12328507456", 1, "Camiseta", 4, "Colorida");
+		Item item2 = new Item("12328507456", 1, "Camiseta", 4, null);
+		assertEquals(false, item1.equals(item2));
 	}
 
 }

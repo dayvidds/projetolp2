@@ -21,7 +21,7 @@ import entidade.Usuario;
 /**
  * Classe que representa um controlador de Usuarios.
  * 
- * @author Matheus Augusto
+ * @author Matheus Augusto, Dayvid Daniel, Thiago Nascimento e Caroliny Regina.
  *
  */
 public class ControladorUsuario {
@@ -376,7 +376,7 @@ public class ControladorUsuario {
 		for (int i = 0; i < itensRetorno.size(); i++) {
 			for (Usuario user : this.usuarios.values()) {
 				if (user.getItens().containsValue(itensRetorno.get(i))) {
-					info = user.getNome() + "/" + user.getIdentificacao();
+					info = user.getNomeIdentificacao();
 					if (i < itensRetorno.size() - 1) {
 						retorno += itensRetorno.get(i).toString() + ", Receptor: " + info + " | ";
 					} else {

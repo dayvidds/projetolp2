@@ -43,6 +43,16 @@ class UsuarioTeste {
 		assertEquals("0 - mochila, tags: [Tendencia], quantidade: 3", usuario.exibeItem(0));
 
 	}
+	
+	@Test
+	void testAtualizaItemFalso() {
+		try {
+			usuario.atualizaItem(1, 4, "Teste");
+		} catch (IllegalArgumentException ia) {
+			
+		}
+		
+	}
 
 	@Test
 	void testRemoveItem() {
@@ -50,7 +60,26 @@ class UsuarioTeste {
 		assertEquals(false, usuario.verificaItem(0));
 		
 	}
-
+	
+	@Test
+	void testRemoveItemJaRemovido() {
+		usuario.removeItem(0);
+		try {
+			usuario.removeItem(0);
+		} catch (IllegalArgumentException ia) {
+			
+		}	
+	}
+	
+	@Test
+	void testRemoveItemIdFalso() {
+		try {
+			usuario.removeItem(1);
+		} catch (IllegalArgumentException ia) {
+			
+		}
+	}
+	
 	@Test
 	void testEqualsObject() {
 		Usuario usuario1 = new Usuario("70328507407", "lucao", "aaaa", "98878", TipoUsuario.PESSOA_FISICA, Status.DOADOR);

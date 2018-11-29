@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 /**
  * Classe que representa um item. Um item possui id do usuario, id do item, descritor, quantidade, tags e data.
- * @author 
+ * @author Thiago Nascimento, Dayvid Daniel e Caroliny Regina.
  *
  */
 public class Item implements Comparable<Item>{

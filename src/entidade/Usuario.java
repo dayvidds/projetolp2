@@ -3,6 +3,11 @@ package entidade;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 
+ * @author Matheus Augusto, Thiago Nascimento e Dayvid Daniel.
+ *
+ */
 public class Usuario {
 	private String nome;
 	private String email;
@@ -104,10 +109,6 @@ public class Usuario {
 			throw new IllegalArgumentException("O Usuario nao possui itens cadastrados.");
 		}
 		if (!verificaItem(idItem)) {
-			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
-		}
-		if(!this.itens.containsKey(idItem)) {
-			String idItemString = "" + this.itens.get(idItem).getIdItem();
 			throw new IllegalArgumentException("Item nao encontrado: " + idItem + ".");
 		}
 		itens.remove(idItem);
