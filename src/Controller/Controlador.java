@@ -138,7 +138,7 @@ public class Controlador {
 	}
 
 	/**
-	 * Metodo responsavel em invocar o controlador de item e usuario e remover determiado produto.
+	 * Metodo responsavel em invocar o controlador de item e usuario e remover determinado produto.
 	 * @param idItem identificacao do item.
 	 * @param idDoador identificacao do doador.
 	 */
@@ -148,27 +148,28 @@ public class Controlador {
 		
 	}
 	/**
-	 * Metodo responsavel por listar todos os itens disponiveis para doacao, juntando o toString do item e a concatenacao do nome/id do 
-	 * usuario doador.
+	 * Metodo responsavel por invocar o controlador de item e listar todos os itens disponiveis para doacao e seus respectivos doadores.
 	 * 
-	 * @return retorna uma string contendo todos os itens disponiveis para doacao e os seus respectivos doadores
+	 * @return retorna uma string contendo todos os itens disponiveis para doacao e os seus respectivos doadores.
 	 */
 	public String listaItensParaDoacao() {
 		return this.controladorUsuario.listaItensParaDoacao(this.controladorItem.ordenaItensPorQuantidade());
 	}
 	
 	/**
-	 * Metodo responsavel invocar o controlador de item e...
-	 * @return
+	 * Metodo responsavel por invocar o controlador de item e listar todos os itens oferecidos para doacao de acordo com seus descritores.
+	 * 
+	 * @return retorna uma string contendo todos os descritores e a quantidade itens contidos nos mesmos, organizados em ordem alfabetica.
 	 */
 	public String listaDescritorDeItensParaDoacao() {
 		return controladorItem.listaDescritorDeItensParaDoacao();
 	}
 	
 	/**
-	 * Metodo responsavel invocar o controlador de usuario e...
-	 * @param descricao
-	 * @return
+	 * Metodo responsavel invocar o controlador de usuario e listar todos os itens que contem uma determina descricao passada como parametro.
+	 * 
+	 * @param descricao descricao a ser procurada no mapa de itens doados.
+	 * @return retorna uma string contendo os itens que contem a descricao passada como parametro.
 	 */
 	public String pesquisaItemParaDoacaoPorDescricao(String descricao) {
 		return controladorItem.pesquisaItemParaDoacaoPorDescricao(descricao);

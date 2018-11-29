@@ -389,6 +389,12 @@ public class ControladorUsuario {
 	
 	}
 
+	/**
+	 * Metodo responsavel por concatenar toString dos itens oferecidos para doacao com o nome e id de seus respectivos doadores.
+	 * 
+	 * @param itensOrdenados lista dos itens doados ja ordenadas de acordo com a quantidade de cada, organizada em ordem decrescente.
+	 * @return uma string contendo todos os itens doados e seus respectivos doadores.
+	 */
 	public String listaItensParaDoacao(ArrayList<Item> itensOrdenados) {
 		ArrayList<Item> itensRetorno = itensOrdenados;
 

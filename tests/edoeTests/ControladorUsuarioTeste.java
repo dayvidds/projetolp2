@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import Controller.ControladorItem;
 import Controller.ControladorUsuario;
 /**
  * Classe para teste do ControladorUsuarios
@@ -15,10 +16,12 @@ import Controller.ControladorUsuario;
 class ControladorUsuarioTeste {
 
 	private ControladorUsuario usuario;
+	private ControladorItem item;
 
 	@BeforeEach
 	void setUp() {
 		usuario = new ControladorUsuario();
+		item = new ControladorItem();
 		// Cadastrando usuarios doadores para futuros testes
 		usuario.adicionaDoador("70513372911", "nome", "email", "000000000", "PESSOA_FISICA");
 		usuario.adicionaDoador("08704413000240", "nome", "email", "000000000", "IGREJA");
@@ -37,6 +40,17 @@ class ControladorUsuarioTeste {
 		usuario.adicionaReceptor("0000000000040", "nome", "email", "000000000", "ONG");
 		usuario.adicionaReceptor("0000000000050", "nome", "email", "000000000", "ASSOCIACAO");
 		usuario.adicionaReceptor("0000000000060", "nome", "email", "000000000", "SOCIEDADE");
+		// Cadastrando itens aos usuarios para futuros testes
+		item.adicionaDescritor(" CadeirA");
+		item.adicionaDescritor("Cama, Mesa, Banho ");
+		item.adicionaDescritor("CAMISETA");
+		item.adicionaDescritor("lencol");
+		item.adicionaItem("1000000000000", "cadeira", 2, "confortavel,seminova" , "itemDoado");
+		item.adicionaItem("2000000000000", "Cama, Mesa, Banho ", 1, "lar doce lar" , "itemNecessario");
+		item.adicionaItem("3000000000000", "Cama, Mesa, Banho ", 2, "confortavel" , "itemNecessario");
+		item.adicionaItem("4000000000000", "lencol", 5, "branco,fino", "itemDoado");
+		item.adicionaItem("5000000000000", "CADEIRA", 10, "", "itemDoado");
+		item.adicionaItem("5000000000000", "camiseta", 8, "algodao,preta", "itemDoado");
 		
 
 	}
@@ -153,6 +167,12 @@ class ControladorUsuarioTeste {
 	@Test
 	void testRemoveItem() {
 		fail("Not yet implemented");
+	}
+	
+	@Test
+	void testListaItensParaDoacao() {
+		assertEquals("4 - cadeira, tags: [], quantidade: 10, doador: nome/5000000000000 | 5 - camiseta, tags: [algodao, preto], quantidade: 8, doador: nome/5000000000000 | 0 - cadeira, tags: [confortavel, seminova], quantidade: 2, doador: nome/1000000000000 | 3 - lencol, tags: [branco, fino], quantidade: 5, doador: nome/4000000000000", usuario.listaItensParaDoacao(item.ordenaItensPorQuantidade()));
+		
 	}
 
 	@Test

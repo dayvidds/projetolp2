@@ -2,6 +2,8 @@ package edoeTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -81,13 +83,18 @@ class ControladorItemTeste {
 	@Test
 	void testListaDescritorDeItensParaDoacao() {
 		assertEquals("12 - cadeira | 0 - cama, mesa, banho | 8 - camiseta | 5 - lencol", ci.listaDescritorDeItensParaDoacao());
-		ci.removeItem(2, "itemDoado");
+		ci.removeItem(3, "itemDoado");
 		assertEquals("12 - cadeira | 0 - cama, mesa, banho | 8 - camiseta | 0 - lencol", ci.listaDescritorDeItensParaDoacao());
 	}
 
 	@Test
 	void testOrdenaItensPorQuantidade() {
-		assertEquals("[4 - cadeira, tags: [], quantidade: 10, 5 - camiseta, tags: [algodao, preta], quantidade: 8, 3 - lencol, tags: [branco, fino], quantidade: 5, 0 - cadeira, tags: [confortavel, seminova], quantidade: 2]", ci.ordenaItensPorQuantidade());
+		ArrayList<Item> itensTeste = new ArrayList<>();
+		itensTeste.add(new Item("52234712580", 4,"cadeira", 10, ""));
+		itensTeste.add(new Item("21036587452", 5,"camiseta", 8, "algodao,preta"));
+		itensTeste.add(new Item("10036985741", 3, "lencol", 5, "branco,fino"));
+		itensTeste.add(new Item("10046019482", 0, "cadeira", 2, "confortavel,seminova"));
+		assertEquals(itensTeste, ci.ordenaItensPorQuantidade());
 	}
 
 	@Test
