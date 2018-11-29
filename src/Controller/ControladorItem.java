@@ -36,9 +36,10 @@ public class ControladorItem {
 			throw new IllegalArgumentException("Descritor de Item ja existente: " + descricao.trim().toLowerCase() + ".");
 		}
 		
-		Map<Integer,Item> mapa = new HashMap<>();
-		itensDoados.put(descricao.trim().toLowerCase(), mapa);
-		itensNecessarios.put(descricao.trim().toLowerCase(), mapa);
+		Map<Integer,Item> mapaDoados = new HashMap<>();
+		Map<Integer,Item> mapaNecessarios = new HashMap<>();
+		itensDoados.put(descricao.trim().toLowerCase(), mapaDoados);
+		itensNecessarios.put(descricao.trim().toLowerCase(), mapaNecessarios);
 	}
 	
 	/**
