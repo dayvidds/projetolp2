@@ -37,6 +37,17 @@ class ControladorTeste {
 	}
 	
 	@Test
+	void testAdicionaItemParaDoacaoReceptor() {
+		try {
+			ci.adicionaItem("11846019480123", "Pratos", 2, "Brancos" , "itemNecessario");
+			cu.adicionaItem("10046019482", 3, ci.getItemId("Pratos", 3, "itemNecessario"), "itemNecessario");
+			
+		} catch (IllegalArgumentException ia) {
+			
+		}
+	}
+	
+	@Test
 	void testRemoveItemParaDoacao() {
 		cu.removeItem(0, "10046019482");
 		try {
@@ -53,6 +64,13 @@ class ControladorTeste {
 		} catch (IllegalArgumentException ie){
 			
 		}	
+	}
+	
+	@Test
+	void testAtualizaItem() {
+		cu.atualizaItem(1, "10046019480123", 5, "lar doce lar, aconchegante");
+		assertEquals("", cu.exibeItem("10046019480123", 1));
+		
 	}
 
 	@Test
@@ -73,6 +91,17 @@ class ControladorTeste {
 	@Test
 	void testAdicionaItemNecessario() {
 		assertEquals("1 - cama, mesa, banho, tags: [lar doce lar], quantidade: 1", cu.exibeItem("10046019480123", 1));
+	}
+	
+	@Test
+	void testAdicionaItemNecessarioDoador() {
+		try {
+			ci.adicionaItem("10046019482", "Sapatos", 3, "Nike, preto" , "itemDoado");
+			cu.adicionaItem("11846019480123", 4, ci.getItemId("Sapatos", 4, "itemDoado"), "itemDoado");
+			
+		} catch (IllegalArgumentException ia) {
+			
+		}
 	}
 
 	@Test

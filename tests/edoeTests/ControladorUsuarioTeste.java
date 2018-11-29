@@ -37,6 +37,7 @@ class ControladorUsuarioTeste {
 		usuario.adicionaReceptor("0000000000040", "nome", "email", "000000000", "ONG");
 		usuario.adicionaReceptor("0000000000050", "nome", "email", "000000000", "ASSOCIACAO");
 		usuario.adicionaReceptor("0000000000060", "nome", "email", "000000000", "SOCIEDADE");
+		
 
 	}
 	@Test
@@ -142,26 +143,11 @@ class ControladorUsuarioTeste {
 		assertEquals(usuario.removeUsuario("08704413000240"), true);
 
 	}
-///////////////////////////////////////////////////
-	/*
-	@Test
-	void testGetNomeIdentificacao() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testAdicionaItem() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testExibeItem() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	void testAtualizaItem() {
-		fail("Not yet implemented");
+		
+		
 	}
 
 	@Test
@@ -172,6 +158,6 @@ class ControladorUsuarioTeste {
 	@Test
 	void testListaItensNecessarios() {
 		fail("Not yet implemented");
-	}*/
+	}
 
 }

@@ -287,14 +287,14 @@ public class ControladorUsuario {
 			if (usuarios.get(idUsuario).getStatus().equals(Status.valueOf("DOADOR"))) {
 				usuarios.get(idUsuario).adicionaItem(idItem, item);
 			} else {
-				// TODO EXCEPTION
+				throw new IllegalArgumentException("Usuario não doador");
 			}
 
 		} else if (tipoItem.equals("itemNecessario")) {
 			if (usuarios.get(idUsuario).getStatus().equals(Status.valueOf("RECEPTOR"))) {
 				usuarios.get(idUsuario).adicionaItem(idItem, item);
 			} else {
-				// TODO EXCEPTION
+				throw new IllegalArgumentException("Usuario não receptor");
 			}
 		}
 	}
