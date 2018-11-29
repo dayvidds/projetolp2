@@ -24,7 +24,12 @@ public class ControladorItem {
 		itensNecessarios = new TreeMap<>();
 		idItem = 0;
 	}
-
+	
+	/**
+	 * Metodo responsavel em adicionar um descritor nos mapas de itens doados e necessarios.
+	 * Um descritor é um identificador generico de determinados itens.
+	 * @param descricao descritor que sera adicionado.
+	 */
 	public void adicionaDescritor(String descricao) {
 		Exceptions.checaNullOuVazio(descricao, "descricao nao pode ser vazia ou nula.");
 		if (itensDoados.containsKey(descricao.trim().toLowerCase())) {
@@ -36,12 +41,27 @@ public class ControladorItem {
 		itensNecessarios.put(descricao.trim().toLowerCase(), mapa);
 	}
 	
+	/**
+	 * Metodo responsavel em avaliar um descritor.
+	 * Caso o descritor nao exista nos mapas de itens ele ira invocar o metodo adicionaDescritor para adicionar a descricao.
+	 * @param descricaoItem descricao do item.
+	 * @param mapaDoItem mapa do item.
+	 */
 	private void avaliaDescritor(String descricaoItem, Map<String, Map<Integer, Item>> mapaDoItem) {
 		if (!mapaDoItem.containsKey(descricaoItem.trim().toLowerCase())) {
 			this.adicionaDescritor(descricaoItem.trim().toLowerCase());
 		}
 	}
 	
+	/**
+	 * Metodo responsavel em avaliar um item.
+	 * Caso o item ja exista no mapa ele ira apenas atualizar a quantidade do item.
+	 * @param descricaoItem descricao do item.
+	 * @param item item.
+	 * @param quantidade quantidade do item especifico.
+	 * @param mapaDoItem mapa do item.
+	 * @return retorna true caso o item ja exista no mapa e false caso contrario.
+	 */
 	private boolean avaliaItem(String descricaoItem, Item item, int quantidade, Map<String, Map<Integer, Item>> mapaDoItem) {
 		if (mapaDoItem.get(descricaoItem.trim().toLowerCase()).containsValue(item)) {
 			for (Item itens: mapaDoItem.get(descricaoItem.trim().toLowerCase()).values()) {
@@ -56,6 +76,15 @@ public class ControladorItem {
 		}	
 	}
 	
+	/**
+	 * Metodo responsavel em adicionar um item ao mapa que ele pertence.
+	 * @param idUsuario identificacao do usuario.
+	 * @param descricaoItem descritor do item.
+	 * @param quantidade quantidade do item.
+	 * @param tags tags para identificacao do item.
+	 * @param tipoItem tipo do item, se ele é item doado ou item necessario.
+	 * @return retorna a identificao do item.
+	 */
 	public int adicionaItem(String idUsuario, String descricaoItem, int quantidade, String tags, String tipoItem) {
 		Exceptions.checaNullOuVazio(descricaoItem, "descricao nao pode ser vazia ou nula.");
 		Exceptions.verificaQuantidadeItem(quantidade, "quantidade deve ser maior que zero.");
@@ -85,20 +114,39 @@ public class ControladorItem {
 		
 		idItem += 1;
 		return idItem - 1;
-		
 	}
 
-	public void removeItemParaDoacao(int idItem) {
-		for (Map<Integer, Item> mapa : itensDoados.values()) {
-			for (Item item : mapa.values()) {
+	/**
+	 * Metodo responsavel em excluir um item do mapa que o item pertence.
+	 * @param idItem identificacao do item.
+	 * @param tipoItem tipo do item, se ele é item doado ou item necessario.
+	 */
+	public void removeItem(int idItem, String tipoItem) {
+		Map<String, Map<Integer, Item>> mapa;
+		
+		if (tipoItem.equals("itemDoado")) {
+			mapa = this.itensDoados;
+		} else {
+			mapa = this.itensNecessarios;
+		}
+		
+		for (Map<Integer, Item> mapa2 : mapa.values()) {
+			for (Item item : mapa2.values()) {
 				if (item.getId() == idItem) {
-					mapa.remove(idItem);
+					mapa2.remove(idItem);
 					break;		
 				}
 			}
 		}
 	}
 
+	/**
+	 * Metodo responsavel em retornar o item de acordo com seu id.
+	 * @param descricaoItem descritor do item.
+	 * @param id identificacao do item.
+	 * @param tipoItem tipo do item, se ele é item doado ou item necessario.
+	 * @return
+	 */
 	public Item getItemId(String descricaoItem, int id, String tipoItem) {
 		if (tipoItem.equals("itemDoado")) {
 			return itensDoados.get(descricaoItem.trim().toLowerCase()).get(id);
@@ -182,8 +230,4 @@ public class ControladorItem {
 	   	 
 	   	 return  listaItens;
 	    }
-	
-	public String getIdDoador(String descritor, int idItem) {
-		return this.itensDoados.get(descritor).get(idItem).getIdDoador();
-	}
 }
