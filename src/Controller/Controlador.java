@@ -154,20 +154,7 @@ public class Controlador {
 	 * @return retorna uma string contendo todos os itens disponiveis para doacao e os seus respectivos doadores
 	 */
 	public String listaItensParaDoacao() {
-
-		ArrayList<Item> itens = this.controladorItem.ordenaItensPorQuantidade();
-		String listaItens = "";
-		int contador = 0;
-		for (Item item : itens) {
-			String idDoador = item.getIdUsuario();
-			String doador = this.controladorUsuario.getNomeIdentificacao(idDoador);
-			listaItens += item.toString() + ", doador: " + doador;
-			contador += 1;
-			if (contador < itens.size()) {
-				listaItens += " | ";
-			}
-		}
-		return listaItens;
+		return this.controladorUsuario.listaItensParaDoacao(this.controladorItem.ordenaItensPorQuantidade());
 	}
 	
 	/**

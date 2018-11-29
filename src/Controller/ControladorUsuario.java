@@ -388,4 +388,25 @@ public class ControladorUsuario {
 		return retorno;
 	
 	}
+
+	public String listaItensParaDoacao(ArrayList<Item> itensOrdenados) {
+		ArrayList<Item> itensRetorno = itensOrdenados;
+
+		String retorno = "";
+		String info = "";
+
+		for (int i = 0; i < itensRetorno.size(); i++) {
+			for (Usuario user : this.usuarios.values()) {
+				if (user.getItens().containsValue(itensRetorno.get(i))) {
+					info = user.getNomeIdentificacao();
+					if (i < itensRetorno.size() - 1) {
+						retorno += itensRetorno.get(i).toString() + ", doador: " + info + " | ";
+					} else {
+						retorno += itensRetorno.get(i).toString() + ", doador: " + info;
+					}
+				}
+			}
+		}
+		return retorno;
+	}
 }

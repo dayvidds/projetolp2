@@ -145,6 +145,7 @@ public class Item implements Comparable<Item>{
 	/**
 	 * Metodo responsavel em comparar se objeto vindo como parametro e igual ao item atual.
 	 * Itens serao iguais caso tenham o mesmo descritor e as mesmas tags.
+	 * @return retorna true se os dois itens forem iguais, false caso contrario.
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -171,7 +172,7 @@ public class Item implements Comparable<Item>{
 	/**
 	 * Retorna uma representacao textual com as informacoes do item.
 	 * A representacao possui o formato: "nome - descricaoItem, + tags: [], quantidade: " 
-	 * @return A representacao textual do item.
+	 * @return retorna a representacao textual do item.
 	 */
 	@Override
 	public String toString() {
