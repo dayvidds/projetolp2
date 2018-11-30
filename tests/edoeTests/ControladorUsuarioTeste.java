@@ -45,10 +45,10 @@ class ControladorUsuarioTeste {
 		item.adicionaDescritor("Cama, Mesa, Banho ");
 		item.adicionaDescritor("CAMISETA");
 		item.adicionaDescritor("lencol");
-		item.adicionaItem("1000000000000", "cadeira", 2, "confortavel,seminova" , "itemDoado");
+		item.adicionaItem("70513372911", "cadeira", 2, "confortavel,seminova" , "itemDoado");
 		item.adicionaItem("2000000000000", "Cama, Mesa, Banho ", 1, "lar doce lar" , "itemNecessario");
 		item.adicionaItem("3000000000000", "Cama, Mesa, Banho ", 2, "confortavel" , "itemNecessario");
-		item.adicionaItem("4000000000000", "lencol", 5, "branco,fino", "itemDoado");
+		item.adicionaItem("08704413000240", "lencol", 5, "branco,fino", "itemDoado");
 		item.adicionaItem("5000000000000", "CADEIRA", 10, "", "itemDoado");
 		item.adicionaItem("5000000000000", "camiseta", 8, "algodao,preta", "itemDoado");
 		
@@ -157,27 +157,13 @@ class ControladorUsuarioTeste {
 		assertEquals(usuario.removeUsuario("08704413000240"), true);
 
 	}
-
-	@Test
-	void testAtualizaItem() {
-		
-		
-	}
-
-	@Test
-	void testRemoveItem() {
-		fail("Not yet implemented");
-	}
 	
 	@Test
 	void testListaItensParaDoacao() {
-		assertEquals("4 - cadeira, tags: [], quantidade: 10, doador: nome/5000000000000 | 5 - camiseta, tags: [algodao, preto], quantidade: 8, doador: nome/5000000000000 | 0 - cadeira, tags: [confortavel, seminova], quantidade: 2, doador: nome/1000000000000 | 3 - lencol, tags: [branco, fino], quantidade: 5, doador: nome/4000000000000", usuario.listaItensParaDoacao(item.ordenaItensPorQuantidade()));
+		usuario.adicionaItem("70513372911", 0, item.getItemId("cadeira", 0, "itemDoado"), "itemDoado");
+		usuario.adicionaItem("08704413000240", 3, item.getItemId("lencol", 3,"itemDoado"), "itemDoado");
+		assertEquals("3 - lencol, tags: [branco, fino], quantidade: 5, doador: nome/08704413000240 | 0 - cadeira, tags: [confortavel, seminova], quantidade: 2, doador: nome/70513372911", usuario.listaItensParaDoacao(item.ordenaItensPorQuantidade()));
 		
-	}
-
-	@Test
-	void testListaItensNecessarios() {
-		fail("Not yet implemented");
 	}
 
 }

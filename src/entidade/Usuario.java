@@ -85,27 +85,11 @@ public class Usuario {
 	}
 
 	/**
-	 * Retorna o email do usuario.
-	 * @return retorna o email do usuario.
-	 */
-	public String getEmail() {
-		return email;
-	}
-
-	/**
 	 * Altera o atributo email do usuario.
 	 * @param email novo email do usuario.
 	 */
-	public void setEmail(String emil) {
+	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	/**
-	 * Retorna o celular do usuario.
-	 * @return retorna o celular do usuario.
-	 */
-	public String getCelular() {
-		return celular;
 	}
 
 	/**
@@ -117,39 +101,11 @@ public class Usuario {
 	}
 
 	/**
-	 * Retorna a classe do usuario.
-	 * @return retorna a classe do usuario.
-	 */
-	public TipoUsuario getClasse() {
-		return classe;
-	}
-
-	/**
-	 * Altera o atributo classe do usuario.
-	 * @param classe nova classe do usuario.
-	 */
-	public void setClasse(TipoUsuario classe) {
-		this.classe = classe;
-	}
-
-	/**
-	 * Retorna a identificacao do usuario.
-	 * @return retorna a identificacao do usuario.
-	 */
-	public String getIdentificacao() {
-		return documento;
-	}
-	
-	/**
 	 * Retorna o status do usuario.
 	 * @return retorna o status do usuario.
 	 */
 	public Status getStatus() {
 		return status;
-	}
-
-	public void setIdentificacao(String identificacao) {
-		this.documento = identificacao;
 	}
 	
 	/**
@@ -224,8 +180,7 @@ public class Usuario {
 		}
 		itens.remove(idItem);
 		
-	}
-	
+	}	
 
 	/**
 	 * Cria uma representação, em inteiro, para Usuario atraves do seu documento de identificacao.

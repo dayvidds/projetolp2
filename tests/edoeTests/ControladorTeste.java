@@ -74,21 +74,6 @@ class ControladorTeste {
 	}
 
 	@Test
-	void testListaItensParaDoacao() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testListaDescritorDeItensParaDoacao() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testPesquisaItemParaDoacaoPorDescricao() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	void testAdicionaItemNecessario() {
 		assertEquals("1 - cama, mesa, banho, tags: [lar doce lar], quantidade: 1", cu.exibeItem("10046019480123", 1));
 	}

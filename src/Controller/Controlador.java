@@ -1,10 +1,7 @@
 package Controller;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-
 import backend.Exceptions;
-import entidade.Item;
 
 /**
  * Classe que representa um controlador principal do sistema. O controlador principal do sistema gerencia o controlador de usuario e o controlador de item.
@@ -32,60 +29,61 @@ public class Controlador {
 	}
 	
 	/**
-	 * Metodo responsavel invocar o controlador de usuario e...
-	 * @param caminho
-	 * @throws FileNotFoundException
+	 * Metodo responsavel invocar o controlador de usuario e realizar a leitura dos receptores
+	 * que foram arquivados.
+	 * @param caminho caminho do arquivo.
+	 * @throws FileNotFoundException Excecao.
 	 */
 	public void lerrecptor(String caminho) throws FileNotFoundException {
 		controladorUsuario.lerrecptor(caminho);	
 	}
 
 	/**
-	 * Metodo responsavel invocar o controlador de usuario e...
-	 * @param id
-	 * @param nome
-	 * @param email
-	 * @param celular
-	 * @param classe
-	 * @return
+	 * Invoca o controlador de usuario para adicionar um novo doador ao sistema.
+	 * @param id identificacao do doador.
+	 * @param nome nome do doador.
+	 * @param email email do doador.
+	 * @param celular celular do doador.
+	 * @param classe classe a qual o doador pertece.
+	 * @return retorna uma string com a identificacao do doador.
 	 */
 	public String adicionaDoador(String id, String nome, String email, String celular, String classe) {
 		return controladorUsuario.adicionaDoador(id, nome, email, celular, classe);
 	}
 
 	/**
-	 * Metodo responsavel invocar o controlador de usuario e...
-	 * @param id
-	 * @return
+	 * Invoca o controlador para pesquisar por um usuario especifico atraves do id.
+	 * @param id identificacao do usuario.
+	 * @return retorna as informacoes do usuario.
 	 */
 	public String pesquisaUsuarioPorId(String id) {
 		return controladorUsuario.pesquisaUsuarioPorId(id);
 	}
 	
 	/**
-	 * Metodo responsavel invocar o controlador de usuario e...
-	 * @param nome
-	 * @return
+	 * Invoca o controlador para pesquisar por um usuario espercifico atraves do nome.
+	 * @param nome nome do usuario.
+	 * @return retorna as informacoes do usuario
 	 */
 	public String pesquisaUsuarioPorNome(String nome) {
 		return controladorUsuario.pesquisaUsuarioPorNome(nome);
 	}
 
 	/**
-	 * Metodo responsavel invocar o controlador de usuario e...
-	 * @param id
-	 * @param nome
-	 * @param email
-	 * @param celular
-	 * @return
+	 * Invoca o controlador para atualizar informacoes de determinado usuario.
+	 * @param id identificacao do usuario.
+	 * @param nome novo nome para o usuario
+	 * @param email novo email para o usuario.
+	 * @param celular novo celular para o usuario.
+	 * @return retorna a representacao do usuario com as informacoes atualizadas.
 	 */
 	public String atualizaUsuario(String id, String nome, String email, String celular) {
 		return controladorUsuario.atualizaInformacaoDeUsuario(id, nome, email, celular);
 	}
 
 	/**
-	 * Metodo responsavel invocar o controlador de usuario e...
-	 * @param id
+	 * Invoca o controlador para remover determinado usuario.
+	 * @param id identificacao do usuario.
 	 */
 	public void removeUsuario(String id) {
 		controladorUsuario.removeUsuario(id);
@@ -184,6 +182,8 @@ public class Controlador {
 	 * @return retorna a identificacao do item.
 	 */
 	public int adicionaItemNecessario(String idReceptor, String descricaoItem, int quantidade, String tags) {
+		Exceptions.checaNullOuVazio(idReceptor, "id do usuario nao pode ser vazio ou nulo.");
+		controladorUsuario.erroUsuarioNaoExiste(idReceptor);
 		int idItem = controladorItem.adicionaItem(idReceptor, descricaoItem, quantidade, tags, "itemNecessario");
 		controladorUsuario.adicionaItem(idReceptor, idItem, controladorItem.getItemId(descricaoItem, idItem, "itemNecessario"), "itemNecessario");
 		return idItem;

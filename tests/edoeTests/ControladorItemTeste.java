@@ -76,11 +76,6 @@ class ControladorItemTeste {
 	}
 
 	@Test
-	void testGetItemId() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	void testListaDescritorDeItensParaDoacao() {
 		assertEquals("12 - cadeira | 0 - cama, mesa, banho | 8 - camiseta | 5 - lencol", ci.listaDescritorDeItensParaDoacao());
 		ci.removeItem(3, "itemDoado");
