@@ -258,4 +258,19 @@ public class ControladorItem {
 	   	 
 	   	 return  listaItens;
 	    }
+
+	public String match(String idReceptor, int idItemNecessario) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String realizaDoacao(int idItemNec, int idItemDoado, String data) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String listaDoacoes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

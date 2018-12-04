@@ -218,4 +218,30 @@ public class Controlador {
 		controladorUsuario.removeItem(idItem, idReceptor);
 		controladorItem.removeItem(idItem, "itemNecessario");
 	}
+
+	public String match(String idReceptor, int idItemNecessario) {
+		if (idReceptor == null || idReceptor.length() == 0) {
+			throw new IllegalArgumentException("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
+		}
+		controladorUsuario.erroUsuarioNaoExiste(idReceptor);
+		if (idItemNecessario < 0) {
+			throw new IllegalArgumentException("Entrada invalida: id do item nao pode ser negativo.");
+		}
+		return controladorItem.match(idReceptor, idItemNecessario);
+		
+	}
+
+	public String realizaDoacao(int idItemNec, int idItemDoado, String data) {
+		if (idItemNec < 0 || idItemDoado < 0) {
+			throw new IllegalArgumentException("Entrada invalida: id do item nao pode ser negativo.");
+		}
+		if (data == null || data.length() == 0) {
+			throw new IllegalArgumentException("Entrada invalida: data nao pode ser vazia ou nula.");
+		}
+		return controladorItem.realizaDoacao(idItemNec, idItemDoado, data);
+	}
+
+	public String listaDoacoes() {
+		return controladorItem.listaDoacoes();
+	}
 }

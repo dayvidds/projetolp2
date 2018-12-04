@@ -22,7 +22,7 @@ public class Facade {
 	 * @param args testes que serão executados.
 	 */
 	public static void main(String[] args) throws FileNotFoundException {
-		args = new String[] {"backend.Facade", "arquivos_sistema/use_case_1.txt", "arquivos_sistema/use_case_2.txt", "arquivos_sistema/use_case_3.txt", "arquivos_sistema/use_case_4.txt"};
+		args = new String[] {"backend.Facade", "arquivos_sistema/use_case_1.txt", "arquivos_sistema/use_case_2.txt", "arquivos_sistema/use_case_3.txt", "arquivos_sistema/use_case_4.txt", "arquivos_sistema/use_case_5.txt", "arquivos_sistema/use_case_6.txt"};
 		EasyAccept.main(args);
 	}
 	
@@ -201,6 +201,18 @@ public class Facade {
 	 */
 	public void removeItemNecessario(String idReceptor, int idItem) {
 		controlador.removeItemNecessario(idReceptor, idItem);
+	}
+	
+	public String match(String idReceptor, int idItemNecessario) {
+		return controlador.match(idReceptor, idItemNecessario);
+	}
+	
+	public String realizaDoacao(int idItemNec, int idItemDoado, String data) {
+		return controlador.realizaDoacao(idItemNec, idItemDoado, data);
+	}
+	
+	public String listaDoacoes() {
+		return controlador.listaDoacoes();
 	}
 
 }
