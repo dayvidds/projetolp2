@@ -1,6 +1,7 @@
 package Controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -169,6 +170,17 @@ public class ControladorItem {
 		} else {
 			return itensNecessarios.get(descricaoItem.trim().toLowerCase()).get(id);
 		}
+	}
+	
+	private Item getItemId(int id) {
+		for (Map<Integer, Item> mapa : itensNecessarios.values()) {
+			for (int i : mapa.keySet()) {
+				if (i == id) {
+					return mapa.get(i);
+				}	
+			}
+		}
+		throw new IllegalArgumentException(); // TODO
 	}
 	
 	/**
