@@ -24,9 +24,11 @@ import entidade.Usuario;
 public class ControladorUsuario {
 
 	private Map<String, Usuario> usuarios;
+	private Exceptions exceptions;
 
 	public ControladorUsuario() {
 		usuarios = new LinkedHashMap<String, Usuario>();
+		exceptions = new Exceptions();
 	}
 
 	/**
@@ -142,7 +144,7 @@ public class ControladorUsuario {
 	 */
 
 	public String adicionaDoador(String id, String nome, String email, String celular, String classe) {
-		Exceptions.verificaEntradaControladorUsuario(id, nome, email, celular, classe);
+		exceptions.verificaEntradaControladorUsuario(id, nome, email, celular, classe);
 		erroUsuarioJaExiste(id);
 
 		usuarios.put(id, new Usuario(id, nome, email, celular, TipoUsuario.valueOf(classe), Status.valueOf("DOADOR")));
@@ -168,7 +170,7 @@ public class ControladorUsuario {
 	 *         paramentro nao aceitavel. Ex: nome null ou vazio.
 	 */
 	public String adicionaReceptor(String id, String nome, String email, String celular, String classe) {
-		Exceptions.verificaEntradaControladorUsuario(id, nome, email, celular, classe);
+		exceptions.verificaEntradaControladorUsuario(id, nome, email, celular, classe);
 		erroUsuarioJaExiste(id);
 		usuarios.put(id,
 				new Usuario(id, nome, email, celular, TipoUsuario.valueOf(classe), Status.valueOf("RECEPTOR")));
@@ -184,7 +186,7 @@ public class ControladorUsuario {
 	 * @return toString do Usuario
 	 */
 	public String pesquisaUsuarioPorId(String id) {
-		Exceptions.checaNullOuVazio(id, "id do usuario nao pode ser vazio ou nulo.");
+		exceptions.checaNullOuVazio(id, "id do usuario nao pode ser vazio ou nulo.");
 		erroUsuarioNaoExiste(id);
 		Usuario usuario = usuarios.get(id);
 		return usuario.toString();
@@ -199,7 +201,7 @@ public class ControladorUsuario {
 	 * @return toString do Usuario
 	 */
 	public String pesquisaUsuarioPorNome(String nome) {
-		Exceptions.checaNullOuVazio(nome, "nome nao pode ser vazio ou nulo.");
+		exceptions.checaNullOuVazio(nome, "nome nao pode ser vazio ou nulo.");
 
 		String retorno = "";
 		int contador = 0;
@@ -235,7 +237,7 @@ public class ControladorUsuario {
 	 *         exista no cadastrado ele ira lancar outra mensargem de erro.
 	 */
 	public String atualizaInformacaoDeUsuario(String id, String nome, String email, String celular) {
-		Exceptions.checaNullOuVazio(id, "id do usuario nao pode ser vazio ou nulo.");
+		exceptions.checaNullOuVazio(id, "id do usuario nao pode ser vazio ou nulo.");
 		erroUsuarioNaoExiste(id);
 		Usuario usuario = usuarios.get(id);
 
@@ -260,7 +262,7 @@ public class ControladorUsuario {
 	 *           mensargem de erro. Caso passe com sucesso, ira remover o Usuario.
 	 */
 	public boolean removeUsuario(String id) {
-		Exceptions.checaNullOuVazio(id, "id do usuario nao pode ser vazio ou nulo.");
+		exceptions.checaNullOuVazio(id, "id do usuario nao pode ser vazio ou nulo.");
 		erroUsuarioNaoExiste(id);
 		usuarios.remove(id);
 		return true;
@@ -284,7 +286,7 @@ public class ControladorUsuario {
 	 * @param tipoItem tipo do item (doado ou necessario).
 	 */
 	public void adicionaItem(String idUsuario, int idItem, Item item, String tipoItem) {
-		Exceptions.checaNullOuVazio(idUsuario, "id do usuario nao pode ser vazio ou nulo.");
+		exceptions.checaNullOuVazio(idUsuario, "id do usuario nao pode ser vazio ou nulo.");
 		erroUsuarioNaoExiste(idUsuario);
 		
 		if (tipoItem.equals("itemDoado")) {
@@ -326,8 +328,8 @@ public class ControladorUsuario {
 	 * @return retorna a representacao atualizada do item.
 	 */
 	public String atualizaItem(int idItem, String idUsuario, int quantidade, String tags) {
-		Exceptions.verificaValorIdItem(idItem);
-		Exceptions.checaNullOuVazio(idUsuario, "id do usuario nao pode ser vazio ou nulo.");
+		exceptions.verificaValorIdItem(idItem);
+		exceptions.checaNullOuVazio(idUsuario, "id do usuario nao pode ser vazio ou nulo.");
 		erroUsuarioNaoExiste(idUsuario);
 		return usuarios.get(idUsuario).atualizaItem(idItem, quantidade, tags);
 	}
@@ -338,8 +340,8 @@ public class ControladorUsuario {
 	 * @param idUsuario identificador do usuario.
 	 */
 	public void removeItem(int idItem, String idUsuario) {
-		Exceptions.verificaValorIdItem(idItem);
-		Exceptions.checaNullOuVazio(idUsuario, "id do usuario nao pode ser vazio ou nulo.");
+		exceptions.verificaValorIdItem(idItem);
+		exceptions.checaNullOuVazio(idUsuario, "id do usuario nao pode ser vazio ou nulo.");
 		
 		if (!this.usuarios.containsKey(idUsuario)) {
 			throw new IllegalArgumentException("Usuario nao encontrado: " + idUsuario + ".");

@@ -33,10 +33,13 @@ public class ControladorItem {
 	 */
 	private int idItem;
 	
+	private Exceptions exceptions;
+	
 	public ControladorItem() {
 		itensDoados = new TreeMap<>();
 		itensNecessarios = new TreeMap<>();
 		idItem = 0;
+		exceptions = new Exceptions();
 	}
 	
 	/**
@@ -45,7 +48,7 @@ public class ControladorItem {
 	 * @param descricao descritor que sera adicionado.
 	 */
 	public void adicionaDescritor(String descricao) {
-		Exceptions.checaNullOuVazio(descricao, "descricao nao pode ser vazia ou nula.");
+		exceptions.checaNullOuVazio(descricao, "descricao nao pode ser vazia ou nula.");
 		if (itensDoados.containsKey(descricao.trim().toLowerCase())) {
 			throw new IllegalArgumentException("Descritor de Item ja existente: " + descricao.trim().toLowerCase() + ".");
 		}
@@ -101,8 +104,8 @@ public class ControladorItem {
 	 * @return retorna a identificao do item.
 	 */
 	public int adicionaItem(String idUsuario, String descricaoItem, int quantidade, String tags, String tipoItem) {
-		Exceptions.checaNullOuVazio(descricaoItem, "descricao nao pode ser vazia ou nula.");
-		Exceptions.verificaQuantidadeItem(quantidade, "quantidade deve ser maior que zero.");
+		exceptions.checaNullOuVazio(descricaoItem, "descricao nao pode ser vazia ou nula.");
+		exceptions.verificaQuantidadeItem(quantidade, "quantidade deve ser maior que zero.");
 		
 		Map<String, Map<Integer, Item>> mapa;
 		Item item = new Item(idUsuario, idItem, descricaoItem, quantidade, tags);
@@ -234,7 +237,7 @@ public class ControladorItem {
 	 * @return uma string com o toString de todos os itens que contem a string dada no param em sua descricao
 	 */
 	public String pesquisaItemParaDoacaoPorDescricao(String descricao) {
-	   	 Exceptions.checaNullOuVazio(descricao, "texto da pesquisa nao pode ser vazio ou nulo.");
+	   	 exceptions.checaNullOuVazio(descricao, "texto da pesquisa nao pode ser vazio ou nulo.");
 	   	 ArrayList<Item> itens = new ArrayList<>();
 	   	 Set<String> descritores = itensDoados.keySet();
 	   	 for (String descritor : descritores) {

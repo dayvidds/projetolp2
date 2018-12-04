@@ -9,6 +9,10 @@ import entidade.TipoUsuario;
 	 */
 public class Exceptions {
 	
+	public Exceptions() {
+		
+	}
+	
 	/**
 	 * Metodo checaNullOuVazio: Esse metodo recebe qualquer paramentro no formato de String 
 	 * e lança uma exceçao caso ela seja nula ou vazia
@@ -17,7 +21,7 @@ public class Exceptions {
 	 * @param mensagem Mensagem de exceçao
 	 * 
 	 */
-	public static void checaNullOuVazio(String string, String mensagem) {
+	public void checaNullOuVazio(String string, String mensagem) {
 		if (string == null) {
 			throw new NullPointerException("Entrada invalida: " + mensagem);
 		} else if (string.isEmpty()) {
@@ -30,7 +34,7 @@ public class Exceptions {
 	 * @param quantidade Quantidade de itens
 	 * @param mensagem   Mensagem de erro
 	 */
-	public static void verificaQuantidadeItem(int quantidade, String mensagem) {
+	public void verificaQuantidadeItem(int quantidade, String mensagem) {
 		if (quantidade < 1) {
 			throw new IllegalArgumentException("Entrada invalida: " + mensagem);
 		}
@@ -40,7 +44,7 @@ public class Exceptions {
 	 * 
 	 * @param valor Valor do Id
 	 */
-	public static void verificaValorIdItem(int valor) {
+	public void verificaValorIdItem(int valor) {
 		if (valor < 0) {
 			throw new IllegalArgumentException("Entrada invalida: id do item nao pode ser negativo.");
 		}
@@ -56,7 +60,7 @@ public class Exceptions {
 	 * @param celular Celular do usuario
 	 * @param classe  Classe de identificaçao do usuario
 	 */
-	public static void verificaEntradaControladorUsuario(String id, String nome, String email, String celular,String classe) {
+	public void verificaEntradaControladorUsuario(String id, String nome, String email, String celular,String classe) {
 		checaNullOuVazio(id,"id do usuario nao pode ser vazio ou nulo.");
 		checaNullOuVazio(nome,"nome nao pode ser vazio ou nulo." );
 		checaNullOuVazio(email,"email nao pode ser vazio ou nulo.");
@@ -74,7 +78,7 @@ public class Exceptions {
 	 * @param email   Email do Usuario 
 	 * @param celular Celular do Usuario
 	 */
-	public static void verificaInformacoesDeUsuario(String id, String nome, String email, String celular) {
+	public void verificaInformacoesDeUsuario(String id, String nome, String email, String celular) {
 		checaNullOuVazio(id,"id do usuario nao pode ser vazio ou nulo.");
 		checaNullOuVazio(nome,"nome nao pode ser vazio ou nulo." );
 		checaNullOuVazio(email,"email nao pode ser vazio ou nulo.");
@@ -86,7 +90,7 @@ public class Exceptions {
 	 * 
 	 * @param classe   Classe do Usuario
 	 */
-	public static void verificaTipoUsuario(String classe) {
+	public void verificaTipoUsuario(String classe) {
 		boolean entrou = false;
 		for(TipoUsuario tipo: TipoUsuario.values()) {
 			if (classe.equals(tipo.getClasse())) {

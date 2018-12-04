@@ -20,12 +20,15 @@ public class Controlador {
 	 */
 	private ControladorItem controladorItem;
 	
+	private Exceptions exceptions;
+	
 	/**
 	 * Inicializa o controlador principal do sistema e invoca os construtores do controlador usuario e controlador item.
 	 */
 	public Controlador() {
 		controladorUsuario = new ControladorUsuario();
 		controladorItem = new ControladorItem();
+		exceptions = new Exceptions(); 
 	}
 	
 	/**
@@ -106,7 +109,7 @@ public class Controlador {
 	 * @return retorna a identificacao do item que foi cadastrado no sistema.
 	 */
 	public int adicionaItemParaDoacao(String idDoador, String descricaoItem, int quantidade, String tags) {
-		Exceptions.checaNullOuVazio(idDoador, "id do usuario nao pode ser vazio ou nulo.");
+		exceptions.checaNullOuVazio(idDoador, "id do usuario nao pode ser vazio ou nulo.");
 		controladorUsuario.erroUsuarioNaoExiste(idDoador);
 		int idItem = controladorItem.adicionaItem(idDoador, descricaoItem, quantidade, tags, "itemDoado");
 		controladorUsuario.adicionaItem(idDoador, idItem, controladorItem.getItemId(descricaoItem, idItem, "itemDoado"), "itemDoado");
@@ -182,7 +185,7 @@ public class Controlador {
 	 * @return retorna a identificacao do item.
 	 */
 	public int adicionaItemNecessario(String idReceptor, String descricaoItem, int quantidade, String tags) {
-		Exceptions.checaNullOuVazio(idReceptor, "id do usuario nao pode ser vazio ou nulo.");
+		exceptions.checaNullOuVazio(idReceptor, "id do usuario nao pode ser vazio ou nulo.");
 		controladorUsuario.erroUsuarioNaoExiste(idReceptor);
 		int idItem = controladorItem.adicionaItem(idReceptor, descricaoItem, quantidade, tags, "itemNecessario");
 		controladorUsuario.adicionaItem(idReceptor, idItem, controladorItem.getItemId(descricaoItem, idItem, "itemNecessario"), "itemNecessario");
