@@ -8,6 +8,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
+
 import Comparable.ComparadorId;
 import backend.Exceptions;
 import entidade.Item;
@@ -411,6 +413,15 @@ public class ControladorUsuario {
 					}
 				}
 			}
+		}
+		return retorno;
+	}
+
+	public String matchItemDoador(Set<Item> itens) {
+		String retorno = "";
+		for (Item item : itens) {
+			retorno += item.toString() + usuarios.get(item.getIdUsuario()).getNome() + item.getIdUsuario();
+			
 		}
 		return retorno;
 	}

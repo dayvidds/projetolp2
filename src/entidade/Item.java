@@ -81,6 +81,11 @@ public class Item implements Comparable<Item>{
 		return this.idItem;
 	}
 	
+	public String getTags() {
+		return this.tags;
+		
+	}
+	
 	/**
 	 * Retorna a descricao do item.
 	 * @return retorna a descricao do item.
@@ -178,4 +183,5 @@ public class Item implements Comparable<Item>{
 	public String toString() {
 		return idItem + " - " + descricaoItem + ", tags: [" + separaTag() + "], quantidade: " + quantidade;
 	}
+
 }

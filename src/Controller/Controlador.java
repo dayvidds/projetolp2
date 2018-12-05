@@ -230,7 +230,7 @@ public class Controlador {
 		if (idItemNecessario < 0) {
 			throw new IllegalArgumentException("Entrada invalida: id do item nao pode ser negativo.");
 		}
-		return controladorItem.match(idReceptor, idItemNecessario);
+		return controladorUsuario.matchItemDoador(controladorItem.match(idReceptor, idItemNecessario));
 		
 	}
 

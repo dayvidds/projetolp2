@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
+
 import Comparable.ComparadorQuantidade;
 import backend.Exceptions;
 import entidade.Item;
@@ -262,9 +265,53 @@ public class ControladorItem {
 	   	 return  listaItens;
 	    }
 
-	public String match(String idReceptor, int idItemNecessario) {
-		// TODO Auto-generated method stub
-		return null;
+	public Set<Item> match(String idReceptor, int idItemNecessario) {
+		Item item = this.getItemId(idItemNecessario);
+		Set<Item> lista = new TreeSet<>();
+		this.adicionaMatchTagIdentica(lista, item);
+		System.out.println(lista + System.lineSeparator()) ;
+		this.adicionaMatchTag(lista, item);
+		System.out.println(lista + System.lineSeparator());
+		this.adiconaMatch(lista, item);
+		System.out.println(lista + System.lineSeparator());
+		return lista;
+	}
+	
+	private void adicionaMatchTagIdentica(Set<Item> set, Item item) {
+		for (Item i : itensDoados.get(item.getDescricaoItem()).values()) {
+			if (i.getTags().equals(item.getTags())) {
+				set.add(i);
+			}
+			
+		}
+		
+	}
+	
+	private void adicionaMatchTag(Set<Item> set, Item item) {
+		for (Item i : itensDoados.get(item.getDescricaoItem()).values()) {
+			if (this.quebraTags(item, i)) {
+				set.add(i);
+			}
+			
+		}
+		
+	}
+
+	private boolean quebraTags(Item itemBuscado, Item item) {
+		String[] descItem = item.getDescricaoItem().split(",");
+		for (int i = 0; i < descItem.length; i++) {
+			if (itemBuscado.getDescricaoItem().contains(descItem[i])){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private void adiconaMatch(Set<Item> set, Item item) {
+		for (Item i : itensDoados.get(item.getDescricaoItem()).values()) {
+			set.add(i);
+				
+		}	
 	}
 
 	public String realizaDoacao(int idItemNec, int idItemDoado, String data) {
