@@ -417,11 +417,14 @@ public class ControladorUsuario {
 		return retorno;
 	}
 
-	public String matchItemDoador(Set<Item> itens) {
+	public String matchItemDoador(List<Item> itens) {
 		String retorno = "";
-		for (Item item : itens) {
-			retorno += item.toString() + usuarios.get(item.getIdUsuario()).getNome() + item.getIdUsuario();
-			
+		for (int i = 0; i < itens.size(); i++) {
+			if (i != itens.size() - 1) {
+				retorno += itens.get(i).toString() + ", doador: " + usuarios.get(itens.get(i).getIdUsuario()).getNome() + "/" + itens.get(i).getIdUsuario() + " | ";
+			} else {
+				retorno += itens.get(i).toString() + ", doador: " + usuarios.get(itens.get(i).getIdUsuario()).getNome() + "/" + itens.get(i).getIdUsuario();
+			}
 		}
 		return retorno;
 	}

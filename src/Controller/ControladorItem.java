@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import Comparable.ComparadorId;
 import Comparable.ComparadorQuantidade;
 import backend.Exceptions;
 import entidade.Item;
@@ -31,6 +32,8 @@ public class ControladorItem {
 	 */
 	private Map<String, Map<Integer, Item>> itensNecessarios;
 	
+	private List<Doacao> doacoes;
+	
 	/**
 	 * Representacao unica do item, seu id.
 	 */
@@ -41,6 +44,7 @@ public class ControladorItem {
 	public ControladorItem() {
 		itensDoados = new TreeMap<>();
 		itensNecessarios = new TreeMap<>();
+		doacoes = new ArrayList<>();
 		idItem = 0;
 		exceptions = new Exceptions();
 	}
@@ -265,57 +269,75 @@ public class ControladorItem {
 	   	 return  listaItens;
 	    }
 
-	public Set<Item> match(String idReceptor, int idItemNecessario) {
+	public List<Item> match(String idReceptor, int idItemNecessario) {
 		Item item = this.getItemId(idItemNecessario);
-		Set<Item> lista = new TreeSet<>();
-		this.adicionaMatchTagIdentica(lista, item);
-		System.out.println(lista + System.lineSeparator()) ;
-		this.adicionaMatchTag(lista, item);
-		System.out.println(lista + System.lineSeparator());
-		this.adiconaMatch(lista, item);
-		System.out.println(lista + System.lineSeparator());
-		return lista;
+		Map<Integer, List<Item>> mapa = new TreeMap<>();
+		return adicionaMatch(mapa, item);
 	}
-	
-	private void adicionaMatchTagIdentica(Set<Item> set, Item item) {
+
+	private List<Item> adicionaMatch(Map<Integer, List<Item>> mapa, Item item) {
 		for (Item i : itensDoados.get(item.getDescricaoItem()).values()) {
-			if (i.getTags().equals(item.getTags())) {
-				set.add(i);
-			}
-			
+			if (!mapa.containsKey(quebraTags(i, item))) {
+				List<Item> lista = new ArrayList<>();
+				mapa.put(quebraTags(i, item), lista);
+			} 
+			mapa.get(quebraTags(i, item)).add(i);
+	
 		}
+		List<List<Item>> listaAux = new ArrayList<>();
+		List<Item> retorno = new ArrayList<>();	
+		for (List<Item> itens : mapa.values()) {
+			Collections.sort(itens, new ComparadorId());
+			listaAux.add(itens);
+		}
+
+		for (int i = listaAux.size() - 1; i >= 0; i --) {
+			for(int j = 0; j < listaAux.get(i).size(); j++) {
+					retorno.add(listaAux.get(i).get(j));
+				}
+			}
+		return retorno;
 		
 	}
-	
-	private void adicionaMatchTag(Set<Item> set, Item item) {
-		for (Item i : itensDoados.get(item.getDescricaoItem()).values()) {
-			if (this.quebraTags(item, i)) {
-				set.add(i);
-			}
-			
+
+	private int quebraTags(Item itemBuscado, Item item) {
+		String[] maior;
+		String[] menor;
+		int quantidade = 0;
+		
+		if (itemBuscado.getTags().split(",").length >= item.getTags().split(",").length ) {
+			maior = itemBuscado.getTags().split(",");
+			menor = item.getTags().split(",");
+
+		} else {
+			menor = itemBuscado.getTags().split(",");
+			maior = item.getTags().split(",");
 		}
 		
-	}
-
-	private boolean quebraTags(Item itemBuscado, Item item) {
-		String[] descItem = item.getDescricaoItem().split(",");
-		for (int i = 0; i < descItem.length; i++) {
-			if (itemBuscado.getDescricaoItem().contains(descItem[i])){
-				return true;
+		for (int i = 0; i < maior.length; i++) {
+			for (int e = 0; e < menor.length; e++) {
+				if (maior[i].equals(menor[e])) {
+					if (i == e) {
+						quantidade += 10;
+					} else {
+						quantidade += 5;
+					}
+				}
 			}
 		}
-		return false;
-	}
+		return quantidade + 20;
 
-	private void adiconaMatch(Set<Item> set, Item item) {
-		for (Item i : itensDoados.get(item.getDescricaoItem()).values()) {
-			set.add(i);
-				
-		}	
 	}
-
+	
 	public String realizaDoacao(int idItemNec, int idItemDoado, String data) {
-		// TODO Auto-generated method stub
+		Item itemDoado = this.getItemId(idItemDoado);
+		Item itemNec = this.getItemId(idItemNec);
+		Doacao doacao = new Doacao(itemDoado, itemNec, data);
+		doacoes.add(doacao);
+		if (itemDoado.getQuantidade() > itemNec.getQuantidade()) {
+			itemDoado.setQuantidade(itemDoado.getQuantidade() - itemNec.getQuantidade());
+			itensNecessarios.get(itemNec.getDescricaoItem()).remove(itemNec.getIdItem());
+		}
 		return null;
 	}
 
