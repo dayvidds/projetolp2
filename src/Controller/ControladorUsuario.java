@@ -428,4 +428,13 @@ public class ControladorUsuario {
 		}
 		return retorno;
 	}
+
+	public String getNomeUsuarioIdItem(int idItem) {
+		for (Usuario u : usuarios.values()) {
+			if (u.verificaItem(idItem)) {
+				return u.getNome();
+			} 
+		}
+		throw new IllegalArgumentException(); //TODO
+	}
 }

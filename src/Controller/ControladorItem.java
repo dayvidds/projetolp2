@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import Comparable.ComparadorData;
 import Comparable.ComparadorId;
 import Comparable.ComparadorQuantidade;
 import backend.Exceptions;
@@ -190,6 +191,13 @@ public class ControladorItem {
 				}	
 			}
 		}
+		for (Map<Integer, Item> mapa : itensDoados.values()) {
+			for (int i : mapa.keySet()) {
+				if (i == id) {
+					return mapa.get(i);
+				}	
+			}
+		}
 		throw new IllegalArgumentException(); // TODO
 	}
 	
@@ -329,20 +337,47 @@ public class ControladorItem {
 
 	}
 	
-	public String realizaDoacao(int idItemNec, int idItemDoado, String data) {
+	public String realizaDoacao(int idItemNec, String nomeReceptor, int idItemDoado, String nomeDoador, String data) {
+		int quantidadeDoada = 0;
 		Item itemDoado = this.getItemId(idItemDoado);
 		Item itemNec = this.getItemId(idItemNec);
-		Doacao doacao = new Doacao(itemDoado, itemNec, data);
-		doacoes.add(doacao);
+		Doacao doacao = new Doacao(nomeDoador, itemDoado.getIdUsuario(), nomeReceptor, itemNec.getIdUsuario(), itemNec.getDescricaoItem(), data);
 		if (itemDoado.getQuantidade() > itemNec.getQuantidade()) {
+			quantidadeDoada = itemNec.getQuantidade();
 			itemDoado.setQuantidade(itemDoado.getQuantidade() - itemNec.getQuantidade());
 			itensNecessarios.get(itemNec.getDescricaoItem()).remove(itemNec.getIdItem());
+			
+		} else if (itemDoado.getQuantidade() < itemNec.getQuantidade()) {
+			quantidadeDoada = itemDoado.getQuantidade();
+			itemNec.setQuantidade(itemNec.getQuantidade() - itemDoado.getQuantidade());
+			itensDoados.get(itemDoado.getDescricaoItem()).remove(itemDoado.getIdItem());
+			
+		} else {
+			quantidadeDoada = itemNec.getQuantidade();
+			itensNecessarios.get(itemNec.getDescricaoItem()).remove(itemNec.getIdItem());
+			itensDoados.get(itemDoado.getDescricaoItem()).remove(itemDoado.getIdItem());
 		}
-		return null;
+		doacao.adicionaQuantidade(quantidadeDoada);
+		doacoes.add(doacao);
+		return doacao.toString();
 	}
 
 	public String listaDoacoes() {
-		// TODO Auto-generated method stub
-		return null;
+		String retorno = "";
+		Collections.sort(doacoes, new ComparadorData());
+		for (int i = 0; i < doacoes.size(); i ++) {
+			if (i != doacoes.size() - 1) {
+				retorno += doacoes.get(i).toString() + " | ";
+			} else {
+				retorno += doacoes.get(i).toString();
+			}
+		}
+		return retorno;
+	}
+
+	public void verificaExclusaoItem(int idItemNec, int idItemDoado) {
+		Item itemDoado = this.getItemId(idItemDoado);
+		Item itemNec = this.getItemId(idItemNec);
+		
 	}
 }

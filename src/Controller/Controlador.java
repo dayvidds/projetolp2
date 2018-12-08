@@ -241,7 +241,11 @@ public class Controlador {
 		if (data == null || data.length() == 0) {
 			throw new IllegalArgumentException("Entrada invalida: data nao pode ser vazia ou nula.");
 		}
-		return controladorItem.realizaDoacao(idItemNec, idItemDoado, data);
+		String nomeDoador = controladorUsuario.getNomeUsuarioIdItem(idItemDoado);
+		String nomeReceptor = controladorUsuario.getNomeUsuarioIdItem(idItemNec);
+		String a = controladorItem.realizaDoacao(idItemNec, nomeReceptor, idItemDoado, nomeDoador, data);
+		controladorItem.verificaExclusaoItem(idItemNec, idItemDoado);
+		return a;
 	}
 
 	public String listaDoacoes() {
