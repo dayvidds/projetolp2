@@ -437,4 +437,15 @@ public class ControladorUsuario {
 		}
 		throw new IllegalArgumentException(); //TODO
 	}
+
+	public void removeItemMatch(List<Integer> itensExclusao) {
+		for (Usuario u : usuarios.values()) {
+			for (int i : itensExclusao) {
+				if (u.verificaItem(i)) {
+					u.removeItem(i);
+				}
+			}
+		}
+		
+	}
 }

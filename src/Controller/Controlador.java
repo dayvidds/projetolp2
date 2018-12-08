@@ -243,9 +243,9 @@ public class Controlador {
 		}
 		String nomeDoador = controladorUsuario.getNomeUsuarioIdItem(idItemDoado);
 		String nomeReceptor = controladorUsuario.getNomeUsuarioIdItem(idItemNec);
-		String a = controladorItem.realizaDoacao(idItemNec, nomeReceptor, idItemDoado, nomeDoador, data);
-		controladorItem.verificaExclusaoItem(idItemNec, idItemDoado);
-		return a;
+		controladorUsuario.removeItemMatch(controladorItem.verificaItensExclusao(idItemNec, idItemDoado));
+		String retorno = controladorItem.realizaDoacao(idItemNec, nomeReceptor, idItemDoado, nomeDoador, data);
+		return retorno;
 	}
 
 	public String listaDoacoes() {

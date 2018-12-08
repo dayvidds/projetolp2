@@ -380,4 +380,21 @@ public class ControladorItem {
 		Item itemNec = this.getItemId(idItemNec);
 		
 	}
+
+	public List<Integer> verificaItensExclusao(int idItemNec, int idItemDoado) {
+		List<Integer> itens = new ArrayList<>();
+		Item itemDoado = this.getItemId(idItemDoado);
+		Item itemNec = this.getItemId(idItemNec);
+		if (itemDoado.getQuantidade() > itemNec.getQuantidade()) {
+			itens.add(itemNec.getIdItem());
+			
+		} else if (itemDoado.getQuantidade() < itemNec.getQuantidade()) {
+			itens.add(itemDoado.getIdItem());
+			
+		} else {
+			itens.add(itemNec.getIdItem());
+			itens.add(itemDoado.getIdItem());
+		}
+		return itens;
+	}
 }
