@@ -109,6 +109,14 @@ public class Usuario {
 	}
 	
 	/**
+	 * Retorna o identificador do usuario.
+	 * @return retorna o identificador do usuario.
+	 */
+	public String getId() {
+		return this.documento;
+	}
+	
+	/**
 	 * Retorna o mapa de itens do usuario.
 	 * @return retorna o mapa de itens do usuario.
 	 */

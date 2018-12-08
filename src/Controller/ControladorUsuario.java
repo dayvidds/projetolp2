@@ -435,7 +435,7 @@ public class ControladorUsuario {
 				return u.getNome();
 			} 
 		}
-		throw new IllegalArgumentException(); //TODO
+		return "";
 	}
 
 	public void removeItemMatch(List<Integer> itensExclusao) {
@@ -447,5 +447,13 @@ public class ControladorUsuario {
 			}
 		}
 		
+	}
+
+	public Status getStatusUsuario(String idReceptor) {
+		for(Usuario usuario: this.usuarios.values()) {
+			if (usuario.getId().equals(idReceptor)) {
+				return usuario.getStatus();
+			}
+		} return null;
 	}
 }

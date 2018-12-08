@@ -198,7 +198,7 @@ public class ControladorItem {
 				}	
 			}
 		}
-		throw new IllegalArgumentException(); // TODO
+		throw new IllegalArgumentException("Item nao encontrado: " + id + "."); 
 	}
 	
 	/**
@@ -341,6 +341,9 @@ public class ControladorItem {
 		int quantidadeDoada = 0;
 		Item itemDoado = this.getItemId(idItemDoado);
 		Item itemNec = this.getItemId(idItemNec);
+		if(!itemDoado.getDescricaoItem().equals(itemNec.getDescricaoItem())) {
+			throw new IllegalArgumentException("Os itens nao tem descricoes iguais.");
+		}
 		Doacao doacao = new Doacao(nomeDoador, itemDoado.getIdUsuario(), nomeReceptor, itemNec.getIdUsuario(), itemNec.getDescricaoItem(), data);
 		if (itemDoado.getQuantidade() > itemNec.getQuantidade()) {
 			quantidadeDoada = itemNec.getQuantidade();
@@ -385,6 +388,11 @@ public class ControladorItem {
 		List<Integer> itens = new ArrayList<>();
 		Item itemDoado = this.getItemId(idItemDoado);
 		Item itemNec = this.getItemId(idItemNec);
+		
+		if(!itemDoado.getDescricaoItem().equals(itemNec.getDescricaoItem())) {
+			throw new IllegalArgumentException("Os itens nao tem descricoes iguais.");
+		}
+		
 		if (itemDoado.getQuantidade() > itemNec.getQuantidade()) {
 			itens.add(itemNec.getIdItem());
 			

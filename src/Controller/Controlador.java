@@ -2,6 +2,7 @@ package Controller;
 
 import java.io.FileNotFoundException;
 import backend.Exceptions;
+import entidade.Status;
 
 /**
  * Classe que representa um controlador principal do sistema. O controlador principal do sistema gerencia o controlador de usuario e o controlador de item.
@@ -227,6 +228,10 @@ public class Controlador {
 			throw new IllegalArgumentException("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
 		}
 		controladorUsuario.erroUsuarioNaoExiste(idReceptor);
+		if (!controladorUsuario.getStatusUsuario(idReceptor).equals(Status.valueOf("RECEPTOR"))) {
+			throw new IllegalArgumentException("O Usuario deve ser um receptor: " + idReceptor + ".");
+		}
+		
 		if (idItemNecessario < 0) {
 			throw new IllegalArgumentException("Entrada invalida: id do item nao pode ser negativo.");
 		}
