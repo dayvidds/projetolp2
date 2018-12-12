@@ -206,20 +206,37 @@ public class Facade {
 		controlador.removeItemNecessario(idReceptor, idItem);
 	}
 	
+	/**
+	 * Invoca o controlador para verificar os itens doados que sao semelhantes ao item necessario especifico.
+	 * @param idReceptor identificador do receptor.
+	 * @param idItemNecessario identificador do item necessario.
+	 * @return retorna uma representacao dos itens semelhantes.
+	 */
 	public String match(String idReceptor, int idItemNecessario) {
 		return controlador.match(idReceptor, idItemNecessario);
 	}
 	
+	/**
+	 * Invoca o controlador para realizar uma doacao.
+	 * @param idItemNec identificador do item necessario.
+	 * @param idItemDoado identificador do item doado.
+	 * @param data data da doacao.
+	 * @return retorna a representacao textual da doacao.
+	 */
 	public String realizaDoacao(int idItemNec, int idItemDoado, String data) {
 		return controlador.realizaDoacao(idItemNec, idItemDoado, data);
 	}
 	
+	/**
+	 * Invoca o controlador para listar todas doacoes realizadas no sistema.
+	 * @return retorna a representacao textual de todas doacoes.
+	 */
 	public String listaDoacoes() {
 		return controlador.listaDoacoes();
 	}
 
 	/**
-	 * Inicializa o sistema carregando dados de execucoes passadas.
+	 * Invoca o controlador para inicializar o sistema carregando dados de execucoes passadas.
 	 * 
 	 */
 	public void iniciaSistema() {
@@ -227,7 +244,7 @@ public class Facade {
 
 	}
 	/**
-	 * Fecha o sistema salvando dados para execucoes futuras.
+	 * Invoca o controlador para fechar o sistema salvando dados para execucoes futuras.
 	 * 
 	 */
 	public void finalizaSistema() {

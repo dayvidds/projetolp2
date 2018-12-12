@@ -42,6 +42,7 @@ public class Item implements Comparable<Item>, Serializable{
 	
 	/**
 	 * Constroi um item. Todo item possue um idUsuario, idItem, descricao, quantidade e tags.
+	 * 
 	 * @param idUsuario identificacao do Usuario.
 	 * @param idItem identificacao do item.
 	 * @param descricaoItem descricao do item.
@@ -60,6 +61,7 @@ public class Item implements Comparable<Item>, Serializable{
 	
 	/**
 	 * Retorna a quantidade do item.
+	 * 
 	 * @return retorna a quantidade do item.
 	 */
 	public int getQuantidade() {
@@ -68,6 +70,7 @@ public class Item implements Comparable<Item>, Serializable{
 	
 	/**
 	 * Retorna o idUsuario.
+	 * 
 	 * @return retorna o idUsuario.
 	 */
 	public String getIdUsuario() {
@@ -76,6 +79,7 @@ public class Item implements Comparable<Item>, Serializable{
 	
 	/**
 	 * Retorna o idItem.
+	 * 
 	 * @return retorna o idItem.
 	 */
 	public int getIdItem() {
@@ -89,6 +93,7 @@ public class Item implements Comparable<Item>, Serializable{
 	
 	/**
 	 * Retorna a descricao do item.
+	 * 
 	 * @return retorna a descricao do item.
 	 */
 	public String getDescricaoItem() {
@@ -97,6 +102,7 @@ public class Item implements Comparable<Item>, Serializable{
 	
 	/**
 	 * Altera o atributo quantidade.
+	 * 
 	 * @param quantidade nova quantidade do item.
 	 */
 	public void setQuantidade(int quantidade) {
@@ -107,6 +113,7 @@ public class Item implements Comparable<Item>, Serializable{
 	 * Atualiza as informacoes do item. Apenas a quantidade e as tags podem ser alteradas.
 	 * Caso o parametro quantidade seja 0, a quantidade do item nao sera alterada.
 	 * Caso o parametro tags seja null ou vazio, as tags do item nao serao alteradas.
+	 * 
 	 * @param quantidade nova quantidade do item.
 	 * @param tags novas tags do item.
 	 */
@@ -121,6 +128,7 @@ public class Item implements Comparable<Item>, Serializable{
 	
 	/**
 	 * Separa as tags para usar na representacao textual.
+	 * 
 	 * @return retorna uma string com as tags separadas.
 	 */
 	private String separaTag() {
@@ -151,6 +159,7 @@ public class Item implements Comparable<Item>, Serializable{
 	/**
 	 * Metodo responsavel em comparar se objeto vindo como parametro e igual ao item atual.
 	 * Itens serao iguais caso tenham o mesmo descritor e as mesmas tags.
+	 * 
 	 * @return retorna true se os dois itens forem iguais, false caso contrario.
 	 */
 	@Override
@@ -178,6 +187,7 @@ public class Item implements Comparable<Item>, Serializable{
 	/**
 	 * Retorna uma representacao textual com as informacoes do item.
 	 * A representacao possui o formato: "nome - descricaoItem, + tags: [], quantidade: " 
+	 * 
 	 * @return retorna a representacao textual do item.
 	 */
 	@Override

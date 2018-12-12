@@ -22,6 +22,9 @@ public class Controlador {
 	 */
 	private ControladorItem controladorItem;
 	
+	/**
+	 * Execoes do sistema.
+	 */
 	private Exceptions exceptions;
 	
 	/**
@@ -34,8 +37,8 @@ public class Controlador {
 	}
 	
 	/**
-	 * Metodo responsavel invocar o controlador de usuario e realizar a leitura dos receptores
-	 * que foram arquivados.
+	 * Metodo responsavel invocar o controlador de usuario e realizar a leitura dos receptores que foram arquivados.
+	 * 
 	 * @param caminho caminho do arquivo.
 	 * @throws FileNotFoundException Excecao.
 	 */
@@ -45,6 +48,7 @@ public class Controlador {
 
 	/**
 	 * Invoca o controlador de usuario para adicionar um novo doador ao sistema.
+	 * 
 	 * @param id identificacao do doador.
 	 * @param nome nome do doador.
 	 * @param email email do doador.
@@ -58,6 +62,7 @@ public class Controlador {
 
 	/**
 	 * Invoca o controlador para pesquisar por um usuario especifico atraves do id.
+	 * 
 	 * @param id identificacao do usuario.
 	 * @return retorna as informacoes do usuario.
 	 */
@@ -67,6 +72,7 @@ public class Controlador {
 	
 	/**
 	 * Invoca o controlador para pesquisar por um usuario espercifico atraves do nome.
+	 * 
 	 * @param nome nome do usuario.
 	 * @return retorna as informacoes do usuario
 	 */
@@ -76,6 +82,7 @@ public class Controlador {
 
 	/**
 	 * Invoca o controlador para atualizar informacoes de determinado usuario.
+	 * 
 	 * @param id identificacao do usuario.
 	 * @param nome novo nome para o usuario
 	 * @param email novo email para o usuario.
@@ -88,6 +95,7 @@ public class Controlador {
 
 	/**
 	 * Invoca o controlador para remover determinado usuario.
+	 * 
 	 * @param id identificacao do usuario.
 	 */
 	public void removeUsuario(String id) {
@@ -96,6 +104,7 @@ public class Controlador {
 	
 	/**
 	 * Metodo responsavel em invocar o controlador de item e adicionar um descritor ao sistema.
+	 * 
 	 * @param descricao descritor de item.
 	 */
 	public void adicionaDescritor(String descricao) {
@@ -104,6 +113,7 @@ public class Controlador {
 
 	/**
 	 * Metodo responsavel em adicionar um item para doacao no controlador de item e no controlador de usuario. 
+	 * 
 	 * @param idDoador identificacao do doador.
 	 * @param descricaoItem descritor do item.
 	 * @param quantidade quantidade do item que sera adicionado.
@@ -120,6 +130,7 @@ public class Controlador {
 	
 	/**
 	 * Metodo responsavel invocar o controlador de usuario para listar o item especifico de determinado doador.
+	 * 
 	 * @param idDoador identificacao do doador.
 	 * @param idItem identificacao do item.
 	 * @return retorna as informacoes do item.
@@ -130,6 +141,7 @@ public class Controlador {
 
 	/**
 	 * Metodo responsavel em invocar o controlador de usuario para alterar informacoes de um item especifico de determinado doador.
+	 * 
 	 * @param idItem identificacao do item.
 	 * @param idDoador identificacao do doador.
 	 * @param quantidade nova quantidade de itens.
@@ -142,6 +154,7 @@ public class Controlador {
 
 	/**
 	 * Metodo responsavel em invocar o controlador de item e usuario e remover determinado produto.
+	 * 
 	 * @param idItem identificacao do item.
 	 * @param idDoador identificacao do doador.
 	 */
@@ -180,6 +193,7 @@ public class Controlador {
 	
 	/**
 	 * Metodo responsavel em adicionar um item necessario no controlador de item e no controlador de usuario. 
+	 * 
 	 * @param idReceptor identificador do receptor.
 	 * @param descricaoItem descritor do item.
 	 * @param quantidade quantidade de item que sera adicionado.
@@ -196,6 +210,7 @@ public class Controlador {
 	
 	/**
 	 * Metodo responsavel em invocar o controlador de usuario para alterar informacoes de um item especifico de determinado receptor.
+	 * 
 	 * @param idItem identificacao do item.
 	 * @param idReceptor identificacao do receptor.
 	 * @param quantidade nova quantidade do item.
@@ -208,6 +223,7 @@ public class Controlador {
 	
 	/**
 	 * Metodo responsavel em invocar o controlador de usuario para pegar as informacoes de todos os itens necessarios.
+	 * 
 	 * @return retorna uma string com as informacoes de todos os itens necessarios.
 	 */
 	public String listaItensNecessarios() {
@@ -216,6 +232,7 @@ public class Controlador {
 	
 	/**
 	 * Metodo responsavel em invocar o controlador de item e usuario e remover determiado produto.
+	 * 
 	 * @param idReceptor identificacao do receptor.
 	 * @param idItem identificacao do item.
 	 */
@@ -224,6 +241,13 @@ public class Controlador {
 		controladorItem.removeItem(idItem, "itemNecessario");
 	}
 
+	/**
+	 * Metodo responsavel em verificar quais itens doados sao semelhantes ao item necessario especifico.
+	 * 
+	 * @param idReceptor identificador do receptor.
+	 * @param idItemNecessario identificador do item necessario.
+	 * @return retorna a representacao textual dos itens semelhantes.
+	 */
 	public String match(String idReceptor, int idItemNecessario) {
 		if (idReceptor == null || idReceptor.length() == 0) {
 			throw new IllegalArgumentException("Entrada invalida: id do usuario nao pode ser vazio ou nulo.");
@@ -236,10 +260,18 @@ public class Controlador {
 		if (idItemNecessario < 0) {
 			throw new IllegalArgumentException("Entrada invalida: id do item nao pode ser negativo.");
 		}
-		return controladorUsuario.matchItemDoador(controladorItem.match(idReceptor, idItemNecessario));
+		return controladorUsuario.matchItemDoador(controladorItem.match(idItemNecessario));
 		
 	}
 
+	/**
+	 * Metodo responsavel por controlar as doacoes que serao realizadas no sistema.
+	 * 
+	 * @param idItemNec identificador do item necessario.
+	 * @param idItemDoado identificador do item doado.
+	 * @param data data de doacao.
+	 * @return retorna uma representacao textual da doacao.
+	 */
 	public String realizaDoacao(int idItemNec, int idItemDoado, String data) {
 		if (idItemNec < 0 || idItemDoado < 0) {
 			throw new IllegalArgumentException("Entrada invalida: id do item nao pode ser negativo.");
@@ -254,15 +286,26 @@ public class Controlador {
 		return retorno;
 	}
 
+	/**
+	 * Metodo responsavel em invocar o controlador de itens para listar todas as doacoes realizadas no sistema.
+	 * 
+	 * @return retorna uma representacao textual de todas doacoes.
+	 */
 	public String listaDoacoes() {
 		return controladorItem.listaDoacoes();
 	}
 	
+	/**
+	 * Metodo responsavel em inicializar o sistema.
+	 */
 	public void iniciarSistema() {
 		Persistencia persistencia = new Persistencia();
 		persistencia.carregar(controladorUsuario);
 	}
 
+	/**
+	 * Metodo responsavel em encerrar o sistema.
+	 */
 	public void fecharSistema() {
 		Persistencia persistencia = new Persistencia();
 		persistencia.salvar(controladorUsuario.mapUsuario());

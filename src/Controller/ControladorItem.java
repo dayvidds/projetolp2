@@ -277,23 +277,39 @@ public class ControladorItem {
 	   	 return  listaItens;
 	    }
 
-	public List<Item> match(String idReceptor, int idItemNecessario) {
+	/**
+	 * Metodo responsavel em verificar quais itens doados sao semelhantes aos itens necessarios.
+	 * Itens serao semelhantes se tiverem os mesmos descritores e as mesmas tags (uma ou mais).
+	 * 
+	 * @param idItemNecessario identificador do item necessario.
+	 * @return retorna uma lista de itens que sao semelhantes.
+	 */
+	public List<Item> match(int idItemNecessario) {
 		Item item = this.getItemId(idItemNecessario);
-		Map<Integer, List<Item>> mapa = new TreeMap<>();
-		return adicionaMatch(mapa, item);
+		return getItensSemelhantes(item);
 	}
 
-	private List<Item> adicionaMatch(Map<Integer, List<Item>> mapa, Item item) {
-		for (Item i : itensDoados.get(item.getDescricaoItem()).values()) {
-			if (!mapa.containsKey(quebraTags(i, item))) {
+	/**
+	 * Metodo auxiliar do metodo match().
+	 * Verifica os itens doados que sao semelhantes ao item necessario.
+	 * 
+	 * @param item item necessario.
+	 * @return retorna uma lista com todos itens semelhantes.
+	 */
+	private List<Item> getItensSemelhantes(Item itemNecessario) {
+		Map<Integer, List<Item>> mapa = new TreeMap<>();
+		
+		for (Item itemDoado : itensDoados.get(itemNecessario.getDescricaoItem()).values()) {
+			if (!mapa.containsKey(getPontuacaoTags(itemDoado, itemNecessario))) {
 				List<Item> lista = new ArrayList<>();
-				mapa.put(quebraTags(i, item), lista);
+				mapa.put(getPontuacaoTags(itemDoado, itemNecessario), lista);
 			} 
-			mapa.get(quebraTags(i, item)).add(i);
-	
+			mapa.get(getPontuacaoTags(itemDoado, itemNecessario)).add(itemDoado);
 		}
+		
 		List<List<Item>> listaAux = new ArrayList<>();
 		List<Item> retorno = new ArrayList<>();	
+		
 		for (List<Item> itens : mapa.values()) {
 			Collections.sort(itens, new ComparadorId());
 			listaAux.add(itens);
@@ -308,18 +324,26 @@ public class ControladorItem {
 		
 	}
 
-	private int quebraTags(Item itemBuscado, Item item) {
+	/**
+	 * Metodo auxiliar de getItensSemelhantes().
+	 * Compara tags de dois itens e verifica se tem alguma semelhanca entre elas.
+	 * 
+	 * @param itemDoado item doado.
+	 * @param itemNecessario item necessario.
+	 * @return retorna um inteiro com a pontuacao de acordo com a semelhanca.
+	 */
+	private int getPontuacaoTags(Item itemDoado, Item itemNecessario) {
 		String[] maior;
 		String[] menor;
 		int quantidade = 0;
 		
-		if (itemBuscado.getTags().split(",").length >= item.getTags().split(",").length ) {
-			maior = itemBuscado.getTags().split(",");
-			menor = item.getTags().split(",");
+		if (itemDoado.getTags().split(",").length >= itemNecessario.getTags().split(",").length ) {
+			maior = itemDoado.getTags().split(",");
+			menor = itemNecessario.getTags().split(",");
 
 		} else {
-			menor = itemBuscado.getTags().split(",");
-			maior = item.getTags().split(",");
+			menor = itemDoado.getTags().split(",");
+			maior = itemNecessario.getTags().split(",");
 		}
 		
 		for (int i = 0; i < maior.length; i++) {
@@ -337,6 +361,16 @@ public class ControladorItem {
 
 	}
 	
+	/**
+	 * Metodo responsavel por realizar as doacoes.
+	 * 
+	 * @param idItemNec identificador do item necessario.
+	 * @param nomeReceptor identificador do receptor.
+	 * @param idItemDoado identificador do item doado.
+	 * @param nomeDoador identificador do doador.
+	 * @param data data da doacao.
+	 * @return retorna uma representacao textual da doacao.
+	 */
 	public String realizaDoacao(int idItemNec, String nomeReceptor, int idItemDoado, String nomeDoador, String data) {
 		int quantidadeDoada = 0;
 		Item itemDoado = this.getItemId(idItemDoado);
@@ -365,6 +399,10 @@ public class ControladorItem {
 		return doacao.toString();
 	}
 
+	/**
+	 * Metodo responsavel por listar todas as doacoes realizadas no sistema.
+	 * @return retorna as representacoes textuais de todas doacoes.
+	 */
 	public String listaDoacoes() {
 		String retorno = "";
 		Collections.sort(doacoes, new ComparadorData());
@@ -378,12 +416,13 @@ public class ControladorItem {
 		return retorno;
 	}
 
-	public void verificaExclusaoItem(int idItemNec, int idItemDoado) {
-		Item itemDoado = this.getItemId(idItemDoado);
-		Item itemNec = this.getItemId(idItemNec);
-		
-	}
-
+	/**
+	 * Metodo responsavel em verificar os itens que serao excluidos do sistema apos as doacoes.
+	 * 
+	 * @param idItemNec identificador do item necessario.
+	 * @param idItemDoado identificador do item doado.
+	 * @return
+	 */
 	public List<Integer> verificaItensExclusao(int idItemNec, int idItemDoado) {
 		List<Integer> itens = new ArrayList<>();
 		Item itemDoado = this.getItemId(idItemDoado);

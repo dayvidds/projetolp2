@@ -417,6 +417,12 @@ public class ControladorUsuario {
 		return retorno;
 	}
 
+	/**
+	 * Verifica os doadores que possuem os itens do match.
+	 * 
+	 * @param itens itens do match.
+	 * @return retorna uma representacao de todos itens do match.
+	 */
 	public String matchItemDoador(List<Item> itens) {
 		String retorno = "";
 		for (int i = 0; i < itens.size(); i++) {
@@ -429,6 +435,11 @@ public class ControladorUsuario {
 		return retorno;
 	}
 
+	/**
+	 * Retorna o nome do usuario que possue determinado item.
+	 * @param idItem
+	 * @return
+	 */
 	public String getNomeUsuarioIdItem(int idItem) {
 		for (Usuario u : usuarios.values()) {
 			if (u.verificaItem(idItem)) {
@@ -438,6 +449,10 @@ public class ControladorUsuario {
 		return "";
 	}
 
+	/**
+	 * Remove os itens dos usuarios.
+	 * @param itensExclusao itens que serao excluidos.
+	 */
 	public void removeItemMatch(List<Integer> itensExclusao) {
 		for (Usuario u : usuarios.values()) {
 			for (int i : itensExclusao) {
@@ -449,19 +464,24 @@ public class ControladorUsuario {
 		
 	}
 
-	public Status getStatusUsuario(String idReceptor) {
+	/**
+	 * Retorna o status de determinado usuario.
+	 * 
+	 * @param idReceptor identificador do usuario.
+	 * @return retorna o status do usuario.
+	 */
+	public Status getStatusUsuario(String id) {
 		for(Usuario usuario: this.usuarios.values()) {
-			if (usuario.getId().equals(idReceptor)) {
+			if (usuario.getId().equals(id)) {
 				return usuario.getStatus();
 			}
 		} return null;
 	}
-		/**
-		 *  Metodo que altera a base de dados de usuarios cadastrados no sistema.
-		 * 
-		 * @param usuarios
-		 * 				usuarios o novo mapa de usuarios. 
-		 */
+	/**
+	 *  Metodo que altera a base de dados de usuarios cadastrados no sistema.
+	 * 
+	 * @param usuarios usuarios o novo mapa de usuarios. 
+	 */
 	public void setData(Map<String, Usuario> usuarios) {
 		this.usuarios = usuarios;
 		
