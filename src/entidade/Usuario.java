@@ -1,5 +1,6 @@
 package entidade;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +11,7 @@ import java.util.Map;
  * @author Matheus Augusto, Thiago Nascimento e Dayvid Daniel.
  *
  */
-public class Usuario {
+public class Usuario implements Serializable{
 	
 	/**
 	 * Nome do usuario.

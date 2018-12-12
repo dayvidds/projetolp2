@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import Controller.Controlador;
 import easyaccept.EasyAccept;
 
+
 /**
  * Representa a fachada com todos os metodos existentes no controlador pricipal do sistema.
  * @author Dayvid Daniel, Thiago Nascimento, Matheus Augusto e Caroliny Regina.
@@ -21,8 +22,10 @@ public class Facade {
 	 * Executa os testes de aceitacao do easyaccept
 	 * @param args testes que serão executados.
 	 */
-	public static void main(String[] args) throws FileNotFoundException {
-		args = new String[] {"backend.Facade", "arquivos_sistema/use_case_1.txt", "arquivos_sistema/use_case_2.txt", "arquivos_sistema/use_case_3.txt", "arquivos_sistema/use_case_4.txt", "arquivos_sistema/use_case_5.txt", "arquivos_sistema/use_case_6.txt"};
+	public static void main(String[] args) throws FileNotFoundException {		
+		Facade fc = new Facade();
+		fc.iniciaSistema();
+		args = new String[] {"backend.Facade", "arquivos_sistema/use_case_1.txt", "arquivos_sistema/use_case_2.txt", "arquivos_sistema/use_case_3.txt", "arquivos_sistema/use_case_4.txt", "arquivos_sistema/use_case_5.txt", "arquivos_sistema/use_case_6.txt","arquivos_sistema/use_case_7.txt"};
 		EasyAccept.main(args);
 	}
 	
@@ -215,4 +218,19 @@ public class Facade {
 		return controlador.listaDoacoes();
 	}
 
+	/**
+	 * Inicializa o sistema carregando dados de execucoes passadas.
+	 * 
+	 */
+	public void iniciaSistema() {
+		controlador.iniciarSistema();
+
+	}
+	/**
+	 * Fecha o sistema salvando dados para execucoes futuras.
+	 * 
+	 */
+	public void finalizaSistema() {
+		controlador.fecharSistema();
+	}
 }

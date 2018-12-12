@@ -2,6 +2,7 @@ package Controller;
 
 import java.io.FileNotFoundException;
 import backend.Exceptions;
+import backend.Persistencia;
 import entidade.Status;
 
 /**
@@ -256,4 +257,20 @@ public class Controlador {
 	public String listaDoacoes() {
 		return controladorItem.listaDoacoes();
 	}
+	
+	public void iniciarSistema() {
+		Persistencia persistencia = new Persistencia();
+		persistencia.carregar(controladorUsuario);
+	}
+
+	public void fecharSistema() {
+		Persistencia persistencia = new Persistencia();
+		persistencia.salvar(controladorUsuario.mapUsuario());
+	}
 }
+
+
+
+
+
+

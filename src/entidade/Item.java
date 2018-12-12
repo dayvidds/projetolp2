@@ -1,5 +1,6 @@
 package entidade;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
@@ -7,7 +8,7 @@ import java.time.LocalDate;
  * @author Thiago Nascimento, Dayvid Daniel e Caroliny Regina.
  *
  */
-public class Item implements Comparable<Item>{
+public class Item implements Comparable<Item>, Serializable{
 
 	/**
 	 * Identificacao do Usuario.

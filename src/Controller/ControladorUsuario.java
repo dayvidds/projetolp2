@@ -8,7 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
+
 
 import Comparable.ComparadorId;
 import backend.Exceptions;
@@ -455,5 +455,23 @@ public class ControladorUsuario {
 				return usuario.getStatus();
 			}
 		} return null;
+	}
+		/**
+		 *  Metodo que altera a base de dados de usuarios cadastrados no sistema.
+		 * 
+		 * @param usuarios
+		 * 				usuarios o novo mapa de usuarios. 
+		 */
+	public void setData(Map<String, Usuario> usuarios) {
+		this.usuarios = usuarios;
+		
+	}
+	/**
+	 * Metodo para acesso ao mapa de usuario do sistema. 
+	 * 
+	 * @return o mapa de usuarios cadastrados. 
+	 */
+	public Map<String, Usuario> mapUsuario() {
+		return usuarios;
 	}
 }
