@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import entidade.Item;
-import entidade.Status;
-import entidade.TipoUsuario;
-import entidade.Usuario;
+import entidades.Item;
+import entidades.Status;
+import entidades.TipoUsuario;
+import entidades.Usuario;
 
 class UsuarioTeste {
 

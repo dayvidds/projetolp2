@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import Controller.ControladorItem;
-import Controller.ControladorUsuario;
+import controladores.ControladorItem;
+import controladores.ControladorUsuario;
 
 class ControladorTeste {
 

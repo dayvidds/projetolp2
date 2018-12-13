@@ -1,9 +1,10 @@
-package Controller;
+package controladores;
 
 import java.io.FileNotFoundException;
-import backend.Exceptions;
-import backend.Persistencia;
-import entidade.Status;
+
+import entidades.Status;
+import excecoes.Exceptions;
+import main.Persistencia;
 
 /**
  * Classe que representa um controlador principal do sistema. O controlador principal do sistema gerencia o controlador de usuario e o controlador de item.

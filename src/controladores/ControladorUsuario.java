@@ -1,4 +1,4 @@
-package Controller;
+package controladores;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,13 +9,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-
-import Comparable.ComparadorId;
-import backend.Exceptions;
-import entidade.Item;
-import entidade.Status;
-import entidade.TipoUsuario;
-import entidade.Usuario;
+import comparadores.ComparadorId;
+import entidades.Item;
+import entidades.Status;
+import entidades.TipoUsuario;
+import entidades.Usuario;
+import excecoes.Exceptions;
 
 /**
  * Classe que representa um controlador de Usuarios.

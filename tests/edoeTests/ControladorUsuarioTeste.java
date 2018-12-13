@@ -2,11 +2,15 @@ package edoeTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import Controller.ControladorItem;
-import Controller.ControladorUsuario;
+import controladores.ControladorItem;
+import controladores.ControladorUsuario;
+import entidades.Item;
 /**
  * Classe para teste do ControladorUsuarios
  * 
@@ -163,6 +167,16 @@ class ControladorUsuarioTeste {
 		usuario.adicionaItem("70513372911", 0, item.getItemId("cadeira", 0, "itemDoado"), "itemDoado");
 		usuario.adicionaItem("08704413000240", 3, item.getItemId("lencol", 3,"itemDoado"), "itemDoado");
 		assertEquals("3 - lencol, tags: [branco, fino], quantidade: 5, doador: nome/08704413000240 | 0 - cadeira, tags: [confortavel, seminova], quantidade: 2, doador: nome/70513372911", usuario.listaItensParaDoacao(item.ordenaItensPorQuantidade()));
+		
+	}
+	
+	@Test
+	void testMatchItemDoador() {
+		List<Item> lista = new ArrayList<Item>();
+
+		lista.add(item.getItemId("cadeira", 0, "itemDoado"));
+		lista.add(item.getItemId("lencol", 3, "itemDoado"));
+		assertEquals("0 - cadeira, tags: [confortavel, seminova], quantidade: 2, doador: nome/70513372911 | 3 - lencol, tags: [branco, fino], quantidade: 5, doador: nome/08704413000240", usuario.matchItemDoador(lista));
 		
 	}
 

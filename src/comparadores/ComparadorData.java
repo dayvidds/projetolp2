@@ -1,7 +1,8 @@
-package Comparable;
+package comparadores;
 
 import java.util.Comparator;
-import Controller.Doacao;
+
+import controladores.Doacao;
 public class ComparadorData implements Comparator<Doacao>{
 
 	@Override

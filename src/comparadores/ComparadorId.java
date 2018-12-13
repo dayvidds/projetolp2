@@ -1,8 +1,8 @@
-package Comparable;
+package comparadores;
 
 import java.util.Comparator;
 
-import entidade.Item;
+import entidades.Item;
 
 /**
  * Classe responsavel em comparar itens atraves do seu identificador.

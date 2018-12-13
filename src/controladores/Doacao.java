@@ -1,9 +1,9 @@
-package Controller;
+package controladores;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import entidade.Item;
+import entidades.Item;
 
 /**
  * Classe que representa uma doacao.

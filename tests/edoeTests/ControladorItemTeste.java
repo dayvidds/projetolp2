@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import Controller.ControladorItem;
-import entidade.Item;
+import controladores.ControladorItem;
+import entidades.Item;
 
 class ControladorItemTeste {
 
@@ -27,6 +27,7 @@ class ControladorItemTeste {
 		ci.adicionaItem("10036985741", "lencol", 5, "branco,fino", "itemDoado");
 		ci.adicionaItem("52234712580", "CADEIRA", 10, "", "itemDoado");
 		ci.adicionaItem("21036587452", "camiseta", 8, "algodao,preta", "itemDoado");
+		
 		
 
 	}
@@ -97,6 +98,36 @@ class ControladorItemTeste {
 		assertEquals("0 - cadeira, tags: [confortavel, seminova], quantidade: 2 | 4 - cadeira, tags: [], quantidade: 10", ci.pesquisaItemParaDoacaoPorDescricao("CADEIRa"));
 		assertEquals("3 - lencol, tags: [branco, fino], quantidade: 5", ci.pesquisaItemParaDoacaoPorDescricao("lencol"));
 		assertThrows(IllegalArgumentException.class, () -> ci.pesquisaItemParaDoacaoPorDescricao(""));
+	}
+	
+	@Test
+	void testGetItensSemelhantes() {
+		ci.adicionaItem("10046019482", "Cama, Mesa, Banho", 2, "confortavel,seminova" , "itemDoado");
+		String teste = "";
+		for (Item i : ci.match(2)) {
+			teste += i.toString();
+		}
+		assertEquals("6 - cama, mesa, banho, tags: [confortavel, seminova], quantidade: 2", teste);
+	}
+	
+	@Test
+	void testGetItensSemelhantes2() {
+		ci.adicionaItem("10046019482", "Cama, Mesa, Banho", 2, "confortavel,seminova" , "itemDoado");
+		ci.adicionaItem("11846019480123", "Cama, Mesa, Banho ", 2, "linda,estampada,confortavel" , "itemNecessario");
+		String teste = "";
+		for (Item i : ci.match(7)) {
+			teste += i.toString();
+		}
+		assertEquals("6 - cama, mesa, banho, tags: [confortavel, seminova], quantidade: 2", teste);
+	}
+	
+	@Test
+	void testGetItensSemelhantesInexistente() {
+		String teste = "";
+		for (Item i : ci.match(2)) {
+			teste += i.toString();
+		}
+		assertEquals("", teste);
 	}
 
 }

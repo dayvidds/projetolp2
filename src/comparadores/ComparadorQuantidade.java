@@ -1,8 +1,8 @@
-package Comparable;
+package comparadores;
 
 import java.util.Comparator;
 
-import entidade.Item;
+import entidades.Item;
 
 /**
  * Classe responsavel por comparar dois itens doados de acordo com sua quantidade registrada no sistema. 

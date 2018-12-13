@@ -1,4 +1,4 @@
-package Controller;
+package controladores;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,11 +10,11 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import Comparable.ComparadorData;
-import Comparable.ComparadorId;
-import Comparable.ComparadorQuantidade;
-import backend.Exceptions;
-import entidade.Item;
+import comparadores.ComparadorData;
+import comparadores.ComparadorId;
+import comparadores.ComparadorQuantidade;
+import entidades.Item;
+import excecoes.Exceptions;
 
 /**
  * Classe que representa o controlador de item. Gerencia todas as extensões diretas do item.

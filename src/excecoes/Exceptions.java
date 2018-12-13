@@ -1,6 +1,6 @@
-package backend;
+package excecoes;
 
-import entidade.TipoUsuario;
+import entidades.TipoUsuario;
 	/**
 	 * Classe de exceções, essa classe serve para testar todos 
 	 * os possiveis erros que podem acontecer no código 

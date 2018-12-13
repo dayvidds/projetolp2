@@ -1,4 +1,4 @@
-package entidade;
+package entidades;
 
 public enum Status {
 	/* Não é permitido criar novas instâncias com a palavra chave new.

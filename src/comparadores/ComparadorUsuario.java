@@ -1,8 +1,8 @@
-package Comparable;
+package comparadores;
 
 import java.util.Comparator;
 
-import entidade.Usuario;
+import entidades.Usuario;
 /**
  * Classe comparadora, aqui ira organizar os usuarios cadastrados e retornar em ordem alfabetica
  * 

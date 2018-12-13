@@ -1,4 +1,4 @@
-package backend;
+package main;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,8 +9,8 @@ import java.io.ObjectOutputStream;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import Controller.ControladorUsuario;
-import entidade.Usuario;
+import controladores.ControladorUsuario;
+import entidades.Usuario;
 
 /**
  * Classe responsavel por salvar os dados da execucao atual e carregar os dados

@@ -1,8 +1,9 @@
-package backend;
+package main;
 
 
 import java.io.FileNotFoundException;
-import Controller.Controlador;
+
+import controladores.Controlador;
 import easyaccept.EasyAccept;
 
 
