@@ -3,6 +3,7 @@ package edoeTests;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -129,5 +130,96 @@ class ControladorItemTeste {
 		}
 		assertEquals("", teste);
 	}
+	
+	@Test
+	void testeRealizaDoacao() {
+		ci.adicionaItem("10046019482", "Cama, Mesa, Banho ", 3, "confortavel,lar doce lar" , "itemDoado");
+		ci.realizaDoacao(1, "Receptor", 6, "Doador", "12/07/2018");
+		assertEquals("12/07/2018 - doador: Doador/10046019482, item: cama, mesa, banho, quantidade: 1, receptor: Receptor/10046019480123", ci.listaDoacoes());
+		
+	}
+	
+	@Test
+	void testeRealizaDoacaoDescricaoDiferente() {
+		ci.adicionaItem("10046019482", "Skates", 3, "radical" , "itemDoado");
+		try {
+			ci.realizaDoacao(1, "Receptor", 6, "Doador", "11/11/2011");
+		} catch (IllegalArgumentException ia) {
+			
+		}		
+	}
+	
+	@Test
+	void testeRealizaDoacaoIdFalso() {
+		try {
+			ci.realizaDoacao(1, "Receptor", 100, "Doador", "11/11/2011");
+		} catch (IllegalArgumentException ia) {
+			
+		}		
+	}
+	
+	@Test
+	void testeRealizaDoacaoQuantidades1() {
+		ci.adicionaItem("10046019482", "Cama, Mesa, Banho", 1, "Cheiroso" , "itemDoado");
+		ci.realizaDoacao(2, "Receptor", 6, "Doador", "10/10/1911");
+		assertEquals("10/10/1911 - doador: Doador/10046019482, item: cama, mesa, banho, quantidade: 1, receptor: Receptor/11846019480123", ci.listaDoacoes());
 
+	}
+	
+	@Test
+	void testeRealizaDoacaoQuantidades2() {
+		ci.adicionaItem("10046019482", "Cama, Mesa, Banho", 2, "Cheiroso" , "itemDoado");
+		ci.realizaDoacao(2, "Receptor", 6, "Doador", "10/10/1911");
+		assertEquals("10/10/1911 - doador: Doador/10046019482, item: cama, mesa, banho, quantidade: 2, receptor: Receptor/11846019480123", ci.listaDoacoes());
+
+	}
+	
+	@Test
+	void testeVerificaItensExclusao() {
+		ci.adicionaItem("10046019482", "Skates", 3, "radical" , "itemDoado");
+		try {
+			ci.verificaItensExclusao(1, 6);
+		} catch (IllegalArgumentException ia) {
+			
+		}		
+	}
+	
+	@Test
+	void testListaDoacao() {
+		ci.adicionaItem("10046019482", "Cama, Mesa, Banho", 2, "Cheiroso" , "itemDoado");
+		ci.realizaDoacao(2, "Receptor", 6, "Doador", "10/10/1911");
+		ci.adicionaItem("10046019482", "Skate", 3, "radical, bem loko" , "itemDoado");
+		ci.adicionaItem("10046019480123", "skate ", 2, "Novinho, radical" , "itemNecessario");
+		ci.realizaDoacao(8, "Receptor", 7, "Doador", "10/10/1911");
+		assertEquals("10/10/1911 - doador: Doador/10046019482, item: cama, mesa, banho, quantidade: 2, receptor: Receptor/11846019480123 |"
+				+ " 10/10/1911 - doador: Doador/10046019482, item: skate, quantidade: 2, receptor: Receptor/10046019480123",ci.listaDoacoes());
+	}
+	
+	@Test
+	void testVerificaItensExclusao() {
+		ci.adicionaItem("10046019482", "Skate", 3, "radical, bem loko" , "itemDoado");
+		ci.adicionaItem("10046019480123", "skate ", 2, "Novinho, radical" , "itemNecessario");
+		List<Integer> lista = new ArrayList<>();
+		lista.add(7);
+		assertEquals(lista, ci.verificaItensExclusao(6, 7));
+	}
+	
+	@Test
+	void testVerificaItensExclusaoQuantidade1() {
+		ci.adicionaItem("10046019482", "Skate", 2, "radical, bem loko" , "itemDoado");
+		ci.adicionaItem("10046019480123", "skate ", 6, "Novinho, radical" , "itemNecessario");
+		List<Integer> lista = new ArrayList<>();
+		lista.add(6);
+		assertEquals(lista, ci.verificaItensExclusao(6, 7));
+	}
+	
+	@Test
+	void testVerificaItensExclusaoQuantidade2() {
+		ci.adicionaItem("10046019482", "Skate", 4, "radical, bem loko" , "itemDoado");
+		ci.adicionaItem("10046019480123", "skate ", 4, "Novinho, radical" , "itemNecessario");
+		List<Integer> lista = new ArrayList<>();
+		lista.add(6);
+		lista.add(7);
+		assertEquals(lista,ci.verificaItensExclusao(6, 7));
+	}
 }

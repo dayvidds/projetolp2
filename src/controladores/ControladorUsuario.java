@@ -476,6 +476,7 @@ public class ControladorUsuario {
 			}
 		} return null;
 	}
+	
 	/**
 	 *  Metodo que altera a base de dados de usuarios cadastrados no sistema.
 	 * 
@@ -485,6 +486,7 @@ public class ControladorUsuario {
 		this.usuarios = usuarios;
 		
 	}
+	
 	/**
 	 * Metodo para acesso ao mapa de usuario do sistema. 
 	 * 

@@ -179,5 +179,32 @@ class ControladorUsuarioTeste {
 		assertEquals("0 - cadeira, tags: [confortavel, seminova], quantidade: 2, doador: nome/70513372911 | 3 - lencol, tags: [branco, fino], quantidade: 5, doador: nome/08704413000240", usuario.matchItemDoador(lista));
 		
 	}
+	
+	@Test
+	void testGetNomeUsuario() {
+		Item item = this.item.getItemId("cadeira", 0, "itemDoado");
+		usuario.adicionaItem("70513372911", 0, item, "itemDoado");
+		assertEquals("nome", usuario.getNomeUsuarioIdItem(0));
+	}
+	
+	@Test
+	void testGetNomeUsuarioFalso() {
+		assertEquals("", usuario.getNomeUsuarioIdItem(100));
+	}
+	
+	@Test
+	void testRemoveItemMatch() {
+		Item item = this.item.getItemId("cadeira", 0, "itemDoado");
+		usuario.adicionaItem("70513372911", 0, item, "itemDoado");
+		assertEquals("0 - cadeira, tags: [confortavel, seminova], quantidade: 2", usuario.exibeItem("70513372911", 0));
+		List<Integer> lista = new ArrayList<>();
+		lista.add(0);
+		usuario.removeItemMatch(lista);
+		try {
+			assertEquals("", usuario.exibeItem("70513372911", 0));
+		} catch (IllegalArgumentException ia) {
+			
+		}
+	}
 
 }
