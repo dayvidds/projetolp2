@@ -26,7 +26,7 @@ public class Facade {
 	public static void main(String[] args) throws FileNotFoundException {		
 		Facade fc = new Facade();
 		fc.iniciaSistema();
-		args = new String[] {"backend.Facade", "arquivos_sistema/use_case_1.txt", "arquivos_sistema/use_case_2.txt", "arquivos_sistema/use_case_3.txt", "arquivos_sistema/use_case_4.txt", "arquivos_sistema/use_case_5.txt", "arquivos_sistema/use_case_6.txt","arquivos_sistema/use_case_7.txt"};
+		args = new String[] {"main.Facade", "arquivos_sistema/use_case_1.txt", "arquivos_sistema/use_case_2.txt", "arquivos_sistema/use_case_3.txt", "arquivos_sistema/use_case_4.txt", "arquivos_sistema/use_case_5.txt", "arquivos_sistema/use_case_6.txt","arquivos_sistema/use_case_7.txt"};
 		EasyAccept.main(args);
 	}
 	
